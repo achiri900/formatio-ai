@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة الذكاء الاصطناعي في التعليم</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --secondary: #16213e;
+    --accent: #0f3460;
+    --gold: #e2b04a;
+    --gold-light: #f5d08a;
+    --teal: #00b4d8;
+    --teal-light: #90e0ef;
+    --coral: #e85d4a;
+    --green: #2ec4b6;
+    --purple: #7b5ea7;
+    --text: #f0f4ff;
+    --text-muted: #8899bb;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+    background: var(--primary);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== BACKGROUND ===== */
+  .bg-canvas {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  }
+  .bg-orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15;
+  }
+  .orb1 { width: 600px; height: 600px; background: #0f3460; top: -200px; right: -100px; }
+  .orb2 { width: 400px; height: 400px; background: #00b4d8; bottom: 100px; left: -100px; animation: float 8s ease-in-out infinite; }
+  .orb3 { width: 300px; height: 300px; background: #e2b04a; top: 50%; left: 50%; animation: float 12s ease-in-out infinite reverse; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+  }
+
+  /* ===== LAYOUT ===== */
+  .shell { display: flex; min-height: 100vh; position: relative; z-index: 1; }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: 280px; min-height: 100vh; flex-shrink: 0;
+    background: rgba(10, 14, 35, 0.85);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid var(--card-border);
+    display: flex; flex-direction: column;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    padding: 0 0 2rem;
+  }
+
+  .logo-area {
+    padding: 2rem 1.5rem 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 1rem;
+  }
+  .logo-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--teal), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 12px;
+    box-shadow: 0 0 20px rgba(0,180,216,0.3);
+  }
+  .logo-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15px; font-weight: 700; color: var(--text);
+    line-height: 1.4;
+  }
+  .logo-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  .nav-section { padding: 0 1rem; margin-bottom: 0.5rem; }
+  .nav-section-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    color: var(--text-muted); text-transform: uppercase;
+    padding: 0.5rem 0.75rem; margin-bottom: 4px;
+  }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; border-radius: var(--radius-sm);
+    cursor: pointer; transition: all 0.2s;
+    font-size: 13.5px; color: var(--text-muted);
+    border: 1px solid transparent;
+    margin-bottom: 2px;
+  }
+  .nav-item:hover { background: var(--card-bg); color: var(--text); }
+  .nav-item.active {
+    background: linear-gradient(135deg, rgba(0,180,216,0.15), rgba(15,52,96,0.3));
+    border-color: rgba(0,180,216,0.25);
+    color: var(--teal-light);
+  }
+  .nav-item.active .nav-icon { color: var(--teal); }
+  .nav-icon { font-size: 18px; width: 20px; text-align: center; }
+  .nav-badge {
+    margin-right: auto; background: var(--teal); color: #fff;
+    font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 20px; line-height: 1.6;
+  }
+
+  .progress-area {
+    margin: auto 1.5rem 0;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1rem;
+  }
+  .progress-label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .progress-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius: 3px; transition: width 0.5s ease; }
+
+  /* ===== MAIN ===== */
+  .main { flex: 1; overflow-y: auto; }
+
+  .topbar {
+    padding: 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--card-border);
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(10,14,35,0.6); backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .topbar-breadcrumb { font-size: 13px; color: var(--text-muted); }
+  .topbar-breadcrumb span { color: var(--teal-light); }
+  .topbar-title { font-size: 18px; font-weight: 700; color: var(--text); margin-right: auto; }
+
+  .content-area { padding: 2.5rem; max-width: 1100px; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(226,176,74,0.06), rgba(15,52,96,0.2));
+    border: 1px solid var(--card-border);
+    border-radius: 24px; padding: 3rem 2.5rem;
+    margin-bottom: 2.5rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50px; left: -50px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.15), transparent);
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(0,180,216,0.12); border: 1px solid rgba(0,180,216,0.25);
+    color: var(--teal-light); font-size: 12px; font-weight: 600;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 2.4rem; font-weight: 900; line-height: 1.2;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, var(--teal-light), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p { font-size: 15px; color: var(--text-muted); line-height: 1.8; max-width: 600px; }
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 28px; font-weight: 800; color: var(--gold); font-family: 'Tajawal', sans-serif; }
+  .hero-stat-lbl { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ===== SECTION TITLE ===== */
+  .section-header { margin-bottom: 1.5rem; }
+  .section-title {
+    font-size: 20px; font-weight: 700; color: var(--text);
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--card-border);
+  }
+  .section-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+
+  /* ===== MODULES GRID ===== */
+  .modules-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem; margin-bottom: 3rem;
+  }
+
+  .module-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .module-card::before {
+    content: ''; position: absolute;
+    top: 0; right: 0; width: 100%; height: 3px;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .module-card.teal::before { background: linear-gradient(90deg, var(--teal), var(--teal-light)); }
+  .module-card.gold::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .module-card.coral::before { background: linear-gradient(90deg, var(--coral), #f5956a); }
+  .module-card.green::before { background: linear-gradient(90deg, var(--green), #7eefd7); }
+  .module-card.purple::before { background: linear-gradient(90deg, var(--purple), #b09ac7); }
+
+  .module-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .module-num {
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .module-icon-wrap {
+    width: 50px; height: 50px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 14px;
+  }
+  .module-card.teal .module-icon-wrap { background: rgba(0,180,216,0.15); }
+  .module-card.gold .module-icon-wrap { background: rgba(226,176,74,0.15); }
+  .module-card.coral .module-icon-wrap { background: rgba(232,93,74,0.15); }
+  .module-card.green .module-icon-wrap { background: rgba(46,196,182,0.15); }
+  .module-card.purple .module-icon-wrap { background: rgba(123,94,167,0.15); }
+
+  .module-title {
+    font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .module-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
+
+  .module-meta {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11.5px; color: var(--text-muted);
+  }
+  .module-lessons { display: flex; align-items: center; gap: 4px; }
+  .module-time { display: flex; align-items: center; gap: 4px; margin-right: auto; }
+  .module-status {
+    padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 600;
+  }
+  .status-done { background: rgba(46,196,182,0.15); color: var(--green); }
+  .status-active { background: rgba(0,180,216,0.15); color: var(--teal-light); }
+  .status-soon { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+  /* ===== LESSON VIEW ===== */
+  .lesson-view { display: none; }
+  .lesson-view.active { display: block; }
+
+  .lesson-hero {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem;
+  }
+  .lesson-tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .tag-teal { background: rgba(0,180,216,0.15); color: var(--teal-light); border: 1px solid rgba(0,180,216,0.2); }
+  .tag-gold { background: rgba(226,176,74,0.15); color: var(--gold-light); border: 1px solid rgba(226,176,74,0.2); }
+  .tag-coral { background: rgba(232,93,74,0.15); color: #f5956a; border: 1px solid rgba(232,93,74,0.2); }
+  .tag-green { background: rgba(46,196,182,0.15); color: #7eefd7; border: 1px solid rgba(46,196,182,0.2); }
+  .tag-purple { background: rgba(123,94,167,0.15); color: #b09ac7; border: 1px solid rgba(123,94,167,0.2); }
+
+  .lesson-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 10px;
+  }
+  .lesson-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+  /* ===== CONTENT BLOCKS ===== */
+  .content-block {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem;
+  }
+  .block-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+  .block-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+    flex-shrink: 0;
+  }
+  .block-title { font-size: 16px; font-weight: 700; color: var(--text); font-family: 'Tajawal', sans-serif; }
+  .block-subtitle { font-size: 12px; color: var(--text-muted); }
+
+  .definition-box {
+    background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(15,52,96,0.15));
+    border: 1px solid rgba(0,180,216,0.2);
+    border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.25rem;
+  }
+  .definition-box p { font-size: 14.5px; line-height: 1.9; color: var(--text); }
+  .definition-box strong { color: var(--teal-light); }
+
+  .concept-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px; margin-top: 1rem;
+  }
+  .concept-item {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1rem;
+    transition: all 0.2s;
+  }
+  .concept-item:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .concept-emoji { font-size: 24px; margin-bottom: 8px; }
+  .concept-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .concept-detail { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ===== PROMPT ENGINEERING ===== */
+  .prompt-formula {
+    background: rgba(10,14,35,0.8); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.25rem;
+    font-family: monospace;
+  }
+  .prompt-parts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .prompt-part {
+    padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+  }
+  .pp-role { background: rgba(123,94,167,0.2); color: #b09ac7; border: 1px solid rgba(123,94,167,0.3); }
+  .pp-task { background: rgba(0,180,216,0.2); color: var(--teal-light); border: 1px solid rgba(0,180,216,0.3); }
+  .pp-context { background: rgba(226,176,74,0.2); color: var(--gold-light); border: 1px solid rgba(226,176,74,0.3); }
+  .pp-format { background: rgba(46,196,182,0.2); color: #7eefd7; border: 1px solid rgba(46,196,182,0.3); }
+
+  .prompt-example {
+    background: rgba(0,0,0,0.3); border: 1px solid rgba(0,180,216,0.15);
+    border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-bottom: 10px;
+  }
+  .prompt-example-label { font-size: 10px; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .prompt-example-text { font-size: 13px; color: #cde; line-height: 1.7; }
+  .prompt-highlight { color: var(--gold-light); font-weight: 600; }
+
+  /* ===== TOOLS GRID ===== */
+  .tools-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px; margin-top: 1rem;
+  }
+  .tool-card {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1.25rem;
+    transition: all 0.2s; cursor: default;
+  }
+  .tool-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+  .tool-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .tool-emoji { font-size: 26px; }
+  .tool-name { font-size: 14px; font-weight: 700; color: var(--text); }
+  .tool-cat { font-size: 11px; color: var(--text-muted); }
+  .tool-use { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
+  .tool-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tool-tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    background: rgba(255,255,255,0.06); color: var(--text-muted);
+  }
+
+  /* ===== ACTIVITY CARDS ===== */
+  .activity-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 10px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .activity-num {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .activity-content h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .activity-content p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===== STORY CARD ===== */
+  .story-card {
+    background: linear-gradient(135deg, rgba(123,94,167,0.1), rgba(15,52,96,0.2));
+    border: 1px solid rgba(123,94,167,0.2);
+    border-radius: var(--radius); padding: 2rem; margin-bottom: 1.25rem;
+    position: relative; overflow: hidden;
+  }
+  .story-card::after {
+    content: '"'; position: absolute; top: 10px; left: 20px;
+    font-size: 120px; color: rgba(123,94,167,0.1);
+    font-family: Georgia, serif; line-height: 1;
+  }
+  .story-title { font-family: 'Tajawal', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+  .story-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; display: flex; gap: 12px; }
+  .story-text { font-size: 13.5px; color: #c8d4e8; line-height: 2; }
+  .story-lesson {
+    margin-top: 16px; background: rgba(46,196,182,0.08); border: 1px solid rgba(46,196,182,0.2);
+    border-radius: var(--radius-sm); padding: 1rem;
+    font-size: 12.5px; color: #7eefd7; line-height: 1.7;
+  }
+  .story-lesson strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.5px; }
+
+  /* ===== EVAL SECTION ===== */
+  .eval-type {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 10px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .eval-icon { font-size: 28px; flex-shrink: 0; }
+  .eval-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .eval-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+  .eval-tools { display: flex; gap: 6px; flex-wrap: wrap; }
+  .eval-tool { font-size: 11px; padding: 3px 10px; border-radius: 10px; }
+
+  /* ===== RESOURCE GRID ===== */
+  .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .resource-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1.25rem;
+    transition: all 0.2s; cursor: default;
+  }
+  .resource-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .resource-icon { font-size: 28px; margin-bottom: 10px; }
+  .resource-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .resource-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ===== BTN ===== */
+  .btn {
+    padding: 10px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
+    cursor: pointer; border: none; transition: all 0.2s; font-family: inherit;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal), #0083a1);
+    color: #fff; box-shadow: 0 4px 15px rgba(0,180,216,0.25);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,180,216,0.35); }
+  .btn-ghost {
+    background: transparent; border: 1px solid var(--card-border); color: var(--text-muted);
+  }
+  .btn-ghost:hover { background: var(--card-bg); color: var(--text); }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap; }
+
+  /* ===== TABLE ===== */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    background: rgba(255,255,255,0.05); padding: 10px 14px;
+    text-align: right; font-weight: 600; color: var(--text-muted);
+    border-bottom: 1px solid var(--card-border); font-size: 12px;
+  }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ===== ACCORDION ===== */
+  .accordion { border: 1px solid var(--card-border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 10px; }
+  .accordion-header {
+    padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; background: var(--card-bg); transition: background 0.2s;
+    font-size: 14px; font-weight: 600; color: var(--text);
+  }
+  .accordion-header:hover { background: rgba(255,255,255,0.06); }
+  .accordion-arrow { transition: transform 0.3s; color: var(--text-muted); font-size: 12px; }
+  .accordion.open .accordion-arrow { transform: rotate(180deg); }
+  .accordion-body { display: none; padding: 14px 16px; background: rgba(0,0,0,0.15); border-top: 1px solid var(--card-border); }
+  .accordion.open .accordion-body { display: block; }
+  .accordion-body p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ===== DIVIDER ===== */
+  .divider { border: none; border-top: 1px solid var(--card-border); margin: 1.5rem 0; }
+
+  /* ===== QUIZ ===== */
+  .quiz-q { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; font-family: 'Tajawal', sans-serif; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option {
+    padding: 12px 16px; border-radius: var(--radius-sm);
+    border: 1px solid var(--card-border); cursor: pointer; font-size: 13.5px; color: var(--text-muted);
+    transition: all 0.2s; background: var(--card-bg);
+  }
+  .quiz-option:hover { border-color: rgba(0,180,216,0.3); color: var(--text); background: rgba(0,180,216,0.05); }
+  .quiz-option.correct { border-color: var(--green); background: rgba(46,196,182,0.1); color: #7eefd7; }
+  .quiz-option.wrong { border-color: var(--coral); background: rgba(232,93,74,0.1); color: #f5956a; }
+  .quiz-feedback { margin-top: 12px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: rgba(46,196,182,0.1); border: 1px solid rgba(46,196,182,0.2); color: #7eefd7; }
+  .quiz-feedback.wrong { background: rgba(232,93,74,0.1); border: 1px solid rgba(232,93,74,0.2); color: #f5956a; }
+
+  /* ===== CERT SECTION ===== */
+  .cert-banner {
+    background: linear-gradient(135deg, rgba(226,176,74,0.1), rgba(245,208,138,0.05));
+    border: 1px solid rgba(226,176,74,0.25); border-radius: var(--radius);
+    padding: 2rem; text-align: center; margin-bottom: 2rem;
+  }
+  .cert-icon { font-size: 48px; margin-bottom: 12px; }
+  .cert-title { font-family: 'Tajawal', sans-serif; font-size: 22px; font-weight: 800; color: var(--gold-light); margin-bottom: 8px; }
+  .cert-text { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* animations */
+  @keyframes fadeSlide { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+  .content-area > * { animation: fadeSlide 0.4s ease both; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  /* mobile */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .content-area { padding: 1.25rem; }
+    .hero h1 { font-size: 1.6rem; }
+    .modules-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-canvas">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+</div>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo-area">
+      <div class="logo-icon">🤖</div>
+      <div class="logo-title">الذكاء الاصطناعي<br>في التعليم</div>
+      <div class="logo-sub">دورة تكوينية متكاملة</div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--card-border);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--teal));display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">👨‍🏫</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--gold-light);">ذ. محمد العشيري</div>
+            <div style="font-size:10px;color:var(--text-muted);">مكوّن معتمد — 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">الرئيسية</div>
+      <div class="nav-item active" onclick="showHome()">
+        <span class="nav-icon">🏠</span> الصفحة الرئيسية
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">الوحدات</div>
+      <div class="nav-item" onclick="showLesson('ai-intro')">
+        <span class="nav-icon">🧠</span> ما هو الذكاء الاصطناعي؟
+      </div>
+      <div class="nav-item" onclick="showLesson('prompt-eng')">
+        <span class="nav-icon">✍️</span> هندسة الأوامر
+        <span class="nav-badge">جديد</span>
+      </div>
+      <div class="nav-item" onclick="showLesson('lesson-design')">
+        <span class="nav-icon">📚</span> تصميم الدروس
+      </div>
+      <div class="nav-item" onclick="showLesson('resources')">
+        <span class="nav-icon">🎨</span> صناعة الموارد
+      </div>
+      <div class="nav-item" onclick="showLesson('evaluation')">
+        <span class="nav-icon">📊</span> إجراء التقويمات
+      </div>
+      <div class="nav-item" onclick="showLesson('content-stories')">
+        <span class="nav-icon">📖</span> المحتوى والقصص
+      </div>
+    </div>
+
+    <div class="progress-area">
+      <div class="progress-label">
+        <span>تقدمك في الدورة</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="main-progress" style="width:0%"></div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">0 من 6 وحدات مكتملة</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="topbar-breadcrumb" id="breadcrumb">الرئيسية</div>
+        <div class="topbar-title" id="topbar-title">مرحباً بك في المنصة 👋</div>
+      </div>
+    </div>
+
+    <!-- HOME -->
+    <div class="content-area" id="view-home">
+      <div class="hero">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px;">
+          <div class="hero-tag">🎓 دورة تكوينية احترافية</div>
+          <div class="hero-tag" style="background:rgba(226,176,74,0.12);border-color:rgba(226,176,74,0.3);color:var(--gold-light);">📅 2026</div>
+        </div>
+        <h1>الذكاء الاصطناعي في الفصل الدراسي</h1>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;background:rgba(226,176,74,0.07);border:1px solid rgba(226,176,74,0.18);border-radius:10px;padding:10px 14px;width:fit-content;">
+          <span style="font-size:20px;">👨‍🏫</span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--gold-light);">الأستاذ محمد العشيري</div>
+            <div style="font-size:11px;color:var(--text-muted);">مكوّن معتمد في تكنولوجيا التعليم والذكاء الاصطناعي</div>
+          </div>
+        </div>
+        <p>دورة شاملة تأخذك من أساسيات الذكاء الاصطناعي إلى تطبيقه الاحترافي في التصميم التعليمي، وصناعة الموارد، وإجراء التقويمات، وإنتاج محتوى تعليمي إبداعي.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-lbl">وحدات تعليمية</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">20</div><div class="hero-stat-lbl">ساعة تدريبية</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">+30</div><div class="hero-stat-lbl">أداة ذكاء اصطناعي</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-lbl">تطبيق عملي</div></div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <div class="section-title">📦 وحدات الدورة</div>
+        <div class="section-sub">اضغط على أي وحدة للبدء في التعلم</div>
+      </div>
+
+      <div class="modules-grid">
+        <div class="module-card teal" onclick="showLesson('ai-intro')">
+          <div class="module-num">الوحدة 01</div>
+          <div class="module-icon-wrap">🧠</div>
+          <div class="module-title">ما هو الذكاء الاصطناعي؟</div>
+          <div class="module-desc">مدخل شامل لمفهوم الذكاء الاصطناعي، أنواعه، تطوره التاريخي، وتأثيره على قطاع التعليم.</div>
+          <div class="module-meta">
+            <div class="module-lessons">📝 5 دروس</div>
+            <div class="module-time">⏱ ساعتان</div>
+            <span class="module-status status-active">نشط</span>
+          </div>
+        </div>
+        <div class="module-card gold" onclick="showLesson('prompt-eng')">
+          <div class="module-num">الوحدة 02</div>
+          <div class="module-icon-wrap">✍️</div>
+          <div class="module-title">هندسة الأوامر — Prompt Engineering</div>
+          <div class="module-desc">أتقن فن كتابة الأوامر الذكية للحصول على أفضل النتائج من نماذج الذكاء الاصطناعي في السياق التعليمي.</div>
+          <div class="module-meta">
+            <div class="module-lessons">📝 6 دروس</div>
+            <div class="module-time">⏱ 3 ساعات</div>
+            <span class="module-status status-active">نشط</span>
+          </div>
+        </div>
+        <div class="module-card coral" onclick="showLesson('lesson-design')">
+          <div class="module-num">الوحدة 03</div>
+          <div class="module-icon-wrap">📚</div>
+          <div class="module-title">إنشاء الدروس بالذكاء الاصطناعي</div>
+          <div class="module-desc">تصميم خطط دروس احترافية وأنشطة تفاعلية وسيناريوهات تعليمية باستخدام أدوات الذكاء الاصطناعي.</div>
+          <div class="module-meta">
+            <div class="module-lessons">📝 7 دروس</div>
+            <div class="module-time">⏱ 4 ساعات</div>
+            <span class="module-status status-active">نشط</span>
+          </div>
+        </div>
+        <div class="module-card green" onclick="showLesson('resources')">
+          <div class="module-num">الوحدة 04</div>
+          <div class="module-icon-wrap">🎨</div>
+          <div class="module-title">صناعة الموارد التعليمية</div>
+          <div class="module-desc">أنشئ صوراً، إنفوغراف، فيديوهات، ومواد مرئية وسمعية احترافية لدعم التعلم.</div>
+          <div class="module-meta">
+            <div class="module-lessons">📝 6 دروس</div>
+            <div class="module-time">⏱ 4 ساعات</div>
+            <span class="module-status status-active">نشط</span>
+          </div>
+        </div>
+        <div class="module-card purple" onclick="showLesson('evaluation')">
+          <div class="module-num">الوحدة 05</div>
+          <div class="module-icon-wrap">📊</div>
+          <div class="module-title">إجراء التقويمات الذكية</div>
+          <div class="module-desc">صمّم اختبارات متنوعة، فرائض ذكية، وأدوات تقييم تلقائي تحلل أداء المتعلمين بدقة.</div>
+          <div class="module-meta">
+            <div class="module-lessons">📝 5 دروس</div>
+            <div class="module-time">⏱ 3 ساعات</div>
+            <span class="module-status status-active">نشط</span>
+          </div>
+        </div>
+        <div class="module-card teal" onclick="showLesson('content-stories')">
+          <div class="module-num">الوحدة 06</div>
+          <div class="module-icon-wrap">📖</div>
+          <div class="module-title">المحتوى والقصص التعليمية</div>
+          <div class="module-desc">اصنع محتوى تعليمياً إبداعياً وقصصاً تربوية تُحفّز الطلاب وتُعمّق الفهم بأسلوب سردي مشوّق.</div>
+          <div class="module-meta">
+            <div class="module-lessons">📝 6 دروس</div>
+            <div class="module-time">⏱ 4 ساعات</div>
+            <span class="module-status status-active">نشط</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-banner">
+        <div class="cert-icon">🏆</div>
+        <div class="cert-title">شهادة إتمام معتمدة</div>
+        <div class="cert-text">أتمم جميع الوحدات الست واجتز الاختبار الختامي للحصول على شهادتك في تطبيقات الذكاء الاصطناعي في التعليم</div>
+        <div style="margin-top:14px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <div style="font-size:12px;color:var(--gold-light);display:flex;align-items:center;gap:6px;"><span>👨‍🏫</span> الأستاذ محمد العشيري</div>
+          <div style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;"><span>📅</span> السنة الدراسية 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LESSON: AI INTRO -->
+    <div class="content-area lesson-view" id="view-ai-intro">
+      <div class="lesson-hero">
+        <span class="lesson-tag tag-teal">الوحدة 01 — أساسيات</span>
+        <div class="lesson-title">🧠 ما هو الذكاء الاصطناعي؟</div>
+        <div class="lesson-desc">رحلة معرفية لفهم ماهية الذكاء الاصطناعي، أنواعه، وكيف يُعيد تشكيل منظومة التعليم حول العالم.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(0,180,216,0.15)">📖</div>
+          <div><div class="block-title">التعريف</div><div class="block-subtitle">ما الذي يجعل الآلة "ذكية"؟</div></div>
+        </div>
+        <div class="definition-box">
+          <p><strong>الذكاء الاصطناعي (Artificial Intelligence / AI)</strong> هو مجال من علوم الحاسوب يُعنى ببناء أنظمة قادرة على أداء مهام تتطلب عادةً <strong>ذكاءً بشرياً</strong> كالتعلم، والتفكير، واتخاذ القرارات، وفهم اللغة الطبيعية، والتعرف على الأنماط.</p>
+        </div>
+        <div class="concept-grid">
+          <div class="concept-item"><div class="concept-emoji">🤖</div><div class="concept-name">الذكاء الاصطناعي العام</div><div class="concept-detail">أنظمة برمجية تحاكي التفكير الإنساني في سياقات متعددة</div></div>
+          <div class="concept-item"><div class="concept-emoji">📊</div><div class="concept-name">التعلم الآلي</div><div class="concept-detail">تعلّم الأنماط من البيانات دون برمجة صريحة لكل قاعدة</div></div>
+          <div class="concept-item"><div class="concept-emoji">🧬</div><div class="concept-name">التعلم العميق</div><div class="concept-detail">شبكات عصبية مستوحاة من الدماغ البشري بطبقات متعددة</div></div>
+          <div class="concept-item"><div class="concept-emoji">💬</div><div class="concept-name">معالجة اللغة الطبيعية</div><div class="concept-detail">فهم النصوص والكلام البشري والتفاعل معه</div></div>
+          <div class="concept-item"><div class="concept-emoji">👁️</div><div class="concept-name">الرؤية الحاسوبية</div><div class="concept-detail">تحليل الصور ومقاطع الفيديو واستخراج المعلومات منها</div></div>
+          <div class="concept-item"><div class="concept-emoji">🎯</div><div class="concept-name">الذكاء الاصطناعي التوليدي</div><div class="concept-detail">إنشاء نصوص وصور وفيديوهات وأكواد جديدة</div></div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(226,176,74,0.15)">📅</div>
+          <div><div class="block-title">الخط الزمني لتطور الذكاء الاصطناعي</div></div>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>الحقبة</th><th>الحدث</th><th>التأثير التعليمي</th></tr></thead>
+          <tbody>
+            <tr><td>1950s</td><td>ولادة مفهوم AI — اختبار تورينغ</td><td>بداية التفكير في الآلة المفكرة</td></tr>
+            <tr><td>1980s</td><td>الأنظمة الخبيرة</td><td>أنظمة توجيه الطلاب الأولى</td></tr>
+            <tr><td>2000s</td><td>ظهور محركات البحث الذكية</td><td>ثورة في الوصول للمعرفة</td></tr>
+            <tr><td>2012</td><td>ثورة التعلم العميق</td><td>نماذج تكيفية لاحتياجات الطلاب</td></tr>
+            <tr><td>2022</td><td>ChatGPT وانفجار النماذج الكبيرة</td><td>مساعد تعليمي شخصي لكل طالب</td></tr>
+            <tr><td>2024+</td><td>نماذج متعددة الوسائط</td><td>تعلم مُخصَّص بالصوت والصورة والنص</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(46,196,182,0.15)">🏫</div>
+          <div><div class="block-title">الذكاء الاصطناعي في التعليم — نظرة شاملة</div></div>
+        </div>
+        <div class="accordion" onclick="toggleAccordion(this)">
+          <div class="accordion-header">للمعلم: كيف يُعينني الذكاء الاصطناعي؟ <span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body"><p>يساعدك في تحضير الدروس في دقائق بدلاً من ساعات، إنشاء مواد مخصصة لمستويات مختلفة، تصحيح الواجبات تلقائياً، وتوليد أفكار إبداعية للأنشطة والمشاريع الصفية.</p></div>
+        </div>
+        <div class="accordion" onclick="toggleAccordion(this)">
+          <div class="accordion-header">للطالب: كيف يُحسّن تجربة التعلم؟ <span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body"><p>يُقدّم شرحاً مخصصاً لكل طالب، يجيب على أسئلته في أي وقت، يُرشّحه لمحتوى يناسب مستواه، ويوفر ممارسة تفاعلية لا نهاية لها.</p></div>
+        </div>
+        <div class="accordion" onclick="toggleAccordion(this)">
+          <div class="accordion-header">للمؤسسة التعليمية: ما الفوائد الاستراتيجية؟ <span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body"><p>تحليل بيانات أداء الطلاب، التنبؤ بحالات الانقطاع المبكر، أتمتة العمليات الإدارية، وتخصيص المناهج بناءً على البيانات الحقيقية.</p></div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(232,93,74,0.15)">🎯</div>
+          <div><div class="block-title">اختبر فهمك</div></div>
+        </div>
+        <div class="quiz-q">ما الفرق الجوهري بين التعلم الآلي والذكاء الاصطناعي؟</div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkQuiz(this, false, 'التعلم الآلي هو نوع من أنواع الذكاء الاصطناعي وليس مرادفاً له.')">هما نفس الشيء تماماً</div>
+          <div class="quiz-option" onclick="checkQuiz(this, true, '✅ صحيح! التعلم الآلي هو فرع من فروع الذكاء الاصطناعي يُركّز على تعلم الأنماط من البيانات.')">التعلم الآلي فرع من فروع الذكاء الاصطناعي</div>
+          <div class="quiz-option" onclick="checkQuiz(this, false, 'الذكاء الاصطناعي أشمل وأوسع من التعلم الآلي.')">الذكاء الاصطناعي جزء من التعلم الآلي</div>
+        </div>
+        <div class="quiz-feedback" id="quiz-fb-1"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="showLesson('prompt-eng')">الوحدة التالية: هندسة الأوامر ←</button>
+        <button class="btn btn-ghost" onclick="showHome()">→ العودة للرئيسية</button>
+      </div>
+    </div>
+
+    <!-- LESSON: PROMPT ENGINEERING -->
+    <div class="content-area lesson-view" id="view-prompt-eng">
+      <div class="lesson-hero">
+        <span class="lesson-tag tag-gold">الوحدة 02 — مهارة أساسية</span>
+        <div class="lesson-title">✍️ هندسة الأوامر — Prompt Engineering</div>
+        <div class="lesson-desc">تعلّم كيف تحدّث الذكاء الاصطناعي بشكل صحيح للحصول على مخرجات تعليمية دقيقة وعالية الجودة.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(226,176,74,0.15)">🔑</div>
+          <div><div class="block-title">ما هو الـ Prompt؟</div></div>
+        </div>
+        <div class="definition-box">
+          <p><strong>الـ Prompt (الأمر / التعليمة)</strong> هو النص الذي تكتبه لتوجيه نموذج الذكاء الاصطناعي نحو المهمة المطلوبة. <strong>جودة المخرج = جودة الأمر</strong>. كلما كان أمرك أدق وأوضح، كانت الاستجابة أكثر دقة وفائدة.</p>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(123,94,167,0.15)">🧩</div>
+          <div><div class="block-title">صيغة الأمر المثالي للمعلم</div><div class="block-subtitle">نموذج RTCF</div></div>
+        </div>
+        <div class="prompt-formula">
+          <div class="prompt-parts">
+            <span class="prompt-part pp-role">👤 الدور (Role)</span>
+            <span style="color:var(--text-muted);font-size:18px;font-family:sans-serif;">+</span>
+            <span class="prompt-part pp-task">📋 المهمة (Task)</span>
+            <span style="color:var(--text-muted);font-size:18px;font-family:sans-serif;">+</span>
+            <span class="prompt-part pp-context">🌍 السياق (Context)</span>
+            <span style="color:var(--text-muted);font-size:18px;font-family:sans-serif;">+</span>
+            <span class="prompt-part pp-format">📐 الصيغة (Format)</span>
+          </div>
+        </div>
+
+        <div class="prompt-example">
+          <div class="prompt-example-label">❌ أمر ضعيف</div>
+          <div class="prompt-example-text">اكتب درساً عن الماء.</div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">✅ أمر متقن (RTCF)</div>
+          <div class="prompt-example-text">
+            <span class="prompt-highlight">[الدور]</span> أنت مصمم تعليمي متخصص في تعليم العلوم للمرحلة الابتدائية.<br>
+            <span class="prompt-highlight">[المهمة]</span> صمّم خطة درس كاملة حول خصائص الماء وأهميته للحياة.<br>
+            <span class="prompt-highlight">[السياق]</span> الجمهور: طلاب الصف الرابع الابتدائي (9-10 سنوات). مدة الحصة: 45 دقيقة.<br>
+            <span class="prompt-highlight">[الصيغة]</span> اكتب الخطة بهذا الترتيب: الأهداف — التمهيد — العرض — التطبيق — التقويم. استخدم لغة بسيطة ومباشرة.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(0,180,216,0.15)">⚡</div>
+          <div><div class="block-title">تقنيات هندسة الأوامر المتقدمة</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">1</div>
+            <div class="activity-content">
+              <h4>التفكير خطوة بخطوة (Chain of Thought)</h4>
+              <p>أضف عبارة "فكّر خطوة بخطوة" أو "اشرح تفكيرك" في أمرك. يجبر النموذج على التفكير المنطوق وليس القفز للإجابة.</p>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">2</div>
+            <div class="activity-content">
+              <h4>الأمثلة داخل الأمر (Few-Shot Prompting)</h4>
+              <p>أعطِ النموذج مثالاً أو مثالين على ما تريده قبل طلب المهمة الحقيقية. يُقلل الغموض بشكل كبير.</p>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(46,196,182,0.15);color:#7eefd7;">3</div>
+            <div class="activity-content">
+              <h4>الضغط والتكرار (Iterative Prompting)</h4>
+              <p>لا تتوقف عند أول إجابة. قل: "أعد الصياغة بأسلوب أبسط"، "أضف أمثلة"، "اجعله أقصر".</p>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(123,94,167,0.15);color:#b09ac7;">4</div>
+            <div class="activity-content">
+              <h4>تحديد الجمهور والمستوى</h4>
+              <p>دائماً حدد: "اشرح لطالب في المستوى المتوسط"، "بأسلوب يفهمه طفل 10 سنوات"، "لمعلم في أولى مسيرته".</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(46,196,182,0.15)">📚</div>
+          <div><div class="block-title">أوامر جاهزة للمعلم</div><div class="block-subtitle">انسخها واستخدمها مباشرة</div></div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">🎯 لإنشاء خطة درس</div>
+          <div class="prompt-example-text">صمّم خطة درس لمادة [المادة]، موضوع [الموضوع]، للصف [الصف]، مدتها [المدة] دقيقة. تضمّن: الأهداف، التمهيد، العرض، التطبيق، التقويم، والواجب المنزلي.</div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">❓ لإنشاء أسئلة اختبار</div>
+          <div class="prompt-example-text">أنشئ [العدد] سؤالاً من نوع [اختيار متعدد/صح وخطأ/مقالي] حول موضوع [الموضوع] لطلاب [الصف]. رتّبها من الأسهل للأصعب وأرفق الإجابات النموذجية.</div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">🎮 لإنشاء نشاط تفاعلي</div>
+          <div class="prompt-example-text">اقترح 3 أنشطة تعليمية إبداعية وتفاعلية لتعليم [الموضوع] لطلاب [العمر]. يجب أن تكون قابلة للتطبيق بمواد بسيطة وتستغرق كل منها [المدة] دقائق.</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="showLesson('lesson-design')">الوحدة التالية: إنشاء الدروس ←</button>
+        <button class="btn btn-ghost" onclick="showLesson('ai-intro')">→ العودة للوحدة السابقة</button>
+      </div>
+    </div>
+
+    <!-- LESSON: LESSON DESIGN -->
+    <div class="content-area lesson-view" id="view-lesson-design">
+      <div class="lesson-hero">
+        <span class="lesson-tag tag-coral">الوحدة 03 — التطبيق الفصلي</span>
+        <div class="lesson-title">📚 إنشاء الدروس بالذكاء الاصطناعي</div>
+        <div class="lesson-desc">من الفكرة إلى الحصة الكاملة — تعلّم توظيف الذكاء الاصطناعي في كل مرحلة من مراحل التصميم التعليمي.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(232,93,74,0.15)">🗺️</div>
+          <div><div class="block-title">مراحل تصميم الدرس بالذكاء الاصطناعي</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(232,93,74,0.15);color:#f5956a;">١</div>
+            <div class="activity-content">
+              <h4>التحليل والتخطيط</h4>
+              <p>استخدم ChatGPT لاستخراج الأهداف التعليمية وفق تصنيف بلوم، وتحديد المتطلبات القبلية، وبناء الخريطة المفاهيمية للدرس.</p>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">٢</div>
+            <div class="activity-content">
+              <h4>توليد المحتوى</h4>
+              <p>اطلب من النموذج صياغة الشرح النظري، الأمثلة التوضيحية، الأسئلة الاستنتاجية، وسيناريوهات المناقشة الصفية.</p>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">٣</div>
+            <div class="activity-content">
+              <h4>التصميم والإثراء</h4>
+              <p>أنشئ العروض التقديمية بـ Gamma.app، وصمّم البطاقات التعليمية والإنفوغراف بـ Canva AI.</p>
+            </div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(46,196,182,0.15);color:#7eefd7;">٤</div>
+            <div class="activity-content">
+              <h4>التقييم والتحسين</h4>
+              <p>اطلب من النموذج مراجعة الدرس وتقديم اقتراحات للتحسين، واسأله عن الإشكاليات الشائعة التي قد يواجهها الطلاب.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(0,180,216,0.15)">🛠️</div>
+          <div><div class="block-title">أدوات إنشاء الدروس</div></div>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">💬</span><div><div class="tool-name">ChatGPT / Claude</div><div class="tool-cat">نموذج لغوي</div></div></div>
+            <div class="tool-use">توليد محتوى الدرس، الأهداف، الأنشطة، الأسئلة</div>
+            <div class="tool-tags"><span class="tool-tag">خطة الدرس</span><span class="tool-tag">أسئلة</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🎯</span><div><div class="tool-name">Gamma.app</div><div class="tool-cat">عروض تقديمية</div></div></div>
+            <div class="tool-use">إنشاء عروض احترافية من نص بسيط في ثوانٍ</div>
+            <div class="tool-tags"><span class="tool-tag">PowerPoint</span><span class="tool-tag">تلقائي</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🗺️</span><div><div class="tool-name">MindMeister AI</div><div class="tool-cat">خرائط مفاهيم</div></div></div>
+            <div class="tool-use">بناء خرائط ذهنية تلقائياً لتنظيم المحتوى</div>
+            <div class="tool-tags"><span class="tool-tag">تنظيم</span><span class="tool-tag">بصري</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">📝</span><div><div class="tool-name">Diffit</div><div class="tool-cat">تمييز المحتوى</div></div></div>
+            <div class="tool-use">تعديل مستوى النص تلقائياً ليناسب مستويات مختلفة</div>
+            <div class="tool-tags"><span class="tool-tag">تمييز</span><span class="tool-tag">مستويات</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(226,176,74,0.15)">✨</div>
+          <div><div class="block-title">مثال تطبيقي — درس العمليات الحسابية</div></div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">الأمر المستخدم</div>
+          <div class="prompt-example-text">أنت معلم رياضيات خبير. صمّم درساً لتعليم الضرب للصف الثالث (8-9 سنوات) مدته 45 دقيقة. استخدم مقاربة التعلم اللعبي. تضمّن: هدفين قابلين للقياس، تمهيداً بلعبة (5 دقائق)، شرحاً مرئياً بالمصفوفات (15 دقيقة)، نشاطاً جماعياً (15 دقيقة)، وتقويماً ختامياً (10 دقائق).</div>
+        </div>
+        <div style="background:rgba(46,196,182,0.06);border:1px solid rgba(46,196,182,0.15);border-radius:var(--radius-sm);padding:1.25rem;margin-top:10px;">
+          <div style="font-size:12px;color:#7eefd7;margin-bottom:10px;font-weight:600;">📄 المخرج الناتج (مختصر)</div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.8;">
+            <strong style="color:var(--text);">الهدفان:</strong> يُجري الطالب عمليات الضرب حتى 5×5، ويُفسّر الضرب كتكرار للجمع.<br>
+            <strong style="color:var(--text);">التمهيد:</strong> لعبة "بائع الحلوى" — كم تكلف 3 علب إذا سعر الواحدة 4 دراهم؟<br>
+            <strong style="color:var(--text);">العرض:</strong> رسم المصفوفات على السبورة ثم ربطها بجداول الضرب...
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="showLesson('resources')">الوحدة التالية: صناعة الموارد ←</button>
+        <button class="btn btn-ghost" onclick="showLesson('prompt-eng')">→ العودة للوحدة السابقة</button>
+      </div>
+    </div>
+
+    <!-- LESSON: RESOURCES -->
+    <div class="content-area lesson-view" id="view-resources">
+      <div class="lesson-hero">
+        <span class="lesson-tag tag-green">الوحدة 04 — الإنتاج الإبداعي</span>
+        <div class="lesson-title">🎨 صناعة الموارد التعليمية</div>
+        <div class="lesson-desc">حوّل أفكارك إلى موارد تعليمية احترافية — صور، إنفوغراف، فيديوهات، بودكاست — دون الحاجة لخبرة تقنية.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(46,196,182,0.15)">🎨</div>
+          <div><div class="block-title">أنواع الموارد التعليمية التي يمكن توليدها</div></div>
+        </div>
+        <div class="resource-grid">
+          <div class="resource-card"><div class="resource-icon">🖼️</div><div class="resource-name">صور تعليمية</div><div class="resource-desc">أنشئ رسوماً توضيحية لأي مفهوم بـ DALL-E أو Midjourney</div></div>
+          <div class="resource-card"><div class="resource-icon">📊</div><div class="resource-name">إنفوغراف</div><div class="resource-desc">صمّم إنفوغراف احترافي ببيانات ومعلومات بـ Canva AI</div></div>
+          <div class="resource-card"><div class="resource-icon">🎬</div><div class="resource-name">فيديوهات تعليمية</div><div class="resource-desc">أنشئ فيديو بأفاتار ناطق بنصك بـ Synthesia أو HeyGen</div></div>
+          <div class="resource-card"><div class="resource-icon">🎙️</div><div class="resource-name">بودكاست وصوتيات</div><div class="resource-desc">حوّل النصوص لتسجيل صوتي احترافي بـ ElevenLabs</div></div>
+          <div class="resource-card"><div class="resource-icon">📖</div><div class="resource-name">كتب رقمية</div><div class="resource-desc">اصنع كتيبات تعليمية تفاعلية وموجزات بـ Book Creator AI</div></div>
+          <div class="resource-card"><div class="resource-icon">🎮</div><div class="resource-name">ألعاب تعليمية</div><div class="resource-desc">حوّل المحتوى لتجارب لعبية تفاعلية بـ Blooket + AI</div></div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(226,176,74,0.15)">🛠️</div>
+          <div><div class="block-title">أدوات صناعة الموارد المرئية</div></div>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🎨</span><div><div class="tool-name">Canva AI</div><div class="tool-cat">تصميم شامل</div></div></div>
+            <div class="tool-use">إنفوغراف، بطاقات، منشورات، شهادات، ملصقات صفية</div>
+            <div class="tool-tags"><span class="tool-tag">مجاني</span><span class="tool-tag">عربي</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🎥</span><div><div class="tool-name">Synthesia</div><div class="tool-cat">فيديو بأفاتار</div></div></div>
+            <div class="tool-use">أنشئ فيديو تعليمي بشخصية ناطقة من نص كتابي فقط</div>
+            <div class="tool-tags"><span class="tool-tag">احترافي</span><span class="tool-tag">بدون تصوير</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🖼️</span><div><div class="tool-name">DALL-E / Ideogram</div><div class="tool-cat">توليد صور</div></div></div>
+            <div class="tool-use">صور توضيحية لمفاهيم علمية وتاريخية ورياضية</div>
+            <div class="tool-tags"><span class="tool-tag">مخصص</span><span class="tool-tag">فوري</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🔊</span><div><div class="tool-name">ElevenLabs</div><div class="tool-cat">تحويل نص لصوت</div></div></div>
+            <div class="tool-use">تسجيلات صوتية طبيعية لدروس الاستماع والمواد الصوتية</div>
+            <div class="tool-tags"><span class="tool-tag">عربي</span><span class="tool-tag">متعدد الأصوات</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(123,94,167,0.15)">💡</div>
+          <div><div class="block-title">ورشة عمل: أنشئ إنفوغراف في 5 خطوات</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(123,94,167,0.15);color:#b09ac7;">1</div>
+            <div class="activity-content"><h4>اكتب الأمر في ChatGPT</h4><p>اطلب: "لخّص موضوع [الموضوع] في 5 نقاط رئيسية مع عنوان جذاب لكل نقطة"</p></div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">2</div>
+            <div class="activity-content"><h4>انسخ النقاط إلى Canva AI</h4><p>افتح Canva، اختر قالب إنفوغراف، ثم استخدم "Magic Write" للملء التلقائي</p></div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">3</div>
+            <div class="activity-content"><h4>اطلب صورة توضيحية</h4><p>في DALL-E: "رسم توضيحي بسيط وملوّن لـ [المفهوم] لطلاب ابتدائي"</p></div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(46,196,182,0.15);color:#7eefd7;">4</div>
+            <div class="activity-content"><h4>أضف الصورة وعدّل التصميم</h4><p>أدرج الصورة في Canva، عدّل الألوان لتتناسب مع المادة، واحفظها PDF عالي الجودة</p></div>
+          </div>
+          <div class="activity-card">
+            <div class="activity-num" style="background:rgba(232,93,74,0.15);color:#f5956a;">5</div>
+            <div class="activity-content"><h4>اطبع أو شارك رقمياً</h4><p>استخدمه في الفصل أو أرسله عبر Google Classroom أو واتساب المجموعة</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="showLesson('evaluation')">الوحدة التالية: التقويمات ←</button>
+        <button class="btn btn-ghost" onclick="showLesson('lesson-design')">→ العودة للوحدة السابقة</button>
+      </div>
+    </div>
+
+    <!-- LESSON: EVALUATION -->
+    <div class="content-area lesson-view" id="view-evaluation">
+      <div class="lesson-hero">
+        <span class="lesson-tag tag-purple">الوحدة 05 — التقييم الذكي</span>
+        <div class="lesson-title">📊 إجراء التقويمات الذكية</div>
+        <div class="lesson-desc">تجاوز الاختبارات التقليدية — صمّم أدوات تقييم متنوعة وذكية تقيس التعلم الحقيقي وتوفر تغذية راجعة فورية.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(123,94,167,0.15)">📊</div>
+          <div><div class="block-title">أنواع التقويم بالذكاء الاصطناعي</div></div>
+        </div>
+        <div class="eval-type">
+          <div class="eval-icon">✅</div>
+          <div>
+            <div class="eval-name">التقويم التشخيصي (قبل الدرس)</div>
+            <div class="eval-desc">اكشف معارف الطلاب القبلية وتصوراتهم الخاطئة قبل البدء. استخدم ChatGPT لإنشاء "مقياس المعرفة المسبقة" بـ 5 أسئلة.</div>
+            <div class="eval-tools">
+              <span class="eval-tool" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">Google Forms + AI</span>
+              <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">Mentimeter</span>
+            </div>
+          </div>
+        </div>
+        <div class="eval-type">
+          <div class="eval-icon">🔄</div>
+          <div>
+            <div class="eval-name">التقويم التكويني (أثناء الدرس)</div>
+            <div class="eval-desc">تحقق فهم الطلاب لحظة بلحظة. أسئلة سريعة، استطلاعات، ألعاب تقييم تفاعلية لا تقاطع تدفق الدرس.</div>
+            <div class="eval-tools">
+              <span class="eval-tool" style="background:rgba(46,196,182,0.15);color:#7eefd7;">Kahoot AI</span>
+              <span class="eval-tool" style="background:rgba(123,94,167,0.15);color:#b09ac7;">Quizizz AI</span>
+              <span class="eval-tool" style="background:rgba(232,93,74,0.15);color:#f5956a;">Slido</span>
+            </div>
+          </div>
+        </div>
+        <div class="eval-type">
+          <div class="eval-icon">🏆</div>
+          <div>
+            <div class="eval-name">التقويم الختامي (بعد الدرس)</div>
+            <div class="eval-desc">قِس تحقق الأهداف التعليمية. اطلب من ChatGPT إنشاء اختباراً متنوع الأسئلة يغطي مستويات بلوم الست.</div>
+            <div class="eval-tools">
+              <span class="eval-tool" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">ChatGPT → Google Forms</span>
+              <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">Formative</span>
+            </div>
+          </div>
+        </div>
+        <div class="eval-type">
+          <div class="eval-icon">📝</div>
+          <div>
+            <div class="eval-name">التقويم الأصيل (مشاريع وأداء)</div>
+            <div class="eval-desc">كلّف الطلاب بمشاريع واقعية وسيناريوهات حقيقية. استخدم AI لإنشاء معايير التصحيح (Rubric) بدقة عالية.</div>
+            <div class="eval-tools">
+              <span class="eval-tool" style="background:rgba(46,196,182,0.15);color:#7eefd7;">Seesaw</span>
+              <span class="eval-tool" style="background:rgba(123,94,167,0.15);color:#b09ac7;">Turnitin AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(226,176,74,0.15)">📐</div>
+          <div><div class="block-title">إنشاء سلّم التقدير (Rubric) بالذكاء الاصطناعي</div></div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">الأمر</div>
+          <div class="prompt-example-text">أنشئ سلّم تقدير (Rubric) لتقييم عرض شفهي لطلاب الصف السادس حول موضوع المناخ. يجب أن يتضمن 4 معايير، وكل معيار له 4 مستويات (ممتاز / جيد جداً / جيد / دون المستوى) مع وصف دقيق لكل مستوى.</div>
+        </div>
+        <table class="data-table" style="margin-top:10px;">
+          <thead><tr><th>المعيار</th><th>ممتاز (4)</th><th>جيد جداً (3)</th><th>جيد (2)</th><th>دون المستوى (1)</th></tr></thead>
+          <tbody>
+            <tr><td>المحتوى والمعلومات</td><td>دقيق وشامل ومنظم</td><td>دقيق ومنظم في معظمه</td><td>أخطاء بسيطة ومقبول</td><td>ناقص أو غير دقيق</td></tr>
+            <tr><td>مهارة العرض</td><td>واضح وواثق وجذاب</td><td>واضح وطلق في معظمه</td><td>بعض التردد</td><td>غير واضح أو مرتبك</td></tr>
+            <tr><td>التفاعل مع الجمهور</td><td>يجذب ويطرح أسئلة</td><td>يتواصل بصرياً جيداً</td><td>تواصل محدود</td><td>لا يتفاعل</td></tr>
+            <tr><td>التنظيم والوقت</td><td>منظم ويلتزم بالوقت</td><td>شبه منظم</td><td>تجاوز الوقت قليلاً</td><td>غير منظم وتجاوز الوقت</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="showLesson('content-stories')">الوحدة التالية: المحتوى والقصص ←</button>
+        <button class="btn btn-ghost" onclick="showLesson('resources')">→ العودة للوحدة السابقة</button>
+      </div>
+    </div>
+
+    <!-- LESSON: CONTENT & STORIES -->
+    <div class="content-area lesson-view" id="view-content-stories">
+      <div class="lesson-hero">
+        <span class="lesson-tag tag-teal">الوحدة 06 — الإبداع التعليمي</span>
+        <div class="lesson-title">📖 صناعة المحتوى والقصص التعليمية</div>
+        <div class="lesson-desc">استخدم قوة السرد القصصي والذكاء الاصطناعي لصنع محتوى تعليمي يُحرّك العقول ويُلهم المتعلمين.</div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(0,180,216,0.15)">🌟</div>
+          <div><div class="block-title">لماذا القصة في التعليم؟</div></div>
+        </div>
+        <div class="definition-box">
+          <p>الدماغ البشري مبرمج للقصص. المعلومات المقدّمة في شكل قصصي <strong>تُحفظ بمعدل 22 مرة أكثر</strong> من المعلومات المجردة. القصة تُفعّل مناطق الذاكرة العاطفية وتجعل التعلم لا يُنسى.</p>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(123,94,167,0.15)">✨</div>
+          <div><div class="block-title">أنواع القصص التعليمية</div></div>
+        </div>
+        <div class="concept-grid">
+          <div class="concept-item"><div class="concept-emoji">🦸</div><div class="concept-name">قصة البطل</div><div class="concept-detail">الطالب هو البطل الذي يحل مشكلة حقيقية باستخدام المفاهيم الدراسية</div></div>
+          <div class="concept-item"><div class="concept-emoji">🕰️</div><div class="concept-name">قصة تاريخية</div><div class="concept-detail">سرد أحداث تاريخية بأسلوب درامي يُحيي شخصياتها</div></div>
+          <div class="concept-item"><div class="concept-emoji">🔬</div><div class="concept-name">قصة علمية</div><div class="concept-detail">مغامرة داخل الجسم البشري أو الكون أو الخلية</div></div>
+          <div class="concept-item"><div class="concept-emoji">🌍</div><div class="concept-name">السيناريو الواقعي</div><div class="concept-detail">مشكلة حقيقية يحتاج الطلاب لحلها بتطبيق ما تعلموه</div></div>
+          <div class="concept-item"><div class="concept-emoji">🎭</div><div class="concept-name">لعب الأدوار</div><div class="concept-detail">يتقمّص الطالب شخصية تاريخية أو علمية ويتخذ قراراتها</div></div>
+          <div class="concept-item"><div class="concept-emoji">🔮</div><div class="concept-name">القصة المستقبلية</div><div class="concept-detail">سيناريوهات مستقبلية تجعل الطالب يفكر نقدياً وإبداعياً</div></div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(226,176,74,0.15)">📜</div>
+          <div><div class="block-title">قصص تعليمية نموذجية</div></div>
+        </div>
+
+        <div class="story-card">
+          <div class="story-title">🔬 رحلة داخل الخلية — علوم الصف السادس</div>
+          <div class="story-meta">
+            <span>👤 مادة: العلوم</span>
+            <span>📚 الموضوع: بنية الخلية</span>
+            <span>⏱ 10 دقائق</span>
+          </div>
+          <div class="story-text">
+            كان أمين يمشي في المختبر حين وجد مجهراً عجيباً يُشعّ بضوء أزرق غريب. لمسه بفضول، فإذا به يُصبح بحجم ذرة ويجد نفسه داخل خلية حية!
+            <br><br>
+            أمامه بوابة ضخمة مغطاة بثقوب صغيرة — "هذه الغشاء البلازمي!" صرخ. دخل فرأى مصنعاً ضخماً يعمل بلا توقف، تتصاعد منه بخارات بيضاء. "الميتوكوندريا — مصنع طاقة الخلية!" قال وابتسم وهو يتذكر درس المعلمة.
+            <br><br>
+            فجأة، جاء نداء من المركز: "تحذير! بكتيريا تقتحم الخلية!" تحرك أمين نحو مركز القيادة — النواة — حيث يوجد DNA الخلية كاملاً. كان عليه أن يُطلق بروتينات الدفاع...
+          </div>
+          <div class="story-lesson">
+            <strong>🎯 الدرس المدمج في القصة:</strong>
+            الغشاء البلازمي، الميتوكوندريا، النواة، وظيفة كل عضية، مفهوم الدفاع الخلوي — كلها تظهر بشكل طبيعي في السياق القصصي.
+          </div>
+        </div>
+
+        <div class="story-card">
+          <div class="story-title">🏺 تاجر قرطاج — الرياضيات والتاريخ</div>
+          <div class="story-meta">
+            <span>👤 مادة: الرياضيات + التاريخ</span>
+            <span>📚 الموضوع: النسبة والتناسب</span>
+            <span>⏱ 8 دقائق</span>
+          </div>
+          <div class="story-text">
+            عام 300 قبل الميلاد. يقف حنّو التاجر على رصيف ميناء قرطاج، سفينته محملة بالزيت المغربي والذهب. يريد مبادلة بضاعته مع تجار روما.
+            <br><br>
+            الروماني يعرض: "أعطني 3 دنانير ذهب مقابل كل 5 أمفورات زيت." عند حنّو 45 أمفورة. قال لابنه الصغير بادير: "يا بني، كم ديناراً سنحصل؟"
+            <br><br>
+            التفكر بادير: إذا 5 أمفورات = 3 دنانير، فـ 45 أمفورة = ؟ كتب على لوحه الحجري: 45 ÷ 5 = 9، ثم 9 × 3 = 27 ديناراً!
+            <br><br>
+            ابتسم حنّو: "أحسنت! هذا ما يُسمى التناسب المباشر — كلما زادت الأمفورات زادت الدنانير بنفس النسبة."
+          </div>
+          <div class="story-lesson">
+            <strong>🎯 الدرس المدمج:</strong>
+            مفهوم التناسب المباشر وتطبيقه — تعلّم عبر سياق تاريخي يُثري المعرفة بُعداً حضارياً.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(46,196,182,0.15)">🤖</div>
+          <div><div class="block-title">أوامر لإنشاء قصص تعليمية بالذكاء الاصطناعي</div></div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">🦸 قصة البطل</div>
+          <div class="prompt-example-text">اكتب قصة تعليمية قصيرة (250 كلمة) لطلاب الصف الخامس حول موضوع [الموضوع]. البطل طفل في سن الطلاب يواجه مشكلة حقيقية ويحلها بتطبيق [المفهوم الدراسي]. أسلوب مشوّق ومناسب للعمر.</div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">🔬 قصة علمية</div>
+          <div class="prompt-example-text">اكتب مغامرة علمية قصيرة يسافر فيها الطالب إلى [المكان العلمي: الفضاء/جسم الإنسان/قطرة ماء]. يكتشف خلال رحلته [المفاهيم العلمية المستهدفة] بطريقة طبيعية وغير مباشرة.</div>
+        </div>
+        <div class="prompt-example">
+          <div class="prompt-example-label">🌍 سيناريو حل المشكلات</div>
+          <div class="prompt-example-text">ابنِ سيناريو واقعياً: مجموعة من الطلاب في [الصف] يواجهون مشكلة حقيقية [صف المشكلة]. لحلها يحتاجون تطبيق [المفاهيم الدراسية]. اجعل القصة مفتوحة النهاية لإشراك الطلاب في إيجاد الحل.</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="block-header">
+          <div class="block-icon" style="background:rgba(232,93,74,0.15)">🛠️</div>
+          <div><div class="block-title">أدوات صناعة المحتوى التعليمي</div></div>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">📝</span><div><div class="tool-name">ChatGPT / Claude</div><div class="tool-cat">كتابة القصص</div></div></div>
+            <div class="tool-use">توليد قصص مخصصة حسب المادة والصف والمدة</div>
+            <div class="tool-tags"><span class="tool-tag">عربي</span><span class="tool-tag">مخصص</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🎨</span><div><div class="tool-name">Book Creator AI</div><div class="tool-cat">كتب رقمية</div></div></div>
+            <div class="tool-use">حوّل القصة لكتاب رقمي تفاعلي مع صور</div>
+            <div class="tool-tags"><span class="tool-tag">تفاعلي</span><span class="tool-tag">مصوّر</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🎙️</span><div><div class="tool-name">Murf AI / ElevenLabs</div><div class="tool-cat">حكي صوتي</div></div></div>
+            <div class="tool-use">حوّل القصة لتسجيل صوتي بصوت طبيعي وعاطفي</div>
+            <div class="tool-tags"><span class="tool-tag">صوتي</span><span class="tool-tag">عاطفي</span></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top"><span class="tool-emoji">🎬</span><div><div class="tool-name">Sora / Kling AI</div><div class="tool-cat">فيديو القصة</div></div></div>
+            <div class="tool-use">حوّل نص القصة لفيديو متحرك احترافي</div>
+            <div class="tool-tags"><span class="tool-tag">فيديو</span><span class="tool-tag">متحرك</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-banner">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-title">أكملت جميع وحدات الدورة!</div>
+        <div class="cert-text">أتقنت الذكاء الاصطناعي، هندسة الأوامر، تصميم الدروس، صناعة الموارد، التقويم الذكي، والقصص التعليمية. أنت الآن مؤهل لتوظيف الذكاء الاصطناعي في فصلك الدراسي بكفاءة عالية.</div>
+        <div style="margin-top:1.25rem;">
+          <button class="btn btn-primary" onclick="showHome()" style="margin:auto;">🏠 العودة للصفحة الرئيسية</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const lessonMap = {
+    'ai-intro': { title: 'ما هو الذكاء الاصطناعي؟', crumb: 'الوحدة 01' },
+    'prompt-eng': { title: 'هندسة الأوامر', crumb: 'الوحدة 02' },
+    'lesson-design': { title: 'إنشاء الدروس', crumb: 'الوحدة 03' },
+    'resources': { title: 'صناعة الموارد', crumb: 'الوحدة 04' },
+    'evaluation': { title: 'إجراء التقويمات', crumb: 'الوحدة 05' },
+    'content-stories': { title: 'المحتوى والقصص', crumb: 'الوحدة 06' }
+  };
+
+  let visited = new Set();
+
+  function showHome() {
+    document.querySelectorAll('.content-area').forEach(el => el.style.display = 'none');
+    document.getElementById('view-home').style.display = 'block';
+    document.getElementById('breadcrumb').textContent = 'الرئيسية';
+    document.getElementById('topbar-title').textContent = 'مرحباً بك في المنصة 👋';
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    document.querySelector('.nav-item').classList.add('active');
+  }
+
+  function showLesson(id) {
+    document.querySelectorAll('.content-area').forEach(el => el.style.display = 'none');
+    const view = document.getElementById('view-' + id);
+    if (view) { view.style.display = 'block'; view.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+    const info = lessonMap[id];
+    if (info) {
+      document.getElementById('breadcrumb').textContent = 'الرئيسية > ' + info.crumb;
+      document.getElementById('topbar-title').textContent = info.title;
+    }
+
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(i => {
+      if (i.textContent.trim().includes(info?.title?.substring(0,5))) i.classList.add('active');
+    });
+
+    visited.add(id);
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const total = Object.keys(lessonMap).length;
+    const done = visited.size;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('prog-pct').textContent = pct + '%';
+    document.getElementById('main-progress').style.width = pct + '%';
+  }
+
+  function toggleAccordion(el) {
+    el.classList.toggle('open');
+  }
+
+  let quizAnswered = false;
+  function checkQuiz(el, correct, msg) {
+    if (quizAnswered) return;
+    quizAnswered = true;
+    el.classList.add(correct ? 'correct' : 'wrong');
+    const fb = document.getElementById('quiz-fb-1');
+    fb.textContent = msg;
+    fb.className = 'quiz-feedback show ' + (correct ? 'correct' : 'wrong');
+  }
+</script>
+</body>
+</html>
