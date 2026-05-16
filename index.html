@@ -497,6 +497,223 @@
   @keyframes fadeSlide { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
   .content-area > * { animation: fadeSlide 0.4s ease both; }
 
+  /* ===== EXPLANATION BLOCKS ===== */
+  .explain-block {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border: 1px solid var(--card-border);
+    border-right: 4px solid var(--teal);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1.25rem 1.5rem; margin: 1rem 0;
+  }
+  .explain-block.gold { border-right-color: var(--gold); }
+  .explain-block.coral { border-right-color: var(--coral); }
+  .explain-block.green { border-right-color: var(--green); }
+  .explain-block.purple { border-right-color: var(--purple); }
+  .explain-title {
+    font-size: 13px; font-weight: 700; color: var(--teal-light);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+    letter-spacing: 0.3px;
+  }
+  .explain-block.gold .explain-title { color: var(--gold-light); }
+  .explain-block.coral .explain-title { color: #f5956a; }
+  .explain-block.green .explain-title { color: #7eefd7; }
+  .explain-block.purple .explain-title { color: #b09ac7; }
+  .explain-text {
+    font-size: 13.5px; color: var(--text-muted); line-height: 1.9;
+  }
+  .explain-text strong { color: var(--text); font-weight: 600; }
+  .explain-text em { color: var(--teal-light); font-style: normal; font-weight: 500; }
+
+  .tip-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: rgba(226,176,74,0.06); border: 1px solid rgba(226,176,74,0.18);
+    border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 10px 0;
+  }
+  .tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .tip-text { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+  .tip-text strong { color: var(--gold-light); }
+
+  .warning-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: rgba(232,93,74,0.06); border: 1px solid rgba(232,93,74,0.2);
+    border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 10px 0;
+  }
+  .warning-text { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+  .warning-text strong { color: #f5956a; }
+
+  .key-points {
+    display: flex; flex-direction: column; gap: 8px; margin-top: 12px;
+  }
+  .key-point {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: var(--text-muted); line-height: 1.7;
+  }
+  .key-point-dot {
+    width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+  }
+  .kp-teal { background: rgba(0,180,216,0.2); color: var(--teal); }
+  .kp-gold { background: rgba(226,176,74,0.2); color: var(--gold); }
+  .kp-green { background: rgba(46,196,182,0.2); color: var(--green); }
+  .kp-purple { background: rgba(123,94,167,0.2); color: var(--purple); }
+  .kp-coral { background: rgba(232,93,74,0.2); color: var(--coral); }
+
+  .comparison-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0;
+  }
+  .comparison-col {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm); padding: 1rem;
+  }
+  .comparison-col-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+    margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--card-border);
+  }
+  .comparison-col-title.red { color: #f5956a; }
+  .comparison-col-title.green { color: #7eefd7; }
+  .comparison-col li {
+    font-size: 12.5px; color: var(--text-muted); line-height: 1.7;
+    list-style: none; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .comparison-col li::before { content: '• '; }
+
+  .mini-quiz {
+    background: rgba(123,94,167,0.07); border: 1px solid rgba(123,94,167,0.2);
+    border-radius: var(--radius-sm); padding: 1.25rem; margin-top: 1rem;
+  }
+  .mini-quiz-q { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .mini-quiz-opts { display: flex; flex-direction: column; gap: 6px; }
+  .mini-quiz-opt {
+    padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(123,94,167,0.2);
+    cursor: pointer; font-size: 13px; color: var(--text-muted);
+    transition: all 0.2s; background: rgba(123,94,167,0.05);
+  }
+  .mini-quiz-opt:hover { background: rgba(123,94,167,0.12); color: var(--text); }
+  .mini-quiz-opt.correct { border-color: var(--green); background: rgba(46,196,182,0.1); color: #7eefd7; }
+  .mini-quiz-opt.wrong { border-color: var(--coral); background: rgba(232,93,74,0.1); color: #f5956a; }
+  .mini-quiz-fb { font-size: 12.5px; margin-top: 8px; display: none; padding: 8px 12px; border-radius: 8px; }
+  .mini-quiz-fb.show { display: block; }
+  .mini-quiz-fb.c { background: rgba(46,196,182,0.1); color: #7eefd7; }
+  .mini-quiz-fb.w { background: rgba(232,93,74,0.1); color: #f5956a; }
+
+  .sub-section-title {
+    font-size: 15px; font-weight: 700; color: var(--text);
+    margin: 1.5rem 0 0.75rem; padding-bottom: 8px;
+    border-bottom: 1px solid var(--card-border);
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  /* ===== MODAL SYSTEM ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(5,8,25,0.85); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem; opacity: 0; pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal-box {
+    background: linear-gradient(145deg, #0d1235, #111830);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; width: 100%; max-width: 600px;
+    max-height: 85vh; overflow-y: auto;
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.3s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+
+  .modal-head {
+    padding: 1.75rem 1.75rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: flex-start; gap: 14px; position: sticky; top: 0;
+    background: linear-gradient(145deg,#0d1235,#111830); z-index: 2;
+  }
+  .modal-emoji {
+    width: 54px; height: 54px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .modal-head-text { flex: 1; }
+  .modal-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 6px;
+  }
+  .modal-title { font-family: 'Tajawal', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); }
+  .modal-close {
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05); color: var(--text-muted); cursor: pointer;
+    font-size: 16px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.2s; margin-top: 2px;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+
+  .modal-body { padding: 1.5rem 1.75rem 2rem; }
+  .modal-section { margin-bottom: 1.25rem; }
+  .modal-section-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 8px; padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .modal-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.9; }
+  .modal-text strong { color: var(--text); font-weight: 600; }
+  .modal-text em { font-style: normal; }
+  .modal-highlight {
+    background: rgba(0,180,216,0.08); border: 1px solid rgba(0,180,216,0.18);
+    border-radius: 10px; padding: 1rem 1.25rem; margin: 10px 0;
+    font-size: 13px; color: #c0e8f0; line-height: 1.8;
+  }
+  .modal-highlight.gold { background: rgba(226,176,74,0.08); border-color: rgba(226,176,74,0.2); color: var(--gold-light); }
+  .modal-highlight.green { background: rgba(46,196,182,0.08); border-color: rgba(46,196,182,0.2); color: #7eefd7; }
+  .modal-highlight.purple { background: rgba(123,94,167,0.08); border-color: rgba(123,94,167,0.2); color: #c0b0e0; }
+  .modal-highlight.coral { background: rgba(232,93,74,0.08); border-color: rgba(232,93,74,0.2); color: #f5a090; }
+
+  .modal-steps { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+  .modal-step {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 13px; color: var(--text-muted); line-height: 1.7;
+  }
+  .modal-step-n {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    background: rgba(0,180,216,0.15); color: var(--teal-light);
+  }
+  .modal-step-n.gold { background: rgba(226,176,74,0.15); color: var(--gold-light); }
+  .modal-step-n.green { background: rgba(46,196,182,0.15); color: #7eefd7; }
+  .modal-step-n.purple { background: rgba(123,94,167,0.15); color: #c0b0e0; }
+  .modal-step-n.coral { background: rgba(232,93,74,0.15); color: #f5a090; }
+
+  .modal-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .modal-chip {
+    font-size: 11.5px; padding: 4px 12px; border-radius: 20px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-muted);
+  }
+
+  /* Make concept items and resource cards clickable */
+  .concept-item { cursor: pointer; }
+  .concept-item:hover { background: rgba(255,255,255,0.09); border-color: rgba(0,180,216,0.2); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+  .resource-card { cursor: pointer; }
+  .resource-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(0,180,216,0.2); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+  .tool-card { cursor: pointer; }
+  .tool-card:hover { border-color: rgba(0,180,216,0.25); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+  .eval-type { cursor: pointer; }
+  .eval-type:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+  .activity-card { cursor: pointer; }
+  .activity-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+  .story-card { cursor: pointer; }
+
+  /* click hint badge */
+  .click-hint {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; color: var(--teal); background: rgba(0,180,216,0.1);
+    border: 1px solid rgba(0,180,216,0.2); border-radius: 20px;
+    padding: 2px 8px; margin-top: 6px;
+  }
+
   /* scrollbar */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -518,6 +735,21 @@
   <div class="bg-orb orb1"></div>
   <div class="bg-orb orb2"></div>
   <div class="bg-orb orb3"></div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-head" id="modalHead">
+      <div class="modal-emoji" id="modalEmoji"></div>
+      <div class="modal-head-text">
+        <div class="modal-tag" id="modalTag"></div>
+        <div class="modal-title" id="modalTitle"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
 </div>
 
 <div class="shell">
@@ -714,13 +946,66 @@
         <div class="definition-box">
           <p><strong>الذكاء الاصطناعي (Artificial Intelligence / AI)</strong> هو مجال من علوم الحاسوب يُعنى ببناء أنظمة قادرة على أداء مهام تتطلب عادةً <strong>ذكاءً بشرياً</strong> كالتعلم، والتفكير، واتخاذ القرارات، وفهم اللغة الطبيعية، والتعرف على الأنماط.</p>
         </div>
+
+        <div class="explain-block">
+          <div class="explain-title">💡 شرح المفهوم</div>
+          <div class="explain-text">
+            تخيّل أنك تعلّم طفلاً التمييز بين الكلب والقطة — تُريه صوراً كثيرة حتى يتعلم. الذكاء الاصطناعي يفعل الشيء نفسه تماماً؛ يُغذَّى بملايين الأمثلة حتى يتعلم التعرف على الأنماط واتخاذ القرارات. الفارق أن الآلة لا تتعب ولا تنسى، وتتعلم من كميات هائلة من البيانات في وقت قصير جداً.
+            <br><br>
+            <strong>المفتاح:</strong> الذكاء الاصطناعي ليس سحراً — إنه رياضيات وإحصاء وبيانات ضخمة منظّمة بذكاء.
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>للمعلم:</strong> عند تقديم هذا التعريف لطلابك، ابدأ بسؤالهم: "هل سبق أن لاحظتم أن يوتيوب يقترح فيديوهات تحبونها؟" — هذا هو الذكاء الاصطناعي في عمله اليومي.</div>
+        </div>
         <div class="concept-grid">
-          <div class="concept-item"><div class="concept-emoji">🤖</div><div class="concept-name">الذكاء الاصطناعي العام</div><div class="concept-detail">أنظمة برمجية تحاكي التفكير الإنساني في سياقات متعددة</div></div>
-          <div class="concept-item"><div class="concept-emoji">📊</div><div class="concept-name">التعلم الآلي</div><div class="concept-detail">تعلّم الأنماط من البيانات دون برمجة صريحة لكل قاعدة</div></div>
-          <div class="concept-item"><div class="concept-emoji">🧬</div><div class="concept-name">التعلم العميق</div><div class="concept-detail">شبكات عصبية مستوحاة من الدماغ البشري بطبقات متعددة</div></div>
-          <div class="concept-item"><div class="concept-emoji">💬</div><div class="concept-name">معالجة اللغة الطبيعية</div><div class="concept-detail">فهم النصوص والكلام البشري والتفاعل معه</div></div>
-          <div class="concept-item"><div class="concept-emoji">👁️</div><div class="concept-name">الرؤية الحاسوبية</div><div class="concept-detail">تحليل الصور ومقاطع الفيديو واستخراج المعلومات منها</div></div>
-          <div class="concept-item"><div class="concept-emoji">🎯</div><div class="concept-name">الذكاء الاصطناعي التوليدي</div><div class="concept-detail">إنشاء نصوص وصور وفيديوهات وأكواد جديدة</div></div>
+          <div class="concept-item" onclick="openModal('ai-general')"><div class="concept-emoji">🤖</div><div class="concept-name">الذكاء الاصطناعي العام</div><div class="concept-detail">أنظمة برمجية تحاكي التفكير الإنساني في سياقات متعددة</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('ml')"><div class="concept-emoji">📊</div><div class="concept-name">التعلم الآلي</div><div class="concept-detail">تعلّم الأنماط من البيانات دون برمجة صريحة لكل قاعدة</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('dl')"><div class="concept-emoji">🧬</div><div class="concept-name">التعلم العميق</div><div class="concept-detail">شبكات عصبية مستوحاة من الدماغ البشري بطبقات متعددة</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('nlp')"><div class="concept-emoji">💬</div><div class="concept-name">معالجة اللغة الطبيعية</div><div class="concept-detail">فهم النصوص والكلام البشري والتفاعل معه</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('cv')"><div class="concept-emoji">👁️</div><div class="concept-name">الرؤية الحاسوبية</div><div class="concept-detail">تحليل الصور ومقاطع الفيديو واستخراج المعلومات منها</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('genai')"><div class="concept-emoji">🎯</div><div class="concept-name">الذكاء الاصطناعي التوليدي</div><div class="concept-detail">إنشاء نصوص وصور وفيديوهات وأكواد جديدة</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+        </div>
+
+        <div class="sub-section-title">🔎 شرح كل فرع بالتفصيل</div>
+        <div class="explain-block">
+          <div class="explain-title">📊 التعلم الآلي (Machine Learning)</div>
+          <div class="explain-text">بدلاً من برمجة الحاسوب بقواعد صريحة ("إذا كانت الصورة تحتوي على آذان مدببة فهي قطة")، نُعطيه آلاف الصور المُصنَّفة مسبقاً ونتركه <strong>يكتشف القواعد بنفسه</strong>. هذا جوهر التعلم الآلي — الكمبيوتر يتعلم من البيانات لا من التعليمات.</div>
+        </div>
+        <div class="explain-block green">
+          <div class="explain-title">🧬 التعلم العميق (Deep Learning)</div>
+          <div class="explain-text">تطور متقدم من التعلم الآلي يستخدم <strong>شبكات عصبية اصطناعية</strong> مستوحاة من بنية الدماغ البشري. كل طبقة في الشبكة تعالج المعلومات بشكل أعمق من سابقتها. النتيجة: قدرة مذهلة على التعرف على الكلام، الصور، والنصوص بدقة تفوق الإنسان في بعض المجالات.</div>
+        </div>
+        <div class="explain-block gold">
+          <div class="explain-title">💬 معالجة اللغة الطبيعية (NLP)</div>
+          <div class="explain-text">هي التقنية التي تجعل ChatGPT وClaudie وGemini يفهمون كلامك ويردون عليك. تمكّن الحاسوب من <strong>قراءة النصوص، وفهم المعنى، والرد بلغة طبيعية</strong>. المترجمون الآليون، مُصحِّحو الإملاء، وروبوتات المحادثة كلها تعتمد على NLP.</div>
+        </div>
+        <div class="explain-block purple">
+          <div class="explain-title">🎯 الذكاء الاصطناعي التوليدي (Generative AI)</div>
+          <div class="explain-text">الجيل الجديد الذي يُنشئ محتوى جديداً من الصفر — نصوصاً، صوراً، موسيقى، وكوداً برمجياً. ChatGPT يولّد نصاً، DALL-E يولّد صوراً، Sora يولّد فيديوهات. هذه التقنية هي <strong>الأكثر تأثيراً في التعليم</strong> اليوم لأنها تُنتج محتوى مخصصاً بسرعة فائقة.</div>
+        </div>
+
+        <div class="comparison-row">
+          <div class="comparison-col">
+            <div class="comparison-col-title red">⚠️ مخاوف شائعة خاطئة</div>
+            <ul>
+              <li>الذكاء الاصطناعي واعٍ ويشعر</li>
+              <li>سيستغني عن المعلمين نهائياً</li>
+              <li>دائماً على صواب ودقيق</li>
+              <li>يفهم السياق كما يفهمه الإنسان</li>
+            </ul>
+          </div>
+          <div class="comparison-col">
+            <div class="comparison-col-title green">✅ الحقيقة العلمية</div>
+            <ul>
+              <li>أداة رياضية لا وعي لها</li>
+              <li>مساعد يُعزّز دور المعلم</li>
+              <li>يُخطئ ويُهلوِس أحياناً</li>
+              <li>يُعالج إحصاء لا معنى حقيقياً</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -728,6 +1013,10 @@
         <div class="block-header">
           <div class="block-icon" style="background:rgba(226,176,74,0.15)">📅</div>
           <div><div class="block-title">الخط الزمني لتطور الذكاء الاصطناعي</div></div>
+        </div>
+        <div class="explain-block gold">
+          <div class="explain-title">📌 لماذا ندرس التاريخ؟</div>
+          <div class="explain-text">فهم الخط الزمني يُجيب على سؤال جوهري: لماذا الآن؟ لماذا انفجر الذكاء الاصطناعي في 2022 وليس قبله؟ الجواب في ثلاثة عوامل تضافرت معاً: <strong>قوة حوسبة هائلة</strong> (GPU) + <strong>بيانات ضخمة</strong> (الإنترنت) + <strong>خوارزميات ذكية جديدة</strong> (Transformer 2017). حين التقت هذه الثلاثة وُلد ChatGPT.</div>
         </div>
         <table class="data-table">
           <thead><tr><th>الحقبة</th><th>الحدث</th><th>التأثير التعليمي</th></tr></thead>
@@ -740,6 +1029,10 @@
             <tr><td>2024+</td><td>نماذج متعددة الوسائط</td><td>تعلم مُخصَّص بالصوت والصورة والنص</td></tr>
           </tbody>
         </table>
+        <div class="explain-block">
+          <div class="explain-title">🔍 درس من التاريخ للمعلم</div>
+          <div class="explain-text">لاحظ أن <strong>كل ثورة في الذكاء الاصطناعي غيّرت التعليم</strong> — محركات البحث جعلت الحفظ أقل أهمية وأولت الفهم والتحليل أولوية. اليوم، النماذج التوليدية تُعيد السؤال: ماذا نُعلّم وكيف؟ إذا أصبح ChatGPT يكتب المقالات، فمهمتنا تحويل التركيز نحو <em>التفكير النقدي والإبداع والتحقق من المعلومات</em>.</div>
+        </div>
       </div>
 
       <div class="content-block">
@@ -747,17 +1040,55 @@
           <div class="block-icon" style="background:rgba(46,196,182,0.15)">🏫</div>
           <div><div class="block-title">الذكاء الاصطناعي في التعليم — نظرة شاملة</div></div>
         </div>
+        <div class="explain-block green">
+          <div class="explain-title">🌍 نحن في لحظة تحوّل تاريخية</div>
+          <div class="explain-text">لأول مرة في التاريخ، يملك كل معلم وكل طالب مساعداً شخصياً ذكياً متاحاً 24/7 مجاناً أو بتكلفة زهيدة. قبل 2022 كان التعليم المُخصَّص حكراً على من يستطيع دفع أجر المدرس الخصوصي. اليوم، هذا الامتياز أصبح في متناول الجميع. <strong>دورك كمعلم لم يتراجع — بل ارتقى</strong> نحو الإرشاد والتحفيز والتفكير النقدي.</div>
+        </div>
         <div class="accordion" onclick="toggleAccordion(this)">
           <div class="accordion-header">للمعلم: كيف يُعينني الذكاء الاصطناعي؟ <span class="accordion-arrow">▼</span></div>
-          <div class="accordion-body"><p>يساعدك في تحضير الدروس في دقائق بدلاً من ساعات، إنشاء مواد مخصصة لمستويات مختلفة، تصحيح الواجبات تلقائياً، وتوليد أفكار إبداعية للأنشطة والمشاريع الصفية.</p></div>
+          <div class="accordion-body">
+            <p>يساعدك في تحضير الدروس في دقائق بدلاً من ساعات، إنشاء مواد مخصصة لمستويات مختلفة، تصحيح الواجبات تلقائياً، وتوليد أفكار إبداعية للأنشطة والمشاريع الصفية.</p>
+            <div class="explain-block" style="margin-top:12px;">
+              <div class="explain-title">💡 أمثلة فعلية يومية</div>
+              <div class="explain-text">
+                <strong>قبل الدرس:</strong> اطلب من ChatGPT "ما هي التصورات الخاطئة الشائعة لدى الطلاب حول موضوع [الكسور]؟" — ستحصل على قائمة توجّه طريقة شرحك.<br><br>
+                <strong>أثناء الدرس:</strong> إذا سألك طالب سؤالاً لم تتوقعه، قل "فكرة رائعة — لنسأل الذكاء الاصطناعي معاً ونناقش جوابه."<br><br>
+                <strong>بعد الدرس:</strong> الصق إجابات الطلاب المكتوبة في ChatGPT واطلب منه تحليل الأخطاء الأكثر شيوعاً.
+              </div>
+            </div>
+          </div>
         </div>
         <div class="accordion" onclick="toggleAccordion(this)">
           <div class="accordion-header">للطالب: كيف يُحسّن تجربة التعلم؟ <span class="accordion-arrow">▼</span></div>
-          <div class="accordion-body"><p>يُقدّم شرحاً مخصصاً لكل طالب، يجيب على أسئلته في أي وقت، يُرشّحه لمحتوى يناسب مستواه، ويوفر ممارسة تفاعلية لا نهاية لها.</p></div>
+          <div class="accordion-body">
+            <p>يُقدّم شرحاً مخصصاً لكل طالب، يجيب على أسئلته في أي وقت، يُرشّحه لمحتوى يناسب مستواه، ويوفر ممارسة تفاعلية لا نهاية لها.</p>
+            <div class="explain-block green" style="margin-top:12px;">
+              <div class="explain-title">📖 كيف يستخدم الطالب الذكاء الاصطناعي بشكل صحيح؟</div>
+              <div class="explain-text">
+                <strong>الاستخدام الصحيح:</strong> "اشرح لي مفهوم الكسور بمثال عملي" — ثم يحاول الطالب بنفسه.<br>
+                <strong>الاستخدام الخاطئ:</strong> "أكتب لي الواجب" — هذا يُلغي التعلم الحقيقي.<br><br>
+                <em>القاعدة الذهبية: استخدم الذكاء الاصطناعي كمعلم يشرح، لا ككاتب يُنجز عنك.</em>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="accordion" onclick="toggleAccordion(this)">
           <div class="accordion-header">للمؤسسة التعليمية: ما الفوائد الاستراتيجية؟ <span class="accordion-arrow">▼</span></div>
-          <div class="accordion-body"><p>تحليل بيانات أداء الطلاب، التنبؤ بحالات الانقطاع المبكر، أتمتة العمليات الإدارية، وتخصيص المناهج بناءً على البيانات الحقيقية.</p></div>
+          <div class="accordion-body">
+            <p>تحليل بيانات أداء الطلاب، التنبؤ بحالات الانقطاع المبكر، أتمتة العمليات الإدارية، وتخصيص المناهج بناءً على البيانات الحقيقية.</p>
+            <div class="explain-block gold" style="margin-top:12px;">
+              <div class="explain-title">🏛️ التحوّل المؤسسي — خطوات عملية</div>
+              <div class="explain-text">
+                <strong>المرحلة 1 — التوعية:</strong> تدريب جميع المعلمين على الأدوات الأساسية (ChatGPT، Canva AI).<br>
+                <strong>المرحلة 2 — التجريب:</strong> تبنّي مشاريع تجريبية في بعض الفصول وقياس النتائج.<br>
+                <strong>المرحلة 3 — التوسع:</strong> بناء سياسة مؤسسية واضحة لاستخدام الذكاء الاصطناعي في التعلم والتقييم.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="warning-box" style="margin-top:12px;">
+          <div class="tip-icon">⚠️</div>
+          <div class="warning-text"><strong>تنبيه مهم:</strong> الذكاء الاصطناعي يُخطئ أحياناً ويُقدّم معلومات غير دقيقة (يُسمى "الهلوسة"). دائماً علّم طلابك التحقق من المعلومات من مصادر موثوقة، ولا تثق بأي نتيجة دون مراجعة نقدية.</div>
         </div>
       </div>
 
@@ -797,12 +1128,36 @@
         <div class="definition-box">
           <p><strong>الـ Prompt (الأمر / التعليمة)</strong> هو النص الذي تكتبه لتوجيه نموذج الذكاء الاصطناعي نحو المهمة المطلوبة. <strong>جودة المخرج = جودة الأمر</strong>. كلما كان أمرك أدق وأوضح، كانت الاستجابة أكثر دقة وفائدة.</p>
         </div>
+        <div class="explain-block gold">
+          <div class="explain-title">💡 لماذا هندسة الأوامر مهارة أساسية للمعلم؟</div>
+          <div class="explain-text">
+            نموذج الذكاء الاصطناعي مثل موظف جديد موهوب جداً — لكن يحتاج تعليمات واضحة. لو قلت له "ساعدني" فستحصل على شيء عام. لو قلت له "أنت مختص في تعليم الرياضيات للمرحلة الابتدائية، ساعدني في تصميم نشاط للصف الثالث حول الكسور مدته 20 دقيقة" — ستحصل على ذهب خالص.
+            <br><br>
+            <strong>الفرق بين معلم يستخدم AI بكفاءة ومعلم آخر يحصل على نتائج متواضعة يكمن في جودة الأوامر التي يكتبها.</strong>
+          </div>
+        </div>
+        <div class="key-points">
+          <div class="key-point"><div class="key-point-dot kp-gold">1</div><span><strong>الوضوح:</strong> حدد المهمة بدقة — "اكتب درساً" أضعف من "صمّم خطة درس بأهداف ومراحل محددة"</span></div>
+          <div class="key-point"><div class="key-point-dot kp-teal">2</div><span><strong>السياق:</strong> أخبر النموذج بكل المعطيات المهمة — الصف، العمر، المادة، المدة</span></div>
+          <div class="key-point"><div class="key-point-dot kp-green">3</div><span><strong>الصيغة:</strong> حدد كيف تريد المخرج — قائمة؟ جدول؟ نص؟ نقاط؟</span></div>
+          <div class="key-point"><div class="key-point-dot kp-purple">4</div><span><strong>الدور:</strong> أعطِ النموذج هوية "أنت خبير في..." لترفع جودة الإجابة</span></div>
+        </div>
       </div>
 
       <div class="content-block">
         <div class="block-header">
           <div class="block-icon" style="background:rgba(123,94,167,0.15)">🧩</div>
           <div><div class="block-title">صيغة الأمر المثالي للمعلم</div><div class="block-subtitle">نموذج RTCF</div></div>
+        </div>
+        <div class="explain-block purple">
+          <div class="explain-title">🧩 فهم نموذج RTCF — الإطار الذي يضمن جودة المخرجات</div>
+          <div class="explain-text">
+            نموذج RTCF هو إطار عملي يضمن أن تُعطي النموذج كل المعطيات التي يحتاجها لإعطائك مخرجاً مفيداً حقاً. غياب أي عنصر منه يُضعف جودة النتيجة.<br><br>
+            <strong>R — Role (الدور):</strong> أخبر النموذج من هو. "أنت معلم خبير في..." يجعله يُجيب من منظور متخصص.<br>
+            <strong>T — Task (المهمة):</strong> ماذا تريد بالضبط؟ فعل واضح + موضوع محدد.<br>
+            <strong>C — Context (السياق):</strong> من هو الجمهور؟ ما المستوى؟ ما المدة؟ ما القيود؟<br>
+            <strong>F — Format (الصيغة):</strong> كيف تريد المخرج — قائمة / جدول / خطوات مرقمة / فقرات؟
+          </div>
         </div>
         <div class="prompt-formula">
           <div class="prompt-parts">
@@ -815,10 +1170,13 @@
             <span class="prompt-part pp-format">📐 الصيغة (Format)</span>
           </div>
         </div>
-
         <div class="prompt-example">
           <div class="prompt-example-label">❌ أمر ضعيف</div>
           <div class="prompt-example-text">اكتب درساً عن الماء.</div>
+        </div>
+        <div class="explain-block coral" style="margin:6px 0;">
+          <div class="explain-title">🔴 لماذا هذا الأمر ضعيف؟</div>
+          <div class="explain-text">لا دور، لا سياق (أي صف؟ كم مدة الحصة؟)، ولا صيغة مطلوبة. النموذج سيعطيك شيئاً عاماً جداً لا يمكن استخدامه مباشرة في الفصل.</div>
         </div>
         <div class="prompt-example">
           <div class="prompt-example-label">✅ أمر متقن (RTCF)</div>
@@ -829,6 +1187,10 @@
             <span class="prompt-highlight">[الصيغة]</span> اكتب الخطة بهذا الترتيب: الأهداف — التمهيد — العرض — التطبيق — التقويم. استخدم لغة بسيطة ومباشرة.
           </div>
         </div>
+        <div class="explain-block green" style="margin-top:8px;">
+          <div class="explain-title">✅ لماذا هذا الأمر ممتاز؟</div>
+          <div class="explain-text">النموذج يعرف: <strong>من هو</strong> (مصمم تعليمي) + <strong>ماذا يفعل</strong> (يصمم خطة) + <strong>لمن</strong> (الصف الرابع 9-10 سنوات) + <strong>متى</strong> (45 دقيقة) + <strong>كيف يقدّم المخرج</strong> (ترتيب محدد). النتيجة قابلة للاستخدام المباشر بتعديلات بسيطة.</div>
+        </div>
       </div>
 
       <div class="content-block">
@@ -836,12 +1198,20 @@
           <div class="block-icon" style="background:rgba(0,180,216,0.15)">⚡</div>
           <div><div class="block-title">تقنيات هندسة الأوامر المتقدمة</div></div>
         </div>
+        <div class="explain-block">
+          <div class="explain-title">🚀 من المبتدئ إلى المحترف — هذه التقنيات تُفرق بينهما</div>
+          <div class="explain-text">بعد إتقان RTCF، هذه التقنيات ترفع مستواك إلى الدرجة التالية. كل تقنية تحل مشكلة محددة وتمنحك تحكماً أعمق في جودة المخرجات.</div>
+        </div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="activity-card">
             <div class="activity-num" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">1</div>
             <div class="activity-content">
               <h4>التفكير خطوة بخطوة (Chain of Thought)</h4>
               <p>أضف عبارة "فكّر خطوة بخطوة" أو "اشرح تفكيرك" في أمرك. يجبر النموذج على التفكير المنطوق وليس القفز للإجابة.</p>
+              <div class="explain-block" style="margin-top:8px;">
+                <div class="explain-title">💡 متى تستخدمها؟</div>
+                <div class="explain-text">مثالية لمسائل الرياضيات، التحليل النقدي، ومهام التقييم. مثال: <em>"فكّر خطوة بخطوة في كيفية شرح نظرية فيثاغورس لطالب صف خامس يجد صعوبة في الأشكال الهندسية."</em></div>
+              </div>
             </div>
           </div>
           <div class="activity-card">
@@ -849,6 +1219,10 @@
             <div class="activity-content">
               <h4>الأمثلة داخل الأمر (Few-Shot Prompting)</h4>
               <p>أعطِ النموذج مثالاً أو مثالين على ما تريده قبل طلب المهمة الحقيقية. يُقلل الغموض بشكل كبير.</p>
+              <div class="explain-block gold" style="margin-top:8px;">
+                <div class="explain-title">💡 مثال تطبيقي</div>
+                <div class="explain-text"><em>"إليك مثال على سؤال اختيار متعدد جيد: [مثالك] — الآن أنشئ 5 أسئلة مشابهة حول موضوع الضوء والظل."</em><br>النموذج سيفهم النمط الذي تريده بدقة كاملة.</div>
+              </div>
             </div>
           </div>
           <div class="activity-card">
@@ -856,6 +1230,13 @@
             <div class="activity-content">
               <h4>الضغط والتكرار (Iterative Prompting)</h4>
               <p>لا تتوقف عند أول إجابة. قل: "أعد الصياغة بأسلوب أبسط"، "أضف أمثلة"، "اجعله أقصر".</p>
+              <div class="explain-block green" style="margin-top:8px;">
+                <div class="explain-title">💡 حوار تحسين نموذجي</div>
+                <div class="explain-text">
+                  النموذج يعطيك إجابة ← قل: "الشرح طويل جداً، لخّصه في 3 نقاط" ← ثم: "أضف مثالاً واقعياً لكل نقطة" ← ثم: "حوّل هذه النقاط لأسئلة للطلاب."<br>
+                  <strong>هذا الحوار التدريجي يُعطي نتائج أفضل بكثير من أمر واحد طويل.</strong>
+                </div>
+              </div>
             </div>
           </div>
           <div class="activity-card">
@@ -863,8 +1244,16 @@
             <div class="activity-content">
               <h4>تحديد الجمهور والمستوى</h4>
               <p>دائماً حدد: "اشرح لطالب في المستوى المتوسط"، "بأسلوب يفهمه طفل 10 سنوات"، "لمعلم في أولى مسيرته".</p>
+              <div class="explain-block purple" style="margin-top:8px;">
+                <div class="explain-title">💡 الفرق يغيّر كل شيء</div>
+                <div class="explain-text">نفس السؤال "اشرح لي الكهرباء" يعطي إجابة مختلفة تماماً عند إضافة: <em>"لطفل 8 سنوات"</em> مقارنة بـ <em>"لمهندس مبتدئ"</em>. دقة تحديد الجمهور هي مفتاح ملاءمة المحتوى.</div>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="tip-box" style="margin-top:12px;">
+          <div class="tip-icon">🏆</div>
+          <div class="tip-text"><strong>تقنية الخبراء — الـ Persona Stacking:</strong> دمج أكثر من هوية في الدور يُعطي نتائج استثنائية. مثال: "أنت معلم رياضيات بخبرة 15 سنة، ومتخصص في صعوبات التعلم، ولديك خلفية في التعلم اللعبي. صمّم لي..."</div>
         </div>
       </div>
 
@@ -873,17 +1262,42 @@
           <div class="block-icon" style="background:rgba(46,196,182,0.15)">📚</div>
           <div><div class="block-title">أوامر جاهزة للمعلم</div><div class="block-subtitle">انسخها واستخدمها مباشرة</div></div>
         </div>
+        <div class="explain-block green">
+          <div class="explain-title">📋 كيف تستخدم هذه الأوامر؟</div>
+          <div class="explain-text">استبدل النصوص بين الأقواس [] بمعطياتك الفعلية. مثلاً: [المادة] تصبح "الرياضيات"، [الصف] تصبح "السادس ابتدائي"، [الموضوع] تصبح "المساحات والمحيطات". هذه القوالب تُوفّر عليك وقت التفكير في صياغة الأمر من الصفر.</div>
+        </div>
         <div class="prompt-example">
           <div class="prompt-example-label">🎯 لإنشاء خطة درس</div>
           <div class="prompt-example-text">صمّم خطة درس لمادة [المادة]، موضوع [الموضوع]، للصف [الصف]، مدتها [المدة] دقيقة. تضمّن: الأهداف، التمهيد، العرض، التطبيق، التقويم، والواجب المنزلي.</div>
+        </div>
+        <div class="explain-block" style="margin:4px 0 10px;">
+          <div class="explain-title">📌 نصيحة لهذا الأمر</div>
+          <div class="explain-text">بعد الحصول على الخطة، أضف: "الآن اقترح 3 تعديلات لجعل الدرس أكثر تفاعلية وإشراكاً للطلاب." ستحصل على نسخة محسّنة فوراً.</div>
         </div>
         <div class="prompt-example">
           <div class="prompt-example-label">❓ لإنشاء أسئلة اختبار</div>
           <div class="prompt-example-text">أنشئ [العدد] سؤالاً من نوع [اختيار متعدد/صح وخطأ/مقالي] حول موضوع [الموضوع] لطلاب [الصف]. رتّبها من الأسهل للأصعب وأرفق الإجابات النموذجية.</div>
         </div>
+        <div class="explain-block gold" style="margin:4px 0 10px;">
+          <div class="explain-title">📌 نصيحة لهذا الأمر</div>
+          <div class="explain-text">أضف في نهاية الأمر: "وللأسئلة المقالية، أضف معايير التصحيح (الدرجات والعناصر المطلوبة في الإجابة المثالية)." يُوفّر عليك ساعات من العمل اليدوي.</div>
+        </div>
         <div class="prompt-example">
           <div class="prompt-example-label">🎮 لإنشاء نشاط تفاعلي</div>
           <div class="prompt-example-text">اقترح 3 أنشطة تعليمية إبداعية وتفاعلية لتعليم [الموضوع] لطلاب [العمر]. يجب أن تكون قابلة للتطبيق بمواد بسيطة وتستغرق كل منها [المدة] دقائق.</div>
+        </div>
+        <div class="explain-block purple" style="margin:4px 0 10px;">
+          <div class="explain-title">📌 نصيحة لهذا الأمر</div>
+          <div class="explain-text">أضف: "مع تحديد المواد اللازمة لكل نشاط وكيفية تنظيم المجموعات." الذكاء الاصطناعي سيُفكّر في التفاصيل العملية التي قد تنساها وقت الضغط.</div>
+        </div>
+        <div class="mini-quiz">
+          <div class="mini-quiz-q">🎯 تحدّي سريع: أي هذه الأوامر أكثر فاعلية؟</div>
+          <div class="mini-quiz-opts">
+            <div class="mini-quiz-opt" onclick="checkMQ(this,false,'msg-u2','❌ هذا الأمر مبهم جداً — لا صف، لا مادة، لا سياق.')">اشرح لي درساً في العلوم</div>
+            <div class="mini-quiz-opt" onclick="checkMQ(this,true,'msg-u2','✅ ممتاز! هذا الأمر يحتوي على الدور + المهمة + السياق + الصيغة المطلوبة.')">أنت معلم علوم خبير. اشرح مفهوم الضوء والظل لطلاب الصف الثالث (8 سنوات) بأسلوب قصصي في 150 كلمة</div>
+            <div class="mini-quiz-opt" onclick="checkMQ(this,false,'msg-u2','❌ المهمة واضحة لكن ينقصها الدور والسياق والصيغة.')">اكتب شرحاً للضوء والظل</div>
+          </div>
+          <div class="mini-quiz-fb" id="msg-u2"></div>
         </div>
       </div>
 
@@ -906,12 +1320,20 @@
           <div class="block-icon" style="background:rgba(232,93,74,0.15)">🗺️</div>
           <div><div class="block-title">مراحل تصميم الدرس بالذكاء الاصطناعي</div></div>
         </div>
+        <div class="explain-block coral">
+          <div class="explain-title">🗺️ لماذا نتبع مراحل محددة؟</div>
+          <div class="explain-text">تصميم الدرس بالذكاء الاصطناعي دون منهجية يُنتج محتوى عشوائياً. هذه المراحل الأربع تُحاكي منهجية التصميم التعليمي الاحترافية (ADDIE) وتضمن أن يكون الدرس متماسكاً ومحقّقاً لأهدافه. <strong>لا تتجاوز أي مرحلة</strong> — كل واحدة تُغذّي التي تليها.</div>
+        </div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="activity-card">
             <div class="activity-num" style="background:rgba(232,93,74,0.15);color:#f5956a;">١</div>
             <div class="activity-content">
               <h4>التحليل والتخطيط</h4>
               <p>استخدم ChatGPT لاستخراج الأهداف التعليمية وفق تصنيف بلوم، وتحديد المتطلبات القبلية، وبناء الخريطة المفاهيمية للدرس.</p>
+              <div class="explain-block coral" style="margin-top:8px;">
+                <div class="explain-title">💡 الأمر المقترح لهذه المرحلة</div>
+                <div class="explain-text"><em>"أنت خبير في تصنيف بلوم. حلّل موضوع [الموضوع] للصف [الصف]، واستخرج: (1) الأهداف وفق مستويات بلوم الست. (2) المفاهيم القبلية التي يجب أن يمتلكها الطالب. (3) الخريطة المفاهيمية الرئيسية للموضوع."</em></div>
+              </div>
             </div>
           </div>
           <div class="activity-card">
@@ -919,6 +1341,10 @@
             <div class="activity-content">
               <h4>توليد المحتوى</h4>
               <p>اطلب من النموذج صياغة الشرح النظري، الأمثلة التوضيحية، الأسئلة الاستنتاجية، وسيناريوهات المناقشة الصفية.</p>
+              <div class="explain-block gold" style="margin-top:8px;">
+                <div class="explain-title">💡 نصيحة لتوليد محتوى متمايز</div>
+                <div class="explain-text">اطلب المحتوى بثلاثة مستويات دفعة واحدة: <em>"صمّم الشرح النظري في ثلاث نسخ: مبسّطة للمستوى الأدنى، عادية للمستوى المتوسط، ومُعمّقة للمتفوقين."</em> هذا يُمكّنك من التعليم التمييزي بجهد أقل.</div>
+              </div>
             </div>
           </div>
           <div class="activity-card">
@@ -926,6 +1352,16 @@
             <div class="activity-content">
               <h4>التصميم والإثراء</h4>
               <p>أنشئ العروض التقديمية بـ Gamma.app، وصمّم البطاقات التعليمية والإنفوغراف بـ Canva AI.</p>
+              <div class="explain-block" style="margin-top:8px;">
+                <div class="explain-title">💡 سير عمل فعّال — 15 دقيقة لعرض احترافي</div>
+                <div class="explain-text">
+                  1. انسخ خطة الدرس من ChatGPT<br>
+                  2. الصقها في Gamma.app واختر "توليد عرض"<br>
+                  3. في 60 ثانية ستحصل على عرض بشرائح مُنسّقة<br>
+                  4. عدّل الألوان وأضف صوراً من مكتبة Canva المجانية<br>
+                  <strong>النتيجة: عرض احترافي لم يكن يستغرق أقل من ساعتين.</strong>
+                </div>
+              </div>
             </div>
           </div>
           <div class="activity-card">
@@ -933,6 +1369,12 @@
             <div class="activity-content">
               <h4>التقييم والتحسين</h4>
               <p>اطلب من النموذج مراجعة الدرس وتقديم اقتراحات للتحسين، واسأله عن الإشكاليات الشائعة التي قد يواجهها الطلاب.</p>
+              <div class="explain-block green" style="margin-top:8px;">
+                <div class="explain-title">💡 أوامر المراجعة الذاتية</div>
+                <div class="explain-text">
+                  <em>"راجع خطة الدرس هذه وحدّد: (1) هل الأهداف قابلة للقياس؟ (2) هل التوقيت واقعي؟ (3) ما التصورات الخاطئة الشائعة في هذا الموضوع التي يجب معالجتها مسبقاً؟"</em>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -943,26 +1385,44 @@
           <div class="block-icon" style="background:rgba(0,180,216,0.15)">🛠️</div>
           <div><div class="block-title">أدوات إنشاء الدروس</div></div>
         </div>
+        <div class="explain-block">
+          <div class="explain-title">🧰 كيف تختار الأداة المناسبة؟</div>
+          <div class="explain-text">لكل مرحلة من مراحل إنشاء الدرس أداة متخصصة. الخطأ الشائع هو محاولة استخدام أداة واحدة لكل شيء. <strong>ChatGPT للتفكير والكتابة، Gamma للعرض، MindMeister للتنظيم البصري، وDiffit للتمييز.</strong> استخدامها معاً يُعطي نتيجة أفضل بكثير من كل واحدة منفردة.</div>
+        </div>
         <div class="tools-grid">
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-chatgpt')">
             <div class="tool-card-top"><span class="tool-emoji">💬</span><div><div class="tool-name">ChatGPT / Claude</div><div class="tool-cat">نموذج لغوي</div></div></div>
             <div class="tool-use">توليد محتوى الدرس، الأهداف، الأنشطة، الأسئلة</div>
             <div class="tool-tags"><span class="tool-tag">خطة الدرس</span><span class="tool-tag">أسئلة</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-gamma')">
             <div class="tool-card-top"><span class="tool-emoji">🎯</span><div><div class="tool-name">Gamma.app</div><div class="tool-cat">عروض تقديمية</div></div></div>
             <div class="tool-use">إنشاء عروض احترافية من نص بسيط في ثوانٍ</div>
             <div class="tool-tags"><span class="tool-tag">PowerPoint</span><span class="tool-tag">تلقائي</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-mindmeister')">
             <div class="tool-card-top"><span class="tool-emoji">🗺️</span><div><div class="tool-name">MindMeister AI</div><div class="tool-cat">خرائط مفاهيم</div></div></div>
             <div class="tool-use">بناء خرائط ذهنية تلقائياً لتنظيم المحتوى</div>
             <div class="tool-tags"><span class="tool-tag">تنظيم</span><span class="tool-tag">بصري</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-diffit')">
             <div class="tool-card-top"><span class="tool-emoji">📝</span><div><div class="tool-name">Diffit</div><div class="tool-cat">تمييز المحتوى</div></div></div>
             <div class="tool-use">تعديل مستوى النص تلقائياً ليناسب مستويات مختلفة</div>
             <div class="tool-tags"><span class="tool-tag">تمييز</span><span class="tool-tag">مستويات</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
+          </div>
+        </div>
+        <div class="explain-block gold" style="margin-top:12px;">
+          <div class="explain-title">⚙️ سير العمل المتكامل — من الفكرة للحصة في أقل من ساعة</div>
+          <div class="explain-text">
+            <strong>الخطوة 1 (10 دقائق):</strong> في ChatGPT — حلّل الموضوع واستخرج الأهداف والخطة الكاملة.<br>
+            <strong>الخطوة 2 (5 دقائق):</strong> في Gamma.app — حوّل الخطة لعرض تقديمي مرئي.<br>
+            <strong>الخطوة 3 (10 دقائق):</strong> في Diffit — أنشئ نسخاً بمستويات مختلفة للقراءات والتمارين.<br>
+            <strong>الخطوة 4 (10 دقائق):</strong> في ChatGPT — اطلب أسئلة التقييم بمستويات بلوم الست.<br>
+            <strong>المجموع: 35 دقيقة لدرس كامل محترف.</strong>
           </div>
         </div>
       </div>
@@ -972,16 +1432,40 @@
           <div class="block-icon" style="background:rgba(226,176,74,0.15)">✨</div>
           <div><div class="block-title">مثال تطبيقي — درس العمليات الحسابية</div></div>
         </div>
+        <div class="explain-block gold">
+          <div class="explain-title">📌 لماذا اخترنا هذا الموضوع؟</div>
+          <div class="explain-text">الضرب من أكثر الموضوعات التي يجد فيها الطلاب صعوبة، ويلجأ فيها المعلمون للحفظ الآلي. سنرى كيف يُحوّل الذكاء الاصطناعي هذا الدرس التقليدي إلى تجربة تعليمية لعبية وبصرية وتفاعلية.</div>
+        </div>
         <div class="prompt-example">
           <div class="prompt-example-label">الأمر المستخدم</div>
           <div class="prompt-example-text">أنت معلم رياضيات خبير. صمّم درساً لتعليم الضرب للصف الثالث (8-9 سنوات) مدته 45 دقيقة. استخدم مقاربة التعلم اللعبي. تضمّن: هدفين قابلين للقياس، تمهيداً بلعبة (5 دقائق)، شرحاً مرئياً بالمصفوفات (15 دقيقة)، نشاطاً جماعياً (15 دقيقة)، وتقويماً ختامياً (10 دقائق).</div>
+        </div>
+        <div class="explain-block" style="margin:6px 0;">
+          <div class="explain-title">🔍 تحليل الأمر — ماذا فعلنا بشكل صحيح؟</div>
+          <div class="explain-text">
+            ✅ <strong>الدور:</strong> "معلم رياضيات خبير" — محدد وواضح.<br>
+            ✅ <strong>المهمة:</strong> "تعليم الضرب" + مقاربة محددة "التعلم اللعبي".<br>
+            ✅ <strong>السياق:</strong> الصف الثالث، 8-9 سنوات، 45 دقيقة.<br>
+            ✅ <strong>الصيغة:</strong> هيكل الدرس محدد بالدقائق لكل مرحلة — هذا يمنع النموذج من التحكم في توزيع الوقت.
+          </div>
         </div>
         <div style="background:rgba(46,196,182,0.06);border:1px solid rgba(46,196,182,0.15);border-radius:var(--radius-sm);padding:1.25rem;margin-top:10px;">
           <div style="font-size:12px;color:#7eefd7;margin-bottom:10px;font-weight:600;">📄 المخرج الناتج (مختصر)</div>
           <div style="font-size:13px;color:var(--text-muted);line-height:1.8;">
             <strong style="color:var(--text);">الهدفان:</strong> يُجري الطالب عمليات الضرب حتى 5×5، ويُفسّر الضرب كتكرار للجمع.<br>
             <strong style="color:var(--text);">التمهيد:</strong> لعبة "بائع الحلوى" — كم تكلف 3 علب إذا سعر الواحدة 4 دراهم؟<br>
-            <strong style="color:var(--text);">العرض:</strong> رسم المصفوفات على السبورة ثم ربطها بجداول الضرب...
+            <strong style="color:var(--text);">العرض:</strong> رسم المصفوفات على السبورة ثم ربطها بجداول الضرب...<br>
+            <strong style="color:var(--text);">النشاط الجماعي:</strong> مجموعات من 3 طلاب تبني مصفوفات بأعواد الثقاب.<br>
+            <strong style="color:var(--text);">التقويم:</strong> بطاقة خروج — الطالب يكتب 3 ضربات صحيحة من اختياره.
+          </div>
+        </div>
+        <div class="explain-block green" style="margin-top:10px;">
+          <div class="explain-title">⚡ أوامر المتابعة لتحسين الدرس</div>
+          <div class="explain-text">
+            بعد الحصول على الدرس، جرّب هذه الأوامر التتابعية:<br>
+            <em>→ "اقترح تعديلاً لنشاط المصفوفات ليناسب طالباً ذوي صعوبات التعلم."</em><br>
+            <em>→ "أضف سؤالاً تحدياً للطلاب المتفوقين."</em><br>
+            <em>→ "صمّم واجباً منزلياً إبداعياً غير تقليدي لهذا الدرس."</em>
           </div>
         </div>
       </div>
@@ -1005,13 +1489,27 @@
           <div class="block-icon" style="background:rgba(46,196,182,0.15)">🎨</div>
           <div><div class="block-title">أنواع الموارد التعليمية التي يمكن توليدها</div></div>
         </div>
+        <div class="explain-block green">
+          <div class="explain-title">🌟 ثورة حقيقية في إنتاج الموارد التعليمية</div>
+          <div class="explain-text">قبل الذكاء الاصطناعي، كان إنتاج فيديو تعليمي يتطلب كاميرا ومعدات تصوير وبرامج مونتاج وساعات عمل. اليوم، أداة مثل Synthesia تُحوّل نصاً مكتوباً لفيديو بأفاتار ناطق في دقائق. <strong>هذا يعني أن كل معلم أصبح قادراً على إنتاج محتوى متعدد الوسائط بدون أي خبرة تقنية.</strong></div>
+        </div>
         <div class="resource-grid">
-          <div class="resource-card"><div class="resource-icon">🖼️</div><div class="resource-name">صور تعليمية</div><div class="resource-desc">أنشئ رسوماً توضيحية لأي مفهوم بـ DALL-E أو Midjourney</div></div>
-          <div class="resource-card"><div class="resource-icon">📊</div><div class="resource-name">إنفوغراف</div><div class="resource-desc">صمّم إنفوغراف احترافي ببيانات ومعلومات بـ Canva AI</div></div>
-          <div class="resource-card"><div class="resource-icon">🎬</div><div class="resource-name">فيديوهات تعليمية</div><div class="resource-desc">أنشئ فيديو بأفاتار ناطق بنصك بـ Synthesia أو HeyGen</div></div>
-          <div class="resource-card"><div class="resource-icon">🎙️</div><div class="resource-name">بودكاست وصوتيات</div><div class="resource-desc">حوّل النصوص لتسجيل صوتي احترافي بـ ElevenLabs</div></div>
-          <div class="resource-card"><div class="resource-icon">📖</div><div class="resource-name">كتب رقمية</div><div class="resource-desc">اصنع كتيبات تعليمية تفاعلية وموجزات بـ Book Creator AI</div></div>
-          <div class="resource-card"><div class="resource-icon">🎮</div><div class="resource-name">ألعاب تعليمية</div><div class="resource-desc">حوّل المحتوى لتجارب لعبية تفاعلية بـ Blooket + AI</div></div>
+          <div class="resource-card" onclick="openModal('res-images')"><div class="resource-icon">🖼️</div><div class="resource-name">صور تعليمية</div><div class="resource-desc">أنشئ رسوماً توضيحية لأي مفهوم بـ DALL-E أو Midjourney</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="resource-card" onclick="openModal('res-infographic')"><div class="resource-icon">📊</div><div class="resource-name">إنفوغراف</div><div class="resource-desc">صمّم إنفوغراف احترافي ببيانات ومعلومات بـ Canva AI</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="resource-card" onclick="openModal('res-video')"><div class="resource-icon">🎬</div><div class="resource-name">فيديوهات تعليمية</div><div class="resource-desc">أنشئ فيديو بأفاتار ناطق بنصك بـ Synthesia أو HeyGen</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="resource-card" onclick="openModal('res-podcast')"><div class="resource-icon">🎙️</div><div class="resource-name">بودكاست وصوتيات</div><div class="resource-desc">حوّل النصوص لتسجيل صوتي احترافي بـ ElevenLabs</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="resource-card" onclick="openModal('res-ebook')"><div class="resource-icon">📖</div><div class="resource-name">كتب رقمية</div><div class="resource-desc">اصنع كتيبات تعليمية تفاعلية وموجزات بـ Book Creator AI</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="resource-card" onclick="openModal('res-games')"><div class="resource-icon">🎮</div><div class="resource-name">ألعاب تعليمية</div><div class="resource-desc">حوّل المحتوى لتجارب لعبية تفاعلية بـ Blooket + AI</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+        </div>
+        <div class="explain-block gold" style="margin-top:12px;">
+          <div class="explain-title">📌 أي نوع لأي هدف؟</div>
+          <div class="explain-text">
+            <strong>الصور التعليمية:</strong> مثالية للمفاهيم المجردة (الذرة، الخلية، الخريطة) — تجعل غير المرئي مرئياً.<br>
+            <strong>الإنفوغراف:</strong> للمعلومات الكثيرة التي تحتاج تلخيصاً بصرياً — مراجعة الاختبارات، الخطوط الزمنية، المقارنات.<br>
+            <strong>الفيديو بالأفاتار:</strong> للدروس المسجّلة والتعليم عن بعد — الطالب يشاهد "معلمه" يشرح في أي وقت.<br>
+            <strong>الصوتيات:</strong> لطلاب صعوبات القراءة ودروس اللغة والاستماع.<br>
+            <strong>الألعاب:</strong> للمراجعة والتقييم التكويني وإعادة الشرح بطريقة مشوّقة.
+          </div>
         </div>
       </div>
 
@@ -1020,26 +1518,45 @@
           <div class="block-icon" style="background:rgba(226,176,74,0.15)">🛠️</div>
           <div><div class="block-title">أدوات صناعة الموارد المرئية</div></div>
         </div>
+        <div class="explain-block gold">
+          <div class="explain-title">💡 نصيحة: ابدأ بـ Canva AI — الأكثر سهولة والأكثر تنوعاً</div>
+          <div class="explain-text">إذا كنت مبتدئاً في هذا المجال، ابدأ بـ Canva AI. إنه مجاني، يدعم العربية، ويضم قوالب لكل شيء تحتاجه في الفصل. حين تُتقنه انتقل للأدوات المتخصصة.</div>
+        </div>
         <div class="tools-grid">
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-canva')">
             <div class="tool-card-top"><span class="tool-emoji">🎨</span><div><div class="tool-name">Canva AI</div><div class="tool-cat">تصميم شامل</div></div></div>
             <div class="tool-use">إنفوغراف، بطاقات، منشورات، شهادات، ملصقات صفية</div>
             <div class="tool-tags"><span class="tool-tag">مجاني</span><span class="tool-tag">عربي</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-synthesia')">
             <div class="tool-card-top"><span class="tool-emoji">🎥</span><div><div class="tool-name">Synthesia</div><div class="tool-cat">فيديو بأفاتار</div></div></div>
             <div class="tool-use">أنشئ فيديو تعليمي بشخصية ناطقة من نص كتابي فقط</div>
             <div class="tool-tags"><span class="tool-tag">احترافي</span><span class="tool-tag">بدون تصوير</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-dalle')">
             <div class="tool-card-top"><span class="tool-emoji">🖼️</span><div><div class="tool-name">DALL-E / Ideogram</div><div class="tool-cat">توليد صور</div></div></div>
             <div class="tool-use">صور توضيحية لمفاهيم علمية وتاريخية ورياضية</div>
             <div class="tool-tags"><span class="tool-tag">مخصص</span><span class="tool-tag">فوري</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-elevenlabs')">
             <div class="tool-card-top"><span class="tool-emoji">🔊</span><div><div class="tool-name">ElevenLabs</div><div class="tool-cat">تحويل نص لصوت</div></div></div>
             <div class="tool-use">تسجيلات صوتية طبيعية لدروس الاستماع والمواد الصوتية</div>
             <div class="tool-tags"><span class="tool-tag">عربي</span><span class="tool-tag">متعدد الأصوات</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
+          </div>
+        </div>
+        <div class="explain-block" style="margin-top:12px;">
+          <div class="explain-title">🎬 كيف تصنع فيديو تعليمي بـ Synthesia خطوة بخطوة</div>
+          <div class="explain-text">
+            <strong>1.</strong> اكتب نص الدرس الذي تريد شرحه (200-500 كلمة) — يمكن استخدام ChatGPT لكتابته.<br>
+            <strong>2.</strong> ادخل على Synthesia.io وأنشئ حساباً (نسخة مجانية محدودة متاحة).<br>
+            <strong>3.</strong> اختر "أفاتار" يشبه معلماً، والصق النص في حقل "السكريبت".<br>
+            <strong>4.</strong> اختر اللغة العربية وصوت الأفاتار، ثم اضغط "توليد الفيديو".<br>
+            <strong>5.</strong> في 3-5 دقائق ستحصل على فيديو احترافي جاهز للمشاركة.<br>
+            <em>الوقت الكلي: 15 دقيقة بدلاً من ساعات التصوير والمونتاج.</em>
           </div>
         </div>
       </div>
@@ -1092,11 +1609,12 @@
           <div class="block-icon" style="background:rgba(123,94,167,0.15)">📊</div>
           <div><div class="block-title">أنواع التقويم بالذكاء الاصطناعي</div></div>
         </div>
-        <div class="eval-type">
+        <div class="eval-type" onclick="openModal('eval-diag')">
           <div class="eval-icon">✅</div>
           <div>
             <div class="eval-name">التقويم التشخيصي (قبل الدرس)</div>
             <div class="eval-desc">اكشف معارف الطلاب القبلية وتصوراتهم الخاطئة قبل البدء. استخدم ChatGPT لإنشاء "مقياس المعرفة المسبقة" بـ 5 أسئلة.</div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
             <div class="eval-tools">
               <span class="eval-tool" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">Google Forms + AI</span>
               <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">Mentimeter</span>
@@ -1108,6 +1626,10 @@
           <div>
             <div class="eval-name">التقويم التكويني (أثناء الدرس)</div>
             <div class="eval-desc">تحقق فهم الطلاب لحظة بلحظة. أسئلة سريعة، استطلاعات، ألعاب تقييم تفاعلية لا تقاطع تدفق الدرس.</div>
+            <div class="explain-block" style="margin:10px 0 8px;">
+              <div class="explain-title">💡 تقنية "بطاقة الخروج" — تقويم في دقيقتين</div>
+              <div class="explain-text">قبل نهاية الدرس بدقيقتين، اطلب من كل طالب أن يكتب على ورقة صغيرة: (1) أهم شيء تعلّمه، (2) سؤال لا يزال في ذهنه. اجمع البطاقات — في 5 دقائق ستعرف مستوى الفهم الحقيقي لكل طالب. يمكن الاستعاضة عنها بـ Google Forms على الجوال.</div>
+            </div>
             <div class="eval-tools">
               <span class="eval-tool" style="background:rgba(46,196,182,0.15);color:#7eefd7;">Kahoot AI</span>
               <span class="eval-tool" style="background:rgba(123,94,167,0.15);color:#b09ac7;">Quizizz AI</span>
@@ -1120,6 +1642,10 @@
           <div>
             <div class="eval-name">التقويم الختامي (بعد الدرس)</div>
             <div class="eval-desc">قِس تحقق الأهداف التعليمية. اطلب من ChatGPT إنشاء اختباراً متنوع الأسئلة يغطي مستويات بلوم الست.</div>
+            <div class="explain-block gold" style="margin:10px 0 8px;">
+              <div class="explain-title">💡 الأمر الذهبي لإنشاء اختبار شامل</div>
+              <div class="explain-text"><em>"أنشئ اختباراً في موضوع [الموضوع] للصف [الصف] يغطي مستويات بلوم الست: (1) سؤال تذكّر، (2) سؤال فهم، (3) سؤال تطبيق، (4) سؤال تحليل، (5) سؤال تقييم، (6) سؤال إبداع. أرفق الإجابات النموذجية وعلامة كل سؤال."</em></div>
+            </div>
             <div class="eval-tools">
               <span class="eval-tool" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">ChatGPT → Google Forms</span>
               <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">Formative</span>
@@ -1131,11 +1657,19 @@
           <div>
             <div class="eval-name">التقويم الأصيل (مشاريع وأداء)</div>
             <div class="eval-desc">كلّف الطلاب بمشاريع واقعية وسيناريوهات حقيقية. استخدم AI لإنشاء معايير التصحيح (Rubric) بدقة عالية.</div>
+            <div class="explain-block purple" style="margin:10px 0 8px;">
+              <div class="explain-title">💡 ما التقويم الأصيل ولماذا هو الأفضل؟</div>
+              <div class="explain-text">التقويم الأصيل يطلب من الطالب <strong>توظيف المعرفة في سياق حقيقي</strong> لا مجرد استرجاعها. مثال: بدلاً من سؤال "ما هي مراحل دورة الماء؟" اطلب "صمّم ملصقاً تعليمياً يشرح دورة الماء لطلاب الصف الأول." هذا يقيس الفهم الحقيقي والإبداع.</div>
+            </div>
             <div class="eval-tools">
               <span class="eval-tool" style="background:rgba(46,196,182,0.15);color:#7eefd7;">Seesaw</span>
               <span class="eval-tool" style="background:rgba(123,94,167,0.15);color:#b09ac7;">Turnitin AI</span>
             </div>
           </div>
+        </div>
+        <div class="warning-box" style="margin-top:12px;">
+          <div class="tip-icon">⚠️</div>
+          <div class="warning-text"><strong>تنبيه أخلاقي مهم:</strong> عند استخدام الذكاء الاصطناعي في التقييم، وضّح لطلابك متى يمكنهم استخدام AI ومتى لا يمكنهم. التقييم الحقيقي يقيس قدرات الطالب، وليس قدرة النموذج الذي يستخدمه.</div>
         </div>
       </div>
 
@@ -1143,6 +1677,10 @@
         <div class="block-header">
           <div class="block-icon" style="background:rgba(226,176,74,0.15)">📐</div>
           <div><div class="block-title">إنشاء سلّم التقدير (Rubric) بالذكاء الاصطناعي</div></div>
+        </div>
+        <div class="explain-block gold">
+          <div class="explain-title">📐 لماذا سلّم التقدير أداة لا غنى عنها؟</div>
+          <div class="explain-text">سلّم التقدير يُحقّق ثلاثة أهداف دفعة واحدة: <strong>يُوحّد معايير التصحيح</strong> (كل معلم يصحّح بنفس المعيار)، <strong>يُعلّم الطالب ما المطلوب منه</strong> قبل البدء، <strong>ويُوفّر وقت التصحيح</strong> بشكل كبير. إنشاؤه يدوياً يستغرق ساعة — بالذكاء الاصطناعي في دقيقتين.</div>
         </div>
         <div class="prompt-example">
           <div class="prompt-example-label">الأمر</div>
@@ -1157,6 +1695,14 @@
             <tr><td>التنظيم والوقت</td><td>منظم ويلتزم بالوقت</td><td>شبه منظم</td><td>تجاوز الوقت قليلاً</td><td>غير منظم وتجاوز الوقت</td></tr>
           </tbody>
         </table>
+        <div class="explain-block" style="margin-top:12px;">
+          <div class="explain-title">⚡ أوامر متقدمة لسلالم التقدير</div>
+          <div class="explain-text">
+            <em>→ "أضف للسلّم معياراً خاصاً بالإبداع والأصالة مع 4 مستويات."</em><br>
+            <em>→ "حوّل هذا السلّم إلى نسخة مبسّطة لمشاركتها مع أولياء الأمور."</em><br>
+            <em>→ "اقترح 3 ملاحظات تغذية راجعة جاهزة لكل مستوى في معيار المحتوى."</em>
+          </div>
+        </div>
       </div>
 
       <div class="btn-row">
@@ -1181,6 +1727,17 @@
         <div class="definition-box">
           <p>الدماغ البشري مبرمج للقصص. المعلومات المقدّمة في شكل قصصي <strong>تُحفظ بمعدل 22 مرة أكثر</strong> من المعلومات المجردة. القصة تُفعّل مناطق الذاكرة العاطفية وتجعل التعلم لا يُنسى.</p>
         </div>
+        <div class="explain-block">
+          <div class="explain-title">🧠 ما الذي يحدث في الدماغ عند سماع قصة؟</div>
+          <div class="explain-text">
+            عند قراءة قائمة من الحقائق، يُنشّط الدماغ منطقتين فقط: منطقة معالجة اللغة. لكن عند سماع قصة، يُنشّط الدماغ <strong>سبع مناطق مختلفة</strong> في آنٍ واحد — بما فيها المناطق الحسية والعاطفية والحركية. هذا يعني أن القصة تُنشئ <em>تجربة</em> في الذهن لا مجرد معلومة.<br><br>
+            <strong>المبدأ العلمي:</strong> كلما انخرطت مناطق أكثر في الدماغ أثناء التعلم، كلما كانت الذاكرة أقوى وأدوم.
+          </div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-icon">🎯</div>
+          <div class="tip-text"><strong>للمعلم — جرّب الآن:</strong> فكّر في درس صعب تعلّمته في حياتك ولا تزال تتذكره حتى اليوم. الغالب أن هناك قصة أو حادثة مرتبطة به. هذا هو سر القصة في التعليم.</div>
+        </div>
       </div>
 
       <div class="content-block">
@@ -1188,13 +1745,34 @@
           <div class="block-icon" style="background:rgba(123,94,167,0.15)">✨</div>
           <div><div class="block-title">أنواع القصص التعليمية</div></div>
         </div>
+        <div class="explain-block purple">
+          <div class="explain-title">🗂️ دليل اختيار النوع المناسب لمادتك</div>
+          <div class="explain-text">
+            ليس كل نوع من القصص مناسباً لكل مادة أو مستوى. إليك دليلاً سريعاً:<br>
+            <strong>العلوم:</strong> قصة علمية (رحلة داخل الجسم/الفضاء) + سيناريو حل المشكلات.<br>
+            <strong>الرياضيات:</strong> السيناريو الواقعي + قصة التاجر/البناء/المزارع.<br>
+            <strong>التاريخ والتربية الإسلامية:</strong> القصة التاريخية + لعب الأدوار.<br>
+            <strong>اللغة العربية/الفرنسية:</strong> قصة البطل + القصة المستقبلية.<br>
+            <strong>التربية المدنية والقيم:</strong> السيناريو الواقعي + قصة البطل الأخلاقي.
+          </div>
+        </div>
         <div class="concept-grid">
-          <div class="concept-item"><div class="concept-emoji">🦸</div><div class="concept-name">قصة البطل</div><div class="concept-detail">الطالب هو البطل الذي يحل مشكلة حقيقية باستخدام المفاهيم الدراسية</div></div>
-          <div class="concept-item"><div class="concept-emoji">🕰️</div><div class="concept-name">قصة تاريخية</div><div class="concept-detail">سرد أحداث تاريخية بأسلوب درامي يُحيي شخصياتها</div></div>
-          <div class="concept-item"><div class="concept-emoji">🔬</div><div class="concept-name">قصة علمية</div><div class="concept-detail">مغامرة داخل الجسم البشري أو الكون أو الخلية</div></div>
-          <div class="concept-item"><div class="concept-emoji">🌍</div><div class="concept-name">السيناريو الواقعي</div><div class="concept-detail">مشكلة حقيقية يحتاج الطلاب لحلها بتطبيق ما تعلموه</div></div>
-          <div class="concept-item"><div class="concept-emoji">🎭</div><div class="concept-name">لعب الأدوار</div><div class="concept-detail">يتقمّص الطالب شخصية تاريخية أو علمية ويتخذ قراراتها</div></div>
-          <div class="concept-item"><div class="concept-emoji">🔮</div><div class="concept-name">القصة المستقبلية</div><div class="concept-detail">سيناريوهات مستقبلية تجعل الطالب يفكر نقدياً وإبداعياً</div></div>
+          <div class="concept-item" onclick="openModal('story-hero')"><div class="concept-emoji">🦸</div><div class="concept-name">قصة البطل</div><div class="concept-detail">الطالب هو البطل الذي يحل مشكلة حقيقية باستخدام المفاهيم الدراسية</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('story-history')"><div class="concept-emoji">🕰️</div><div class="concept-name">قصة تاريخية</div><div class="concept-detail">سرد أحداث تاريخية بأسلوب درامي يُحيي شخصياتها</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('story-science')"><div class="concept-emoji">🔬</div><div class="concept-name">قصة علمية</div><div class="concept-detail">مغامرة داخل الجسم البشري أو الكون أو الخلية</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('story-scenario')"><div class="concept-emoji">🌍</div><div class="concept-name">السيناريو الواقعي</div><div class="concept-detail">مشكلة حقيقية يحتاج الطلاب لحلها بتطبيق ما تعلموه</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('story-roleplay')"><div class="concept-emoji">🎭</div><div class="concept-name">لعب الأدوار</div><div class="concept-detail">يتقمّص الطالب شخصية تاريخية أو علمية ويتخذ قراراتها</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+          <div class="concept-item" onclick="openModal('story-future')"><div class="concept-emoji">🔮</div><div class="concept-name">القصة المستقبلية</div><div class="concept-detail">سيناريوهات مستقبلية تجعل الطالب يفكر نقدياً وإبداعياً</div><div class="click-hint">👆 اضغط للتفاصيل</div></div>
+        </div>
+        <div class="explain-block green" style="margin-top:12px;">
+          <div class="explain-title">🏗️ عناصر القصة التعليمية الناجحة</div>
+          <div class="explain-text">
+            <strong>1. شخصية يتماهى معها الطالب</strong> — بطل في سنه أو من بيئته.<br>
+            <strong>2. مشكلة واضحة</strong> — تحدٍّ حقيقي يحتاج حلاً باستخدام المفهوم الدراسي.<br>
+            <strong>3. المفاهيم مدمجة طبيعياً</strong> — لا تُذكر الأسماء العلمية بشكل مباشر أولاً.<br>
+            <strong>4. نهاية مرضية مع درس</strong> — البطل ينجح ويُدرك ما تعلّمه.<br>
+            <strong>5. سؤال مفتوح اختياري</strong> — "ماذا كنت ستفعل أنت في مكان البطل؟"
+          </div>
         </div>
       </div>
 
@@ -1202,6 +1780,14 @@
         <div class="block-header">
           <div class="block-icon" style="background:rgba(226,176,74,0.15)">📜</div>
           <div><div class="block-title">قصص تعليمية نموذجية</div></div>
+        </div>
+        <div class="explain-block gold">
+          <div class="explain-title">📌 كيف تستخدم هذه القصص في الفصل؟</div>
+          <div class="explain-text">
+            <strong>قبل الدرس:</strong> اقرأ القصة كتمهيد — "سنسافر اليوم إلى داخل خلية حية..."<br>
+            <strong>أثناء الدرس:</strong> اقطع القصة عند لحظة التوتر — "ماذا تعتقدون؟ ما الذي سيفعله أمين؟"<br>
+            <strong>بعد الدرس:</strong> ارجع للقصة لتلخيص المفاهيم — "تذكّرون حين رأى أمين الميتوكوندريا؟ إنها..."
+          </div>
         </div>
 
         <div class="story-card">
@@ -1221,6 +1807,14 @@
           <div class="story-lesson">
             <strong>🎯 الدرس المدمج في القصة:</strong>
             الغشاء البلازمي، الميتوكوندريا، النواة، وظيفة كل عضية، مفهوم الدفاع الخلوي — كلها تظهر بشكل طبيعي في السياق القصصي.
+          </div>
+        </div>
+        <div class="explain-block" style="margin: 8px 0 14px;">
+          <div class="explain-title">💡 أسئلة المتابعة بعد القصة</div>
+          <div class="explain-text">
+            <em>"ما اسم البوابة التي رآها أمين أول ما دخل؟ وما وظيفتها؟"</em><br>
+            <em>"لو كنت أنت أمين، ما العضيّة التي ستذهب إليها أولاً لتوقيف البكتيريا؟ ولماذا؟"</em><br>
+            <em>"أكمل القصة: ماذا فعل أمين في النواة؟"</em>
           </div>
         </div>
 
@@ -1245,6 +1839,13 @@
             مفهوم التناسب المباشر وتطبيقه — تعلّم عبر سياق تاريخي يُثري المعرفة بُعداً حضارياً.
           </div>
         </div>
+        <div class="explain-block green" style="margin:8px 0 14px;">
+          <div class="explain-title">💡 توسيع القصة لنشاط صفي</div>
+          <div class="explain-text">
+            بعد قراءة القصة، اطلب من الطلاب في مجموعات: <em>"حنّو يريد الآن شراء قماشاً أندلسياً — 7 متر مقابل 4 دنانير. كم يكلّف 35 متراً؟ 56 متراً؟ اكتبوا المعادلة العامة."</em><br>
+            هذا يُحوّل القصة من ترفيه إلى منطلق للتطبيق الرياضي الفعلي.
+          </div>
+        </div>
       </div>
 
       <div class="content-block">
@@ -1252,17 +1853,50 @@
           <div class="block-icon" style="background:rgba(46,196,182,0.15)">🤖</div>
           <div><div class="block-title">أوامر لإنشاء قصص تعليمية بالذكاء الاصطناعي</div></div>
         </div>
+        <div class="explain-block green">
+          <div class="explain-title">📋 قبل كتابة أمر القصة — 3 أسئلة يجب إجابتها</div>
+          <div class="explain-text">
+            <strong>1. ما المفهوم الذي أريد تعليمه؟</strong> — كن دقيقاً: ليس "الكسور" بل "جمع الكسور ذات المقامات المختلفة".<br>
+            <strong>2. من جمهوري؟</strong> — العمر يحدد لغة القصة، الشخصية، مستوى التعقيد.<br>
+            <strong>3. كيف سأستخدمها؟</strong> — تمهيد؟ نشاط؟ مراجعة؟ هذا يحدد طول القصة ونهايتها (مفتوحة أو مغلقة).
+          </div>
+        </div>
         <div class="prompt-example">
           <div class="prompt-example-label">🦸 قصة البطل</div>
           <div class="prompt-example-text">اكتب قصة تعليمية قصيرة (250 كلمة) لطلاب الصف الخامس حول موضوع [الموضوع]. البطل طفل في سن الطلاب يواجه مشكلة حقيقية ويحلها بتطبيق [المفهوم الدراسي]. أسلوب مشوّق ومناسب للعمر.</div>
+        </div>
+        <div class="explain-block" style="margin:4px 0 10px;">
+          <div class="explain-title">📌 أوامر تحسين قصة البطل</div>
+          <div class="explain-text">
+            <em>→ "أضف للقصة لحظة فشل يتعلّم منها البطل قبل النجاح النهائي."</em><br>
+            <em>→ "اجعل البطل فتاة تنتمي لبيئة ريفية مغربية."</em><br>
+            <em>→ "أضف في نهاية القصة 3 أسئلة مفتوحة لمناقشة صفية."</em>
+          </div>
         </div>
         <div class="prompt-example">
           <div class="prompt-example-label">🔬 قصة علمية</div>
           <div class="prompt-example-text">اكتب مغامرة علمية قصيرة يسافر فيها الطالب إلى [المكان العلمي: الفضاء/جسم الإنسان/قطرة ماء]. يكتشف خلال رحلته [المفاهيم العلمية المستهدفة] بطريقة طبيعية وغير مباشرة.</div>
         </div>
+        <div class="explain-block green" style="margin:4px 0 10px;">
+          <div class="explain-title">📌 أفكار لقصص علمية جاهزة</div>
+          <div class="explain-text">
+            <em>→ رحلة داخل جهاز الهضم: الفم → المعدة → الأمعاء (مادة العلوم — جسم الإنسان)</em><br>
+            <em>→ رحلة مع قطرة ماء في دورة المياه: البحر → السحابة → المطر → النهر</em><br>
+            <em>→ مغامرة بين الكواكب: الشمس → عطارد → المريخ → المشتري (علم الفلك)</em><br>
+            <em>→ رحلة داخل الذرة: النواة → الإلكترونات → الروابط الكيميائية (الكيمياء)</em>
+          </div>
+        </div>
         <div class="prompt-example">
           <div class="prompt-example-label">🌍 سيناريو حل المشكلات</div>
           <div class="prompt-example-text">ابنِ سيناريو واقعياً: مجموعة من الطلاب في [الصف] يواجهون مشكلة حقيقية [صف المشكلة]. لحلها يحتاجون تطبيق [المفاهيم الدراسية]. اجعل القصة مفتوحة النهاية لإشراك الطلاب في إيجاد الحل.</div>
+        </div>
+        <div class="explain-block purple" style="margin:4px 0 10px;">
+          <div class="explain-title">📌 لماذا النهاية المفتوحة أفضل؟</div>
+          <div class="explain-text">القصة المفتوحة تُحوّل الطلاب من مستمعين سلبيين إلى حلّالين نشطين. حين تقف القصة عند لحظة التحدي وتسأل "ماذا تعتقدون؟ كيف سيحلّها البطل؟" — تُشعل نقاشاً صفياً طبيعياً وتجعل التعلم تجربة مشتركة. <strong>الطلاب الذين يُكملون القصة يفهمون المفهوم أعمق ممن يسمعونها كاملة.</strong></div>
+        </div>
+        <div class="tip-box" style="margin-top:12px;">
+          <div class="tip-icon">🏆</div>
+          <div class="tip-text"><strong>تقنية "اصنع قصتك" — نشاط إبداعي متقدم:</strong> بعد إتقان القصص الجاهزة، كلّف كل طالب بكتابة قصة تعليمية قصيرة باستخدام ChatGPT حول موضوع درسه، ثم يقرأها أمام الزملاء. هذا يُنمّي الكتابة الإبداعية والفهم العميق في آنٍ واحد.</div>
         </div>
       </div>
 
@@ -1271,27 +1905,59 @@
           <div class="block-icon" style="background:rgba(232,93,74,0.15)">🛠️</div>
           <div><div class="block-title">أدوات صناعة المحتوى التعليمي</div></div>
         </div>
+        <div class="explain-block coral">
+          <div class="explain-title">🔄 سير عمل متكامل: من نص القصة إلى تجربة تعليمية متعددة الوسائط</div>
+          <div class="explain-text">
+            <strong>الخطوة 1:</strong> اكتب القصة في ChatGPT / Claude ← (10 دقائق)<br>
+            <strong>الخطوة 2:</strong> حوّلها لكتاب رقمي مصوّر في Book Creator AI ← (15 دقيقة)<br>
+            <strong>الخطوة 3:</strong> حوّل نصها لتسجيل صوتي بـ ElevenLabs ← (5 دقائق)<br>
+            <strong>الخطوة 4:</strong> أنشئ أسئلة مناقشة بـ ChatGPT وحوّلها للعبة Kahoot ← (10 دقائق)<br>
+            <strong>النتيجة:</strong> قصة واحدة أصبحت تجربة تعليمية كاملة — مرئية + سمعية + تفاعلية.
+          </div>
+        </div>
         <div class="tools-grid">
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-chatgpt-stories')">
             <div class="tool-card-top"><span class="tool-emoji">📝</span><div><div class="tool-name">ChatGPT / Claude</div><div class="tool-cat">كتابة القصص</div></div></div>
             <div class="tool-use">توليد قصص مخصصة حسب المادة والصف والمدة</div>
             <div class="tool-tags"><span class="tool-tag">عربي</span><span class="tool-tag">مخصص</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-bookcreator')">
             <div class="tool-card-top"><span class="tool-emoji">🎨</span><div><div class="tool-name">Book Creator AI</div><div class="tool-cat">كتب رقمية</div></div></div>
             <div class="tool-use">حوّل القصة لكتاب رقمي تفاعلي مع صور</div>
             <div class="tool-tags"><span class="tool-tag">تفاعلي</span><span class="tool-tag">مصوّر</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-murf')">
             <div class="tool-card-top"><span class="tool-emoji">🎙️</span><div><div class="tool-name">Murf AI / ElevenLabs</div><div class="tool-cat">حكي صوتي</div></div></div>
             <div class="tool-use">حوّل القصة لتسجيل صوتي بصوت طبيعي وعاطفي</div>
             <div class="tool-tags"><span class="tool-tag">صوتي</span><span class="tool-tag">عاطفي</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
-          <div class="tool-card">
+          <div class="tool-card" onclick="openModal('tool-sora')">
             <div class="tool-card-top"><span class="tool-emoji">🎬</span><div><div class="tool-name">Sora / Kling AI</div><div class="tool-cat">فيديو القصة</div></div></div>
             <div class="tool-use">حوّل نص القصة لفيديو متحرك احترافي</div>
             <div class="tool-tags"><span class="tool-tag">فيديو</span><span class="tool-tag">متحرك</span></div>
+            <div class="click-hint">👆 اضغط للتفاصيل</div>
           </div>
+        </div>
+        <div class="explain-block" style="margin-top:12px;">
+          <div class="explain-title">💡 نصائح الختام للمحتوى التعليمي</div>
+          <div class="explain-text">
+            <strong>الجودة على الكمية:</strong> قصة واحدة ممتازة تُستخدم في أكثر من درس أفضل من عشر قصص متوسطة.<br>
+            <strong>اجعل الطلاب يشاركون:</strong> اطلب من الطلاب المتقدمين كتابة قصصهم بالذكاء الاصطناعي — هذا تقييم أصيل رائع.<br>
+            <strong>أرشف قصصك:</strong> أنشئ مكتبة قصص لكل مادة ومستوى — ستستخدمها سنوات قادمة.<br>
+            <strong>شارك مع الزملاء:</strong> القصة التي صنعتها لدرس العلوم يمكن أن يستفيد منها زملاؤك — شاركها في مجموعة المعلمين.
+          </div>
+        </div>
+        <div class="mini-quiz" style="margin-top:12px;">
+          <div class="mini-quiz-q">🎯 اختبر نفسك: ما أفضل استخدام للقصة المفتوحة النهاية في الفصل؟</div>
+          <div class="mini-quiz-opts">
+            <div class="mini-quiz-opt" onclick="checkMQ(this,false,'msg-u6','❌ القصة المفتوحة مصممة للنقاش والتفكير الجماعي، ليس للتقييم الختامي الفردي.')">تقييم ختامي فردي في نهاية الوحدة</div>
+            <div class="mini-quiz-opt" onclick="checkMQ(this,true,'msg-u6','✅ ممتاز! القصة المفتوحة تُشعل النقاش الصفي وتجعل الطلاب يُفكّرون نقدياً وإبداعياً معاً.')">تمهيد للدرس وإشعال نقاش صفي حول المفهوم</div>
+            <div class="mini-quiz-opt" onclick="checkMQ(this,false,'msg-u6','❌ هذا استخدام للقصة المغلقة — القصة المفتوحة تحتاج مشاركة ونقاش جماعي.')">قراءة صامتة فردية كواجب منزلي</div>
+          </div>
+          <div class="mini-quiz-fb" id="msg-u6"></div>
         </div>
       </div>
 
@@ -1299,6 +1965,10 @@
         <div class="cert-icon">🎓</div>
         <div class="cert-title">أكملت جميع وحدات الدورة!</div>
         <div class="cert-text">أتقنت الذكاء الاصطناعي، هندسة الأوامر، تصميم الدروس، صناعة الموارد، التقويم الذكي، والقصص التعليمية. أنت الآن مؤهل لتوظيف الذكاء الاصطناعي في فصلك الدراسي بكفاءة عالية.</div>
+        <div style="margin-top:14px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <div style="font-size:12px;color:var(--gold-light);display:flex;align-items:center;gap:6px;"><span>👨‍🏫</span> الأستاذ محمد العشيري</div>
+          <div style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;"><span>📅</span> السنة الدراسية 2026</div>
+        </div>
         <div style="margin-top:1.25rem;">
           <button class="btn btn-primary" onclick="showHome()" style="margin:auto;">🏠 العودة للصفحة الرئيسية</button>
         </div>
@@ -1308,15 +1978,15 @@
 </div>
 
 <script>
+  // ===== NAVIGATION =====
   const lessonMap = {
-    'ai-intro': { title: 'ما هو الذكاء الاصطناعي؟', crumb: 'الوحدة 01' },
-    'prompt-eng': { title: 'هندسة الأوامر', crumb: 'الوحدة 02' },
-    'lesson-design': { title: 'إنشاء الدروس', crumb: 'الوحدة 03' },
-    'resources': { title: 'صناعة الموارد', crumb: 'الوحدة 04' },
-    'evaluation': { title: 'إجراء التقويمات', crumb: 'الوحدة 05' },
-    'content-stories': { title: 'المحتوى والقصص', crumb: 'الوحدة 06' }
+    'ai-intro':       { title: 'ما هو الذكاء الاصطناعي؟', crumb: 'الوحدة 01' },
+    'prompt-eng':     { title: 'هندسة الأوامر',            crumb: 'الوحدة 02' },
+    'lesson-design':  { title: 'إنشاء الدروس',             crumb: 'الوحدة 03' },
+    'resources':      { title: 'صناعة الموارد',            crumb: 'الوحدة 04' },
+    'evaluation':     { title: 'إجراء التقويمات',          crumb: 'الوحدة 05' },
+    'content-stories':{ title: 'المحتوى والقصص',           crumb: 'الوحدة 06' }
   };
-
   let visited = new Set();
 
   function showHome() {
@@ -1331,35 +2001,33 @@
   function showLesson(id) {
     document.querySelectorAll('.content-area').forEach(el => el.style.display = 'none');
     const view = document.getElementById('view-' + id);
-    if (view) { view.style.display = 'block'; view.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-
+    if (view) { view.style.display = 'block'; view.scrollIntoView({ behavior:'smooth', block:'start' }); }
     const info = lessonMap[id];
     if (info) {
       document.getElementById('breadcrumb').textContent = 'الرئيسية > ' + info.crumb;
       document.getElementById('topbar-title').textContent = info.title;
     }
-
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(i => {
       if (i.textContent.trim().includes(info?.title?.substring(0,5))) i.classList.add('active');
     });
-
     visited.add(id);
     updateProgress();
   }
 
   function updateProgress() {
     const total = Object.keys(lessonMap).length;
-    const done = visited.size;
-    const pct = Math.round((done / total) * 100);
+    const done  = visited.size;
+    const pct   = Math.round((done / total) * 100);
     document.getElementById('prog-pct').textContent = pct + '%';
     document.getElementById('main-progress').style.width = pct + '%';
+    const lbl = document.querySelector('.progress-area div:last-child');
+    if (lbl) lbl.textContent = done + ' من ' + total + ' وحدات مكتملة';
   }
 
-  function toggleAccordion(el) {
-    el.classList.toggle('open');
-  }
+  function toggleAccordion(el) { el.classList.toggle('open'); }
 
+  // ===== QUIZ =====
   let quizAnswered = false;
   function checkQuiz(el, correct, msg) {
     if (quizAnswered) return;
@@ -1369,6 +2037,448 @@
     fb.textContent = msg;
     fb.className = 'quiz-feedback show ' + (correct ? 'correct' : 'wrong');
   }
+  const mqState = {};
+  function checkMQ(el, correct, fbId, msg) {
+    if (mqState[fbId]) return;
+    mqState[fbId] = true;
+    el.classList.add(correct ? 'correct' : 'wrong');
+    const fb = document.getElementById(fbId);
+    if (fb) { fb.textContent = msg; fb.className = 'mini-quiz-fb show ' + (correct ? 'c' : 'w'); }
+  }
+
+  // ===== MODAL DATA =====
+  const modalData = {
+
+    /* ---------- UNIT 1 ---------- */
+    'ai-general': {
+      emoji:'🤖', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      title:'الذكاء الاصطناعي العام (AGI)',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف</div>
+        <p class="modal-text">الذكاء الاصطناعي العام هو الهدف الأسمى — بناء نظام قادر على أداء <strong>أي مهمة فكرية يستطيعها الإنسان</strong> بنفس المرونة والقدرة على التعلم في سياقات جديدة تماماً.</p></div>
+      <div class="modal-highlight">🧠 <strong>الفرق بين AI الحالي و AGI:</strong><br>الذكاء الاصطناعي الحالي متخصص في مهمة واحدة — ChatGPT يكتب، DALL-E يرسم، AlphaGo يلعب. أما AGI فسيكون قادراً على كل هذا معاً ويتعلم مهارات جديدة تلقائياً كما يفعل الطفل.</div>
+      <div class="modal-section"><div class="modal-section-title">🔮 متى سيتحقق؟</div>
+        <p class="modal-text">يُقدّر الباحثون تحققه بين 2030 و2050. كل إصدار جديد من نماذج اللغة الكبيرة يقترب أكثر من هذا الهدف.</p></div>`
+    },
+    'ml': {
+      emoji:'📊', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      title:'التعلم الآلي (Machine Learning)',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف البسيط</div>
+        <p class="modal-text">بدلاً من برمجة قواعد صريحة، نُعطي الحاسوب <strong>أمثلة كثيرة</strong> ونتركه يكتشف القواعد بنفسه.</p></div>
+      <div class="modal-highlight green">🌱 <strong>تشبيه سهل:</strong><br>تخيّل تعليم طفل التمييز بين القطط والكلاب — لا تُعطيه قائمة قواعد، بل تُريه صوراً. بعد وقت يتعلم وحده. التعلم الآلي يفعل الشيء ذاته.</div>
+      <div class="modal-section"><div class="modal-section-title">⚙️ كيف يعمل؟</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span><strong>البيانات:</strong> آلاف الأمثلة مع إجاباتها الصحيحة</span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span><strong>التدريب:</strong> النموذج يتعلم الأنماط ويُضبط معاملاته</span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span><strong>الاختبار:</strong> نُعطيه بيانات جديدة ونقيس الدقة</span></div>
+          <div class="modal-step"><div class="modal-step-n">4</div><span><strong>التحسين:</strong> نُعدّل بناءً على الأخطاء ونكرر</span></div>
+        </div></div>
+      <div class="modal-section"><div class="modal-section-title">🏫 أمثلة تعليمية</div>
+        <p class="modal-text">نظام التوصية في YouTube، فلتر البريد العشوائي، أنظمة التعلم التكيّفي التي تُعدّل مستوى الطالب تلقائياً — كلها تعلم آلي.</p></div>`
+    },
+    'dl': {
+      emoji:'🧬', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      title:'التعلم العميق (Deep Learning)',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 ما الذي يجعله "عميقاً"؟</div>
+        <p class="modal-text">يستخدم <strong>شبكات عصبية اصطناعية</strong> بطبقات متعددة — كل طبقة تعالج المعلومات بمستوى أعمق. كلما زادت الطبقات، زادت القدرة على فهم الأنماط المعقدة.</p></div>
+      <div class="modal-highlight purple">🧠 <strong>كيف يشبه الدماغ؟</strong><br>في دماغك، حين ترى وجهاً: طبقة أولى تكشف الحواف، ثانية تكشف الملامح، ثالثة تتعرف على الشخص. الشبكات العصبية الاصطناعية تفعل ذلك رقمياً.</div>
+      <div class="modal-section"><div class="modal-section-title">🚀 لماذا انفجر في 2012؟</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n gold">1</div><span>قوة GPU الهائلة لتدريب شبكات ضخمة</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">2</div><span>بيانات الإنترنت — مليارات الصور والنصوص</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">3</div><span>خوارزميات جديدة لتدريب الشبكات العميقة</span></div>
+        </div></div>
+      <div class="modal-section"><div class="modal-section-title">🏫 تطبيقاته التعليمية</div>
+        <p class="modal-text">التعرف على خط يد الطالب، تحليل الصوت في تمارين النطق، فهم أسئلة الطلاب المكتوبة بلغة طبيعية.</p></div>`
+    },
+    'nlp': {
+      emoji:'💬', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      title:'معالجة اللغة الطبيعية (NLP)',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف</div>
+        <p class="modal-text">تُمكّن الحاسوب من <strong>قراءة وفهم والرد</strong> باللغة الإنسانية الطبيعية نصاً أو كلاماً. بدونها ما كان ChatGPT موجوداً.</p></div>
+      <div class="modal-highlight">💡 <strong>لماذا اللغة صعبة على الحاسوب؟</strong><br>"الأسد حيوان ضاري" و"أسد الساحة لاعب بارع" — نفس الكلمة بمعنيين. البشر يفهمون السياق فوراً. تعليم الحاسوب هذا استغرق عقوداً.</div>
+      <div class="modal-section"><div class="modal-section-title">🛠️ ما تُؤديه NLP</div>
+        <div class="modal-chips">
+          <span class="modal-chip">ترجمة آلية</span><span class="modal-chip">تلخيص النصوص</span>
+          <span class="modal-chip">تصحيح إملائي</span><span class="modal-chip">الإجابة على الأسئلة</span>
+          <span class="modal-chip">تحليل المشاعر</span><span class="modal-chip">توليد النصوص</span>
+        </div></div>
+      <div class="modal-section"><div class="modal-section-title">🏫 في الفصل</div>
+        <p class="modal-text">ChatGPT يفهم أسئلتك ويرد بالعربية، تصحيح الإملاء التلقائي، ترجمة الدروس، روبوتات تُجيب على أسئلة الطلاب — كلها NLP.</p></div>`
+    },
+    'cv': {
+      emoji:'👁️', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      title:'الرؤية الحاسوبية (Computer Vision)',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف</div>
+        <p class="modal-text">تُمكّن الحاسوب من <strong>"رؤية" وفهم الصور ومقاطع الفيديو</strong> — التعرف على الأشياء والأشخاص والنصوص تماماً كما يفعل الإنسان.</p></div>
+      <div class="modal-highlight gold">📸 <strong>كيف تعمل؟</strong><br>الصورة تُحوَّل لمصفوفة أرقام. الشبكة العصبية تُحلّلها عبر طبقات حتى تتعرف على الأنماط — حواف ثم أشكال ثم كائنات كاملة.</div>
+      <div class="modal-section"><div class="modal-section-title">🏫 تطبيقاتها في التعليم</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n green">1</div><span>تصحيح أوراق الإجابة المكتوبة بخط اليد تلقائياً</span></div>
+          <div class="modal-step"><div class="modal-step-n green">2</div><span>مسح الكتاب المدرسي بالكاميرا للحصول على شرح إضافي</span></div>
+          <div class="modal-step"><div class="modal-step-n green">3</div><span>تحليل تعبيرات وجوه الطلاب لقياس مستوى التركيز</span></div>
+        </div></div>`
+    },
+    'genai': {
+      emoji:'🎯', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      title:'الذكاء الاصطناعي التوليدي (Generative AI)',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 ما الذي يجعله "توليدياً"؟</div>
+        <p class="modal-text">بينما معظم AI يُحلّل ويُصنّف، الذكاء التوليدي <strong>يُنشئ محتوى جديداً</strong> — نصوص، صور، موسيقى، كود، فيديو — من تعليمات بسيطة.</p></div>
+      <div class="modal-highlight">⚡ <strong>النماذج الكبيرة للغة (LLMs):</strong><br>ChatGPT وClaude وGemini تدرّبت على مئات المليارات من الكلمات. النتيجة: نموذج يفهم اللغة ويولّدها بطريقة طبيعية تماماً.</div>
+      <div class="modal-section"><div class="modal-section-title">🎨 ما يُولّده</div>
+        <div class="modal-chips">
+          <span class="modal-chip">📝 نصوص ومقالات</span><span class="modal-chip">🖼️ صور ورسوم</span>
+          <span class="modal-chip">🎵 موسيقى وأصوات</span><span class="modal-chip">💻 كود برمجي</span>
+          <span class="modal-chip">🎬 فيديو</span>
+        </div></div>
+      <div class="modal-section"><div class="modal-section-title">🏫 لماذا هو الأهم للمعلم اليوم؟</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n gold">1</div><span>يُنتج خطط دروس كاملة في دقائق بدلاً من ساعات</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">2</div><span>يُنشئ صوراً توضيحية لأي مفهوم مجرد</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">3</div><span>يُولّد أسئلة تقييم بمستويات مختلفة فورياً</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">4</div><span>يُخصّص المحتوى لكل طالب حسب مستواه</span></div>
+        </div></div>`
+    },
+
+    /* ---------- UNIT 3: TOOLS ---------- */
+    'tool-chatgpt': {
+      emoji:'💬', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      title:'ChatGPT / Claude — المحرك الأساسي',
+      body:`<div class="modal-section"><div class="modal-section-title">💡 لماذا هما أهم أداة للمعلم؟</div>
+        <p class="modal-text">ChatGPT وClaude هما العقل المفكر في مجموعة أدواتك — يُمكنك استخدامهما لأي مهمة نصية تقريباً: خطط الدروس، الأهداف، الأسئلة، الأنشطة، التغذية الراجعة.</p></div>
+      <div class="modal-highlight coral">🎯 <strong>أوامر ذهبية لتصميم الدروس:</strong><br>
+        <em>"صمّم درساً لـ[المادة] موضوع [الموضوع] الصف [X] مدة [Y] دقيقة بمقاربة [اللعبية/التعاونية]"</em><br><br>
+        <em>"ما التصورات الخاطئة الشائعة لدى طلاب [الصف] حول [الموضوع]؟"</em><br><br>
+        <em>"اقترح 5 أسئلة تمهيدية لاستثارة فضول الطلاب حول [الموضوع]"</em>
+      </div>
+      <div class="modal-highlight green">🔗 <strong>الفرق بين ChatGPT وClaude:</strong><br>ChatGPT أوسع استخداماً وأكثر تكاملاً مع الأدوات. Claude أدق في اتباع التعليمات المعقدة وأفضل في المهام الطويلة. جرّب الاثنين.</div>`
+    },
+    'tool-gamma': {
+      emoji:'🎯', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      title:'Gamma.app — عروض تقديمية بـ 60 ثانية',
+      body:`<div class="modal-section"><div class="modal-section-title">🚀 ما الذي يُميّز Gamma؟</div>
+        <p class="modal-text">يُحوّل <strong>نصاً بسيطاً</strong> إلى عرض تقديمي احترافي بشرائح جميلة في أقل من دقيقة. لا مهارات تصميم ولا وقت طويل.</p></div>
+      <div class="modal-section"><div class="modal-section-title">📋 خطوات الاستخدام</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n green">1</div><span>ادخل <strong>gamma.app</strong> وأنشئ حساباً مجانياً</span></div>
+          <div class="modal-step"><div class="modal-step-n green">2</div><span>اختر "إنشاء عرض جديد" والصق نص خطة درسك</span></div>
+          <div class="modal-step"><div class="modal-step-n green">3</div><span>اختر عدد الشرائح والأسلوب (رسمي/تعليمي/إبداعي)</span></div>
+          <div class="modal-step"><div class="modal-step-n green">4</div><span>في 60 ثانية: عرض كامل بمحتوى ورسوم وتنسيق</span></div>
+          <div class="modal-step"><div class="modal-step-n green">5</div><span>عدّل النصوص والألوان ثم شارك أو صدّر PDF</span></div>
+        </div></div>
+      <div class="modal-highlight gold">⏱️ <strong>التوفير الحقيقي في الوقت:</strong><br>عرض تقليدي: 2-3 ساعات تصميماً. بـ Gamma: 5 دقائق محتوى + 1 دقيقة توليد + 10 دقائق تعديل = <strong>16 دقيقة إجمالاً.</strong></div>`
+    },
+    'tool-mindmeister': {
+      emoji:'🗺️', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      title:'MindMeister AI — خرائط ذهنية تلقائية',
+      body:`<div class="modal-section"><div class="modal-section-title">🗺️ لماذا الخريطة الذهنية في الدرس؟</div>
+        <p class="modal-text">تُنظّم المحتوى بصرياً وتُظهر العلاقات بين المفاهيم. الطالب يرى "الصورة الكاملة" دفعة واحدة بدلاً من نصوص متسلسلة.</p></div>
+      <div class="modal-highlight">🤖 <strong>ما يُضيفه الذكاء الاصطناعي:</strong><br>بدلاً من بناء الخريطة يدوياً (30-60 دقيقة)، اكتب الموضوع الرئيسي وتُنشئ المنصة خريطة كاملة بفروع وتفرعات في ثوانٍ.</div>
+      <div class="modal-section"><div class="modal-section-title">🏫 الاستخدامات الصفية الثلاثة</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n purple">1</div><span><strong>قبل الدرس:</strong> خريطة تُعطيها كدليل للموضوع</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">2</div><span><strong>أثناء الدرس:</strong> بناء الخريطة مع الطلاب تدريجياً</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">3</div><span><strong>للمراجعة:</strong> خريطة فارغة يملأها الطالب من ذاكرته</span></div>
+        </div></div>`
+    },
+    'tool-diffit': {
+      emoji:'📝', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      title:'Diffit — التمييز التلقائي للمستويات',
+      body:`<div class="modal-section"><div class="modal-section-title">🎯 المشكلة التي يحلّها</div>
+        <p class="modal-text">في كل فصل طلاب بمستويات مختلفة. تحضير ثلاث نسخ من نفس الدرس يستغرق ساعات. <strong>Diffit يفعل ذلك في ثوانٍ.</strong></p></div>
+      <div class="modal-highlight green">⚡ <strong>كيف يعمل؟</strong><br>أدخل النص أو موضوعاً، حدد مستوى الصف، سيُعيد كتابة النص بمفردات ومستوى يناسب ذلك الصف — من الصف الأول حتى الجامعي.</div>
+      <div class="modal-section"><div class="modal-section-title">📚 خطوات عملية</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n green">1</div><span>ادخل <strong>diffit.me</strong> والصق نص الدرس أو URL مقال</span></div>
+          <div class="modal-step"><div class="modal-step-n green">2</div><span>حدد مستوى القراءة المطلوب (Grade 3, 6, 10...)</span></div>
+          <div class="modal-step"><div class="modal-step-n green">3</div><span>يُعيد الكتابة + يُضيف أسئلة فهم + مفردات مفتاحية</span></div>
+          <div class="modal-step"><div class="modal-step-n green">4</div><span>وزّع النسخ المناسبة على مجموعات الطلاب</span></div>
+        </div></div>`
+    },
+
+    /* ---------- UNIT 4: RESOURCES ---------- */
+    'res-images': {
+      emoji:'🖼️', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      title:'الصور التعليمية بالذكاء الاصطناعي',
+      body:`<div class="modal-section"><div class="modal-section-title">🎨 لماذا الصور قوية تعليمياً؟</div>
+        <p class="modal-text">الدماغ يعالج الصور <strong>60,000 مرة أسرع</strong> من النص. صورة واحدة قد تُغني عن فقرتين من الشرح — خاصة للمتعلمين البصريين.</p></div>
+      <div class="modal-highlight green">🤖 <strong>الأدوات الموصى بها:</strong><br>
+        <strong>DALL-E 3</strong> داخل ChatGPT Plus — الأفضل للصور التوضيحية.<br>
+        <strong>Ideogram</strong> — مجاني وممتاز للصور التي تحتوي نصاً عربياً.<br>
+        <strong>Canva AI Image</strong> — مدمج مع التصميم مباشرة.</div>
+      <div class="modal-section"><div class="modal-section-title">💡 أوامر ناجحة</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span><em>"رسم توضيحي بسيط وملوّن لدورة الماء، أسلوب كتاب أطفال، خلفية بيضاء"</em></span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span><em>"مخطط مُسمّى لأجزاء الخلية النباتية، أسلوب علمي بسيط، ألوان واضحة"</em></span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span><em>"صورة واقعية لبيئة الصحراء المغربية مع حيواناتها، جودة عالية"</em></span></div>
+        </div></div>`
+    },
+    'res-infographic': {
+      emoji:'📊', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      title:'الإنفوغراف التعليمي بـ Canva AI',
+      body:`<div class="modal-section"><div class="modal-section-title">📊 ما الإنفوغراف المثالي؟</div>
+        <p class="modal-text">موضوع كامل في صفحة واحدة — عنوان جذاب + نقاط رئيسية + أرقام + صور. يُطبع ويُعلّق أو يُشارك رقمياً.</p></div>
+      <div class="modal-section"><div class="modal-section-title">⚡ سير العمل — 20 دقيقة</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span>ChatGPT: "لخّص [الموضوع] في 5 نقاط مع عنوان وإحصاء لكل نقطة"</span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span>Canva: ابحث عن قالب "Infographic Education"</span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span>استخدم "Magic Write" لملء النقاط من نص ChatGPT</span></div>
+          <div class="modal-step"><div class="modal-step-n">4</div><span>أضف صوراً، عدّل الألوان، احفظ PDF واطبع A3</span></div>
+        </div></div>
+      <div class="modal-highlight gold">🖨️ <strong>نصيحة:</strong><br>علّق الإنفوغراف في الفصل طوال الوحدة. الطلاب يرجعون إليه تلقائياً أثناء العمل.</div>`
+    },
+    'res-video': {
+      emoji:'🎬', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      title:'الفيديو التعليمي بالأفاتار الذكي',
+      body:`<div class="modal-section"><div class="modal-section-title">🎬 فيديو بلا كاميرا ولا استوديو</div>
+        <p class="modal-text">Synthesia وHeyGen يُحوّلان نصاً مكتوباً إلى فيديو تعليمي بـ<strong>أفاتار بشري ناطق</strong> في دقائق. لا كاميرا، لا ميكروفون، لا مونتاج.</p></div>
+      <div class="modal-highlight coral">📽️ <strong>إنشاء أول فيديو لك:</strong><br>
+        1. اكتب سكريبت بـ ChatGPT (200-400 كلمة)<br>
+        2. ادخل Synthesia.io → Create video → الصق السكريبت<br>
+        3. اختر أفاتار + لغة عربية + صوت مناسب<br>
+        4. اضغط Generate → في 5 دقائق فيديو جاهز</div>
+      <div class="modal-section"><div class="modal-section-title">🏫 متى تستخدمه؟</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n green">1</div><span>دروس التعليم عن بُعد والتعلم الذاتي</span></div>
+          <div class="modal-step"><div class="modal-step-n green">2</div><span>مراجعة قبل الامتحانات على واتساب</span></div>
+          <div class="modal-step"><div class="modal-step-n green">3</div><span>شرح الواجبات المنزلية المعقدة</span></div>
+        </div></div>`
+    },
+    'res-podcast': {
+      emoji:'🎙️', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      title:'البودكاست والمحتوى الصوتي',
+      body:`<div class="modal-section"><div class="modal-section-title">🎙️ لماذا الصوت مهم تعليمياً؟</div>
+        <p class="modal-text">الطلاب الذين يتعلمون سمعياً يستوعبون المحتوى الصوتي أفضل بكثير. وتسجيلات الاستماع ضرورية لتعليم اللغات.</p></div>
+      <div class="modal-highlight purple">🔊 <strong>ElevenLabs — الأداة الأولى للصوت:</strong><br>تحوّل أي نص لصوت بشري طبيعي بأكثر من 900 صوت بلهجات مختلفة تدعم العربية. النسخة المجانية تكفي للبداية.</div>
+      <div class="modal-section"><div class="modal-section-title">💡 أفكار للمحتوى الصوتي</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n purple">1</div><span>تسجيل القصة التعليمية بصوت درامي عاطفي</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">2</div><span>بودكاست مراجعة قصير (5 دق.) قبل الاختبار</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">3</div><span>تمارين استماع للغات بنطق صحيح ومتنوع</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">4</div><span>تعليمات الواجب بالصوت لصعوبات القراءة</span></div>
+        </div></div>`
+    },
+    'res-ebook': {
+      emoji:'📖', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      title:'الكتب الرقمية بـ Book Creator AI',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 ما يُميّزه عن PDF عادي؟</div>
+        <p class="modal-text">كتاب Book Creator يحتوي <strong>نصوص + صور + صوت + فيديو + أسئلة تفاعلية</strong> في ملف واحد. الطالب يقرأ ويستمع ويُجيب في مكان واحد.</p></div>
+      <div class="modal-highlight">🤖 <strong>دور الذكاء الاصطناعي:</strong><br>يقترح صوراً، يُحسّن النصوص، ويُولّد أسئلة تلقائياً. النتيجة: كتاب احترافي في ساعة.</div>
+      <div class="modal-section"><div class="modal-section-title">🎓 أفضل الاستخدامات</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span>كتاب قصصي تعليمي مُصوَّر للابتدائي</span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span>دليل مراجعة تفاعلي بأسئلة لكل وحدة</span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span>مشروع الطلاب: كل طالب يصنع كتابه الخاص</span></div>
+        </div></div>`
+    },
+    'res-games': {
+      emoji:'🎮', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      title:'الألعاب التعليمية بالذكاء الاصطناعي',
+      body:`<div class="modal-section"><div class="modal-section-title">🎮 لماذا الألعاب تُعلّم؟</div>
+        <p class="modal-text">اللعبة تُنشّط نظام المكافأة في الدماغ. الدوبامين يُحفّز الاستمرار. حين يحصل الطالب على نقاط يريد المزيد — وهذا التحفيز يجعل التعلم أعمق.</p></div>
+      <div class="modal-highlight gold">🏆 <strong>منظومة الألعاب + AI:</strong><br>
+        <strong>Kahoot AI:</strong> يُنشئ أسئلة اللعبة تلقائياً من نصك.<br>
+        <strong>Quizizz AI:</strong> ألعاب تكيّفية تتغير صعوبتها حسب الطالب.<br>
+        <strong>Blooket:</strong> يُحوّل أسئلة ChatGPT لعالم لعبة كامل.</div>
+      <div class="modal-section"><div class="modal-section-title">⚡ إنشاء لعبة في 3 خطوات</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n green">1</div><span>ChatGPT: اطلب 20 سؤال اختيار متعدد حول الموضوع</span></div>
+          <div class="modal-step"><div class="modal-step-n green">2</div><span>استورد الأسئلة لـ Kahoot أو Quizizz تلقائياً</span></div>
+          <div class="modal-step"><div class="modal-step-n green">3</div><span>شغّل اللعبة — الطلاب يلعبون بهواتفهم</span></div>
+        </div></div>`
+    },
+
+    /* ---------- UNIT 5: EVALUATION ---------- */
+    'eval-diag': {
+      emoji:'✅', tag:'الوحدة 05 — التقويم', tc:'rgba(123,94,167,0.12)', tt:'#c0b0e0',
+      title:'التقويم التشخيصي — قبل الدرس',
+      body:`<div class="modal-section"><div class="modal-section-title">🔍 ما هدفه؟</div>
+        <p class="modal-text">قبل البدء بأي درس، يجب معرفة: <strong>ماذا يعرف طلابك فعلاً؟</strong> وما التصورات الخاطئة التي يحملونها؟ التشخيص يُجيب ويُحدد من أين تبدأ.</p></div>
+      <div class="modal-highlight purple">🤖 <strong>الأمر الذهبي:</strong><br><em>"أنشئ 5 أسئلة تشخيصية سريعة لمعرفة معارف طلاب الصف [X] القبلية حول [الموضوع]. تضمّن سؤالاً يكشف التصورات الخاطئة الشائعة."</em></div>
+      <div class="modal-section"><div class="modal-section-title">⚡ أساليب التشخيص السريع</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n purple">1</div><span><strong>بطاقة الدخول:</strong> سؤال واحد على ورقة صغيرة قبل الحصة</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">2</div><span><strong>Mentimeter:</strong> سؤال على الشاشة والطلاب يردون بالهاتف</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">3</div><span><strong>KWL Chart:</strong> "ماذا أعرف / ماذا أريد / ماذا تعلّمت"</span></div>
+        </div></div>
+      <div class="modal-highlight green">🎯 <strong>كيف تستخدم النتائج؟</strong><br>70% يعرفون المفهوم → تجاوز الشرح الأساسي وانتقل للتطبيق.<br>30% فقط يعرفون → ابدأ من الصفر مع أمثلة أكثر.</div>`
+    },
+
+    /* ---------- UNIT 6: STORY TYPES ---------- */
+    'story-hero': {
+      emoji:'🦸', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'قصة البطل — الطالب محور الحكاية',
+      body:`<div class="modal-section"><div class="modal-section-title">🦸 لماذا قصة البطل فعّالة؟</div>
+        <p class="modal-text">حين يُشبه البطل الطالبَ في سنّه وبيئته، يحدث <strong>التماهي التلقائي</strong> — الطالب يضع نفسه مكان البطل ويُحاول حل مشكلته. هذا يُحوّل التعلم من مشاهدة إلى مشاركة.</p></div>
+      <div class="modal-highlight">📝 <strong>الأمر المثالي:</strong><br><em>"اكتب قصة (200 كلمة) لطلاب الصف [X] حول [الموضوع]. البطل طفل مغربي اسمه [اسم] في سن الطلاب. يواجه مشكلة يومية حقيقية. حلّها يتطلب [المفهوم]. أسلوب مشوّق، لغة بسيطة."</em></div>
+      <div class="modal-section"><div class="modal-section-title">🏗️ عناصر البطل الناجح</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span><strong>الاسم والسياق:</strong> يمينة من مراكش، أيوب من تطوان — الطالب يتعرف على نفسه</span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span><strong>المشكلة اليومية:</strong> حقيقية ومألوفة — لا عوالم خيالية معقدة</span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span><strong>الحل بالمفهوم:</strong> البطل يطبّق ما تعلّمه في الفصل لينجح</span></div>
+        </div></div>
+      <div class="modal-highlight green">💡 <strong>مثال سريع:</strong><br>درس الكسور → أيوب يريد تقسيم البيتزا بالتساوي بين 4 أصدقاء ولديه 3 قطع. دون أن يشعر الطالب، تعلّم كسر 3/4.</div>`
+    },
+    'story-history': {
+      emoji:'🕰️', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'القصة التاريخية — إحياء الماضي',
+      body:`<div class="modal-section"><div class="modal-section-title">🕰️ ما قوة القصة التاريخية؟</div>
+        <p class="modal-text">التاريخ ليس تواريخ وأسماء — هو قصص بشر حقيقيين اتخذوا قرارات. حين نرويها درامياً، <strong>التاريخ يحيا</strong> ويترك أثراً لا يُنسى.</p></div>
+      <div class="modal-highlight gold">📝 <strong>الأمر المثالي:</strong><br><em>"اكتب قصة (200 كلمة) تُحيي [الشخصية التاريخية] في لحظة [الحدث المحوري]. الأسلوب درامي وشخصي — نسمع أفكارها ومشاعرها. للصف [X]."</em></div>
+      <div class="modal-section"><div class="modal-section-title">🎭 أفكار جاهزة</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n gold">1</div><span>ابن بطوطة يصف رحلاته وما رآه من حضارات</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">2</div><span>طالب في بيت الحكمة يتعلم الرياضيات من الخوارزمي</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">3</div><span>فلاح أمازيغي يصف حياته في جبال الأطلس</span></div>
+          <div class="modal-step"><div class="modal-step-n gold">4</div><span>امرأة في الأندلس تصف قرطبة في ذروة ازدهارها</span></div>
+        </div></div>`
+    },
+    'story-science': {
+      emoji:'🔬', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'القصة العلمية — مغامرة داخل العلم',
+      body:`<div class="modal-section"><div class="modal-section-title">🔬 لماذا القصة العلمية؟</div>
+        <p class="modal-text">المفاهيم المجردة (الخلية، الذرة، الكوكب) تصعب تخيّلها. القصة العلمية تُحوّل الطالب إلى <strong>مستكشف يدخل هذه العوالم</strong> ويتفاعل معها مباشرة.</p></div>
+      <div class="modal-highlight">📝 <strong>الأمر المثالي:</strong><br><em>"اكتب مغامرة (200 كلمة) يُصبح فيها الطالب بحجم ذرة ويسافر داخل [الجسم/الخلية/الكوكب]. يكتشف [المفاهيم] طبيعياً خلال رحلته. أسلوب إثارة ومغامرة."</em></div>
+      <div class="modal-section"><div class="modal-section-title">🌌 أفكار للمغامرات</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span>🫁 رحلة داخل الرئتين — يرى كيف يسافر الأكسجين للدم</span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span>🌍 مغامرة في طبقات الأرض — المنطقة، الوشاح، اللب</span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span>☀️ رحلة مع ضوء الشمس من النجم حتى يصل الأرض</span></div>
+          <div class="modal-step"><div class="modal-step-n">4</div><span>💧 السفر مع جزيئة ماء في دورة المياه كاملة</span></div>
+        </div></div>`
+    },
+    'story-scenario': {
+      emoji:'🌍', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'السيناريو الواقعي — حل مشكلة حقيقية',
+      body:`<div class="modal-section"><div class="modal-section-title">🌍 ما السيناريو الواقعي؟</div>
+        <p class="modal-text">تضع الطلاب في موقف حقيقي يطلب منهم <strong>توظيف ما تعلّموه</strong> لإيجاد حل. ليس اختباراً — بل مهمة ذات معنى حقيقي.</p></div>
+      <div class="modal-highlight green">🎯 <strong>مثال تطبيقي:</strong><br>الموضوع: المساحات. السيناريو: <em>"مدرستك ستُنشئ حديقة (12م×8م). خصّصوا ثلثها للأشجار وثلثها للزهور وثلثها لممر. أحسبوا كل مساحة وارسموا المخطط."</em></div>
+      <div class="modal-section"><div class="modal-section-title">🏗️ عناصر السيناريو الناجح</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n green">1</div><span><strong>السياق الحقيقي:</strong> المدرسة، الحي، البيت — بيئة مألوفة</span></div>
+          <div class="modal-step"><div class="modal-step-n green">2</div><span><strong>دور واضح:</strong> الطلاب هم المهندسون / المخططون / صانعو القرار</span></div>
+          <div class="modal-step"><div class="modal-step-n green">3</div><span><strong>مهمة ملموسة:</strong> نتيجة يمكن رؤيتها — خريطة، جدول، تقرير</span></div>
+        </div></div>`
+    },
+    'story-roleplay': {
+      emoji:'🎭', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'لعب الأدوار — التقمّص والتجسيد',
+      body:`<div class="modal-section"><div class="modal-section-title">🎭 ما قوة لعب الأدوار؟</div>
+        <p class="modal-text">حين يتقمّص الطالب شخصية تاريخية أو علمية، <strong>يُفكّر من منظورها</strong> ويتخذ قراراتها. هذا يُنمّي التعاطف والتفكير النقدي والفهم العميق معاً.</p></div>
+      <div class="modal-highlight purple">📝 <strong>الأمر لإنشاء سيناريو:</strong><br><em>"صمّم سيناريو لعب أدوار لطلاب الصف [X] حول [الموضوع]. كل طالب يتقمّص [الشخصية]. أعطِ كل شخصية بطاقة بأهدافها وموقفها. ابنِ موقفاً حوارياً يُبرز [المفاهيم]."</em></div>
+      <div class="modal-section"><div class="modal-section-title">💡 أمثلة ناجحة</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n purple">1</div><span>محاكمة تاريخية: طلاب يُدافعون عن شخصيات تاريخية</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">2</div><span>مجلس علماء: كل طالب يُمثّل عالماً ويشرح اكتشافه</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">3</div><span>جلسة برلمان: نقاش حول قضية بيئية بمواقف متعارضة</span></div>
+        </div></div>`
+    },
+    'story-future': {
+      emoji:'🔮', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'القصة المستقبلية — التفكير الإبداعي',
+      body:`<div class="modal-section"><div class="modal-section-title">🔮 لماذا المستقبل؟</div>
+        <p class="modal-text">تُتلاشى حدود "هذا مستحيل" وتُطلق الخيال. الطالب يُفكّر: "لو عشت في 2100، كيف تُحلّ مشكلة الماء؟" هذا يُنمّي التفكير الإبداعي والنقدي معاً.</p></div>
+      <div class="modal-highlight">📝 <strong>الأمر المثالي:</strong><br><em>"اكتب قصة (200 كلمة) تدور في عام 2100 في المغرب. البطل يواجه تحدياً مرتبطاً بـ[الموضوع]. يستخدم تقنيات المستقبل لحله. نهاية مفتوحة للصف [X]."</em></div>
+      <div class="modal-section"><div class="modal-section-title">🌟 أفكار تعليمية مستقبلية</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span>💧 مدينة مغربية بلا ماء — كيف تحل الأزمة؟ (علوم)</span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span>🚀 أول مستوطنة على المريخ — تنظيم المجتمع (تربية)</span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span>🌱 مزارع رأسية في المدن — حساب الإنتاج (رياضيات)</span></div>
+        </div></div>`
+    },
+
+    /* ---------- UNIT 6: TOOLS ---------- */
+    'tool-chatgpt-stories': {
+      emoji:'📝', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'ChatGPT / Claude — كتابة القصص التعليمية',
+      body:`<div class="modal-section"><div class="modal-section-title">✍️ لماذا AI أفضل من الكتابة اليدوية؟</div>
+        <p class="modal-text">قصة تعليمية جيدة تتطلب إبداعاً + معرفة علمية + فهم مستوى الطلاب + لغة مناسبة. الذكاء الاصطناعي يجمع كل هذا في دقيقتين.</p></div>
+      <div class="modal-highlight">🎯 <strong>القالب الأمثل:</strong><br><em>"أنت كاتب قصص تعليمية خبير. اكتب قصة [النوع] لطلاب [الصف] حول [الموضوع]. المفهوم: [المفهوم]. الطول: 200 كلمة. الأسلوب: [مشوّق/درامي/مغامرة]. النهاية: [مفتوحة/مغلقة]."</em></div>
+      <div class="modal-section"><div class="modal-section-title">⚡ أوامر التحسين التلقائي</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span><em>"اجعل البطل أنثى من بيئة قروية"</em></span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span><em>"أضف حواراً درامياً في المنتصف"</em></span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span><em>"أضف 3 أسئلة مناقشة بعد القصة"</em></span></div>
+          <div class="modal-step"><div class="modal-step-n">4</div><span><em>"بسّط اللغة لتناسب الصف الثاني"</em></span></div>
+        </div></div>`
+    },
+    'tool-bookcreator': {
+      emoji:'🎨', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'Book Creator AI — الكتاب الرقمي الحي',
+      body:`<div class="modal-section"><div class="modal-section-title">📖 ما الذي يُميّزه؟</div>
+        <p class="modal-text">يُحوّل القصة لـ<strong>كتاب رقمي تفاعلي</strong> يحتوي نص + صوت + صور + فيديو + أسئلة. الطالب يقرأ ويستمع ويُجيب في مكان واحد.</p></div>
+      <div class="modal-highlight green">🤖 <strong>ميزة AI:</strong><br>يُولّد صوراً توضيحية لكل صفحة تلقائياً، ويُنشئ أسئلة فهم بناءً على النص. يُقلّل وقت الإنتاج 70%.</div>
+      <div class="modal-section"><div class="modal-section-title">🏫 مشروع الطلاب المثالي</div>
+        <p class="modal-text">كلّف كل مجموعة بكتابة قصة تعليمية بـ ChatGPT ثم إنتاجها ككتاب في Book Creator. في النهاية كل مجموعة تُقدّم كتابها للفصل — تعلّم + إبداع + تعاون + تقييم أصيل دفعة واحدة.</p></div>`
+    },
+    'tool-murf': {
+      emoji:'🎙️', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'Murf AI / ElevenLabs — الحكي الصوتي',
+      body:`<div class="modal-section"><div class="modal-section-title">🎙️ القصة بصوت عاطفي</div>
+        <p class="modal-text">القصة المُقروءة بصوت عاطفي ومُعبّر أكثر تأثيراً بمراحل من القراءة الصامتة. هذه الأدوات تُحوّل نصك لتسجيل طبيعي جداً.</p></div>
+      <div class="modal-highlight purple">🔊 <strong>ElevenLabs vs Murf AI:</strong><br>
+        <strong>ElevenLabs:</strong> أكثر طبيعية، دعم عربي ممتاز، مجاني محدود.<br>
+        <strong>Murf AI:</strong> أسهل استخداماً، تحرير صوتي متقدم، للمبتدئين.</div>
+      <div class="modal-section"><div class="modal-section-title">⚡ خطوات سريعة</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n purple">1</div><span>ادخل elevenlabs.io وأنشئ حساباً مجانياً</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">2</div><span>الصق نص القصة في "Text to Speech"</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">3</div><span>اختر صوتاً عربياً مناسباً (للأطفال / الكبار / حماسي)</span></div>
+          <div class="modal-step"><div class="modal-step-n purple">4</div><span>اضغط Generate ← حمّل ملف MP3</span></div>
+        </div></div>`
+    },
+    'tool-sora': {
+      emoji:'🎬', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      title:'Sora / Kling AI — الفيديو من النص',
+      body:`<div class="modal-section"><div class="modal-section-title">🎬 المستقبل هنا</div>
+        <p class="modal-text">يُحوّلان <strong>وصفاً نصياً</strong> إلى فيديو متحرك واقعي. اكتب "طفل يركب حصاناً في صحراء مغربية غروباً" وستحصل على فيديو.</p></div>
+      <div class="modal-highlight coral">⚠️ <strong>الوضع الحالي 2026:</strong><br>Sora متاح لمشتركي ChatGPT Pro. Kling AI أوسع انتشاراً. الفيديوهات القصيرة (5-15 ثانية) هي الأفضل لتحقيق جودة عالية.</div>
+      <div class="modal-section"><div class="modal-section-title">🏫 التوظيف التعليمي</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-n">1</div><span>مشهد تاريخي قصير لتمهيد الدرس (15 ثانية)</span></div>
+          <div class="modal-step"><div class="modal-step-n">2</div><span>ظاهرة علمية مُجسَّمة بصرياً (البركان، الفيضان، الكسوف)</span></div>
+          <div class="modal-step"><div class="modal-step-n">3</div><span>مشهد افتتاحي للقصة قبل قراءة النص</span></div>
+        </div></div>`
+    }
+  };
+
+  // ===== MODAL ENGINE =====
+  function openModal(key) {
+    const d = modalData[key];
+    if (!d) return;
+    document.getElementById('modalEmoji').textContent = d.emoji;
+    document.getElementById('modalEmoji').style.background = d.tc || 'rgba(0,180,216,0.15)';
+    const tag = document.getElementById('modalTag');
+    tag.textContent = d.tag;
+    tag.style.background = d.tc || 'rgba(0,180,216,0.15)';
+    tag.style.color = d.tt || 'var(--teal-light)';
+    document.getElementById('modalTitle').textContent = d.title;
+    document.getElementById('modalBody').innerHTML = d.body;
+    const overlay = document.getElementById('modalOverlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ===== DOM READY =====
+  window.addEventListener('DOMContentLoaded', () => {
+    // Inject eval intro
+    const evalBlock = document.querySelector('#view-evaluation .content-block:first-of-type');
+    if (evalBlock) {
+      const intro = document.createElement('div');
+      intro.className = 'explain-block purple';
+      intro.innerHTML = `<div class="explain-title">📊 التقويم بالذكاء الاصطناعي — تحوّل جذري</div>
+        <div class="explain-text">التقويم التقليدي يقيس <strong>ماذا يتذكر الطالب</strong>. التقويم الذكي يقيس <strong>ماذا يستطيع أن يفعل</strong>. <strong>المبدأ الذهبي:</strong> التقويم الجيد يُعلّم — لا يُحاسب فقط.</div>`;
+      const first = evalBlock.querySelector('.eval-type');
+      if (first) evalBlock.insertBefore(intro, first);
+    }
+  });
 </script>
 </body>
 </html>
