@@ -7,28 +7,29 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #1a1a2e;
-    --secondary: #16213e;
-    --accent: #0f3460;
-    --gold: #e2b04a;
-    --gold-light: #f5d08a;
-    --teal: #00b4d8;
-    --teal-light: #90e0ef;
-    --coral: #e85d4a;
-    --green: #2ec4b6;
-    --purple: #7b5ea7;
-    --text: #f0f4ff;
-    --text-muted: #8899bb;
-    --card-bg: rgba(255,255,255,0.04);
-    --card-border: rgba(255,255,255,0.08);
-    --radius: 16px;
-    --radius-sm: 10px;
+    --primary:      #0f1322;
+    --secondary:    #131829;
+    --accent:       #1a2240;
+    --orange:       #f97316;
+    --orange-light: #fb923c;
+    --orange-dim:   #7c3a0a;
+    --blue-mid:     #1e2d5a;
+    --blue-card:    #161d3a;
+    --silver:       #94a3b8;
+    --silver-light: #cbd5e1;
+    --silver-dim:   #475569;
+    --text:         #f1f5f9;
+    --text-muted:   #64748b;
+    --card-bg:      rgba(255,255,255,0.04);
+    --card-border:  rgba(255,255,255,0.08);
+    --radius:       16px;
+    --radius-sm:    10px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+    font-family: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
     background: var(--primary);
     color: var(--text);
     min-height: 100vh;
@@ -38,13 +39,14 @@
   /* ===== BACKGROUND ===== */
   .bg-canvas {
     position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+    background: linear-gradient(145deg, #0f1322 0%, #131829 50%, #0e1528 100%);
   }
   .bg-orb {
-    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15;
+    position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.18;
   }
-  .orb1 { width: 600px; height: 600px; background: #0f3460; top: -200px; right: -100px; }
-  .orb2 { width: 400px; height: 400px; background: #00b4d8; bottom: 100px; left: -100px; animation: float 8s ease-in-out infinite; }
-  .orb3 { width: 300px; height: 300px; background: #e2b04a; top: 50%; left: 50%; animation: float 12s ease-in-out infinite reverse; }
+  .orb1 { width: 700px; height: 700px; background: #f97316; top: -250px; right: -150px; }
+  .orb2 { width: 500px; height: 500px; background: #3b5bdb; bottom: -100px; left: -150px; animation: float 10s ease-in-out infinite; }
+  .orb3 { width: 350px; height: 350px; background: #f97316; top: 50%; left: 45%; animation: float 14s ease-in-out infinite reverse; opacity: 0.08; }
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -57,9 +59,9 @@
   /* ===== SIDEBAR ===== */
   .sidebar {
     width: 280px; min-height: 100vh; flex-shrink: 0;
-    background: rgba(10, 14, 35, 0.85);
-    backdrop-filter: blur(20px);
-    border-left: 1px solid var(--card-border);
+    background: rgba(13,17,38,0.97);
+    backdrop-filter: blur(24px);
+    border-left: 1px solid rgba(255,255,255,0.07);
     display: flex; flex-direction: column;
     position: sticky; top: 0; height: 100vh; overflow-y: auto;
     padding: 0 0 2rem;
@@ -67,29 +69,60 @@
 
   .logo-area {
     padding: 2rem 1.5rem 1.5rem;
-    border-bottom: 1px solid var(--card-border);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
     margin-bottom: 1rem;
   }
   .logo-icon {
     width: 48px; height: 48px; border-radius: 14px;
-    background: linear-gradient(135deg, var(--teal), var(--accent));
+    background: linear-gradient(135deg, #f97316, #ea580c);
     display: flex; align-items: center; justify-content: center;
     font-size: 22px; margin-bottom: 12px;
-    box-shadow: 0 0 20px rgba(0,180,216,0.3);
+    box-shadow: 0 0 24px rgba(249,115,22,0.45);
   }
   .logo-title {
     font-family: 'Tajawal', sans-serif;
-    font-size: 15px; font-weight: 700; color: var(--text);
+    font-size: 15px; font-weight: 800; color: #f1f5f9;
     line-height: 1.4;
   }
   .logo-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
   .nav-section { padding: 0 1rem; margin-bottom: 0.5rem; }
   .nav-section-title {
-    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
     color: var(--text-muted); text-transform: uppercase;
     padding: 0.5rem 0.75rem; margin-bottom: 4px;
   }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; border-radius: var(--radius-sm);
+    cursor: pointer; transition: all 0.2s;
+    font-size: 13.5px; font-family: 'Tajawal', sans-serif;
+    color: var(--text-muted); border: 1px solid transparent;
+    margin-bottom: 2px;
+  }
+  .nav-item:hover { background: rgba(249,115,22,0.08); color: var(--text); }
+  .nav-item.active {
+    background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(249,115,22,0.05));
+    border-color: rgba(249,115,22,0.35);
+    color: #fb923c;
+  }
+  .nav-item.active .nav-icon { color: #f97316; }
+  .nav-icon { font-size: 18px; width: 20px; text-align: center; }
+  .nav-badge {
+    margin-right: auto; background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 20px; line-height: 1.6;
+  }
+
+  .progress-area {
+    margin: auto 1.5rem 0;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-sm); padding: 1rem;
+  }
+  .progress-label { font-size: 12px; font-family:'Tajawal',sans-serif; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .progress-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #f97316, #fb923c); border-radius: 3px; transition: width 0.5s ease; }
 
   .nav-item {
     display: flex; align-items: center; gap: 12px;
@@ -99,16 +132,16 @@
     border: 1px solid transparent;
     margin-bottom: 2px;
   }
-  .nav-item:hover { background: var(--card-bg); color: var(--text); }
+  .nav-item:hover { background: rgba(249,115,22,0.05); color: var(--text); }
   .nav-item.active {
-    background: linear-gradient(135deg, rgba(0,180,216,0.15), rgba(15,52,96,0.3));
-    border-color: rgba(0,180,216,0.25);
-    color: var(--teal-light);
+    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(192,192,192,0.06));
+    border-color: rgba(249,115,22,0.4);
+    color: #fb923c;
   }
-  .nav-item.active .nav-icon { color: var(--teal); }
+  .nav-item.active .nav-icon { color: #f97316; }
   .nav-icon { font-size: 18px; width: 20px; text-align: center; }
   .nav-badge {
-    margin-right: auto; background: var(--teal); color: #fff;
+    margin-right: auto; background: linear-gradient(135deg, #f97316, #ea580c); color: #000;
     font-size: 10px; font-weight: 700; padding: 2px 7px;
     border-radius: 20px; line-height: 1.6;
   }
@@ -120,84 +153,75 @@
   }
   .progress-label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
   .progress-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius: 3px; transition: width 0.5s ease; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #f97316, #c0c0c0); border-radius: 3px; transition: width 0.5s ease; }
 
   /* ===== MAIN ===== */
   .main { flex: 1; overflow-y: auto; }
 
   .topbar {
     padding: 1.5rem 2.5rem;
-    border-bottom: 1px solid var(--card-border);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
     display: flex; align-items: center; gap: 16px;
-    background: rgba(10,14,35,0.6); backdrop-filter: blur(10px);
+    background: rgba(13,17,38,0.95); backdrop-filter: blur(16px);
     position: sticky; top: 0; z-index: 10;
   }
-  .topbar-breadcrumb { font-size: 13px; color: var(--text-muted); }
-  .topbar-breadcrumb span { color: var(--teal-light); }
-  .topbar-title { font-size: 18px; font-weight: 700; color: var(--text); margin-right: auto; }
+  .topbar-breadcrumb { font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); }
+  .topbar-breadcrumb span { color: #fb923c; }
+  .topbar-title { font-size: 18px; font-weight: 800; font-family:'Tajawal',sans-serif; color: var(--text); margin-right: auto; }
 
   .content-area { padding: 2.5rem; max-width: 1100px; }
 
   /* ===== HERO ===== */
   .hero {
-    background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(226,176,74,0.06), rgba(15,52,96,0.2));
-    border: 1px solid var(--card-border);
+    background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(26,34,64,0.8));
+    border: 1px solid rgba(249,115,22,0.25);
     border-radius: 24px; padding: 3rem 2.5rem;
     margin-bottom: 2.5rem; position: relative; overflow: hidden;
   }
   .hero::before {
-    content: ''; position: absolute; top: -50px; left: -50px;
-    width: 200px; height: 200px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,216,0.15), transparent);
+    content: ''; position: absolute; top: -60px; left: -60px;
+    width: 250px; height: 250px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(249,115,22,0.18), transparent);
   }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(0,180,216,0.12); border: 1px solid rgba(0,180,216,0.25);
-    color: var(--teal-light); font-size: 12px; font-weight: 600;
+    background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.4);
+    color: #fb923c; font-size: 12px; font-weight: 700; font-family:'Tajawal',sans-serif;
     padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem;
     letter-spacing: 0.5px;
   }
   .hero h1 {
     font-family: 'Tajawal', sans-serif;
-    font-size: 2.4rem; font-weight: 900; line-height: 1.2;
+    font-size: 2.6rem; font-weight: 900; line-height: 1.2;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #fff, var(--teal-light), var(--gold-light));
+    background: linear-gradient(135deg, #fff 30%, #fb923c 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .hero p { font-size: 15px; color: var(--text-muted); line-height: 1.8; max-width: 600px; }
-  .hero-stats {
-    display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
-  }
+  .hero p { font-size: 15px; font-family:'Tajawal',sans-serif; color: #94a3b8; line-height: 1.8; max-width: 600px; }
+  .hero-stats { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
   .hero-stat { text-align: center; }
-  .hero-stat-num { font-size: 28px; font-weight: 800; color: var(--gold); font-family: 'Tajawal', sans-serif; }
-  .hero-stat-lbl { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .hero-stat-num { font-size: 30px; font-weight: 900; color: #f97316; font-family: 'Tajawal', sans-serif; }
+  .hero-stat-lbl { font-size: 12px; font-family:'Tajawal',sans-serif; color: var(--text-muted); margin-top: 2px; }
 
   /* ===== SECTION TITLE ===== */
   .section-header { margin-bottom: 1.5rem; }
   .section-title {
-    font-size: 20px; font-weight: 700; color: var(--text);
+    font-size: 20px; font-weight: 800; color: var(--text);
     display: flex; align-items: center; gap: 10px;
     font-family: 'Tajawal', sans-serif;
   }
-  .section-title::after {
-    content: ''; flex: 1; height: 1px; background: var(--card-border);
-  }
-  .section-sub { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
+  .section-sub { font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); margin-top: 6px; }
 
   /* ===== MODULES GRID ===== */
-  .modules-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.25rem; margin-bottom: 3rem;
-  }
+  .modules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
 
   .module-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    background: rgba(20,26,52,0.8);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius); padding: 1.5rem;
+    cursor: pointer; transition: all 0.3s ease;
     position: relative; overflow: hidden;
   }
   .module-card::before {
@@ -205,33 +229,203 @@
     top: 0; right: 0; width: 100%; height: 3px;
     border-radius: var(--radius) var(--radius) 0 0;
   }
-  .module-card.teal::before { background: linear-gradient(90deg, var(--teal), var(--teal-light)); }
-  .module-card.gold::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
-  .module-card.coral::before { background: linear-gradient(90deg, var(--coral), #f5956a); }
-  .module-card.green::before { background: linear-gradient(90deg, var(--green), #7eefd7); }
-  .module-card.purple::before { background: linear-gradient(90deg, var(--purple), #b09ac7); }
+  .module-card.teal::before   { background: linear-gradient(90deg, #f97316, #fb923c); }
+  .module-card.gold::before   { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
+  .module-card.coral::before  { background: linear-gradient(90deg, #f97316, #fdba74); }
+  .module-card.green::before  { background: linear-gradient(90deg, #64748b, #94a3b8); }
+  .module-card.purple::before { background: linear-gradient(90deg, #fb923c, #f97316); }
 
   .module-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.07);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transform: translateY(-5px);
+    border-color: rgba(249,115,22,0.35);
+    background: rgba(30,40,80,0.9);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(249,115,22,0.1);
   }
 
-  .module-num {
-    font-size: 11px; font-weight: 600; color: var(--text-muted);
-    letter-spacing: 1px; margin-bottom: 12px;
-  }
-  .module-icon-wrap {
-    width: 50px; height: 50px; border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; margin-bottom: 14px;
-  }
-  .module-card.teal .module-icon-wrap { background: rgba(0,180,216,0.15); }
-  .module-card.gold .module-icon-wrap { background: rgba(226,176,74,0.15); }
-  .module-card.coral .module-icon-wrap { background: rgba(232,93,74,0.15); }
-  .module-card.green .module-icon-wrap { background: rgba(46,196,182,0.15); }
-  .module-card.purple .module-icon-wrap { background: rgba(123,94,167,0.15); }
+  .module-num { font-size: 11px; font-weight: 700; font-family:'Tajawal',sans-serif; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 12px; }
+  .module-icon-wrap { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+  .module-card.teal   .module-icon-wrap { background: rgba(249,115,22,0.18); }
+  .module-card.gold   .module-icon-wrap { background: rgba(148,163,184,0.12); }
+  .module-card.coral  .module-icon-wrap { background: rgba(249,115,22,0.14); }
+  .module-card.green  .module-icon-wrap { background: rgba(100,116,139,0.15); }
+  .module-card.purple .module-icon-wrap { background: rgba(249,115,22,0.12); }
+  .module-title { font-size: 16px; font-weight: 800; font-family:'Tajawal',sans-serif; color: var(--text); margin-bottom: 8px; }
+  .module-desc  { font-size: 12.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
+  .module-meta  { display: flex; align-items: center; gap: 10px; font-size: 11.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); }
+  .module-lessons { display: flex; align-items: center; gap: 4px; }
+  .module-time    { display: flex; align-items: center; gap: 4px; margin-right: auto; }
+  .module-status  { padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; font-family:'Tajawal',sans-serif; }
+  .status-done   { background: rgba(148,163,184,0.12); color: #94a3b8; }
+  .status-active { background: rgba(249,115,22,0.18);  color: #fb923c; }
+  .status-soon   { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+
+  /* LESSON VIEW */
+  .lesson-view { display: none; }
+  .lesson-view.active { display: block; }
+  .lesson-hero { background: rgba(20,26,52,0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; }
+  .lesson-tag { display: inline-block; font-size: 11px; font-weight: 700; font-family:'Tajawal',sans-serif; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+  .tag-teal   { background: rgba(249,115,22,0.15);  color: #fb923c;  border: 1px solid rgba(249,115,22,0.3); }
+  .tag-gold   { background: rgba(148,163,184,0.12); color: #cbd5e1;  border: 1px solid rgba(148,163,184,0.25); }
+  .tag-coral  { background: rgba(249,115,22,0.12);  color: #fdba74;  border: 1px solid rgba(249,115,22,0.22); }
+  .tag-green  { background: rgba(100,116,139,0.15); color: #94a3b8;  border: 1px solid rgba(100,116,139,0.28); }
+  .tag-purple { background: rgba(249,115,22,0.1);   color: #fb923c;  border: 1px solid rgba(249,115,22,0.2); }
+  .lesson-title { font-family:'Tajawal',sans-serif; font-size: 26px; font-weight: 900; color: var(--text); margin-bottom: 10px; }
+  .lesson-desc  { font-size: 14px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.8; }
+
+  /* CONTENT BLOCKS */
+  .content-block { background: rgba(18,24,48,0.85); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; }
+  .block-header  { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
+  .block-icon    { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .block-title   { font-size: 16px; font-weight: 800; font-family:'Tajawal',sans-serif; color: var(--text); }
+  .block-subtitle{ font-size: 12px; font-family:'Tajawal',sans-serif; color: var(--text-muted); }
+
+  .definition-box { background: linear-gradient(135deg, rgba(249,115,22,0.08), rgba(26,34,64,0.6)); border: 1px solid rgba(249,115,22,0.25); border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.25rem; }
+  .definition-box p { font-size: 14.5px; font-family:'Tajawal',sans-serif; line-height: 1.9; color: var(--text); }
+  .definition-box strong { color: #fb923c; }
+
+  .concept-grid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 1rem; }
+  .concept-item  { background: rgba(18,24,48,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1rem; cursor: pointer; transition: all 0.2s; }
+  .concept-item:hover { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.4); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.45); }
+  .concept-emoji { font-size: 24px; margin-bottom: 8px; }
+  .concept-name  { font-size: 13px; font-weight: 700; font-family:'Tajawal',sans-serif; color: var(--text); margin-bottom: 4px; }
+  .concept-detail{ font-size: 11.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.5; }
+
+  /* PROMPT */
+  .prompt-formula { background: rgba(10,14,30,0.95); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.25rem; }
+  .prompt-parts   { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .prompt-part    { padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 700; font-family:'Tajawal',sans-serif; }
+  .pp-role    { background: rgba(249,115,22,0.2);  color: #fb923c;  border: 1px solid rgba(249,115,22,0.35); }
+  .pp-task    { background: rgba(249,115,22,0.14); color: #fdba74;  border: 1px solid rgba(249,115,22,0.28); }
+  .pp-context { background: rgba(148,163,184,0.12); color: #cbd5e1; border: 1px solid rgba(148,163,184,0.22); }
+  .pp-format  { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.25); }
+  .prompt-example { background: rgba(10,14,30,0.9); border: 1px solid rgba(249,115,22,0.2); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-bottom: 10px; }
+  .prompt-example-label { font-size: 10px; font-family:'Tajawal',sans-serif; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .prompt-example-text  { font-size: 13px; font-family:'Tajawal',sans-serif; color: #c8d8f0; line-height: 1.7; }
+  .prompt-highlight { color: #fb923c; font-weight: 700; }
+
+  /* TOOLS */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 1rem; }
+  .tool-card  { background: rgba(18,24,48,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1.25rem; cursor: pointer; transition: all 0.2s; }
+  .tool-card:hover { background: rgba(30,40,80,0.95); border-color: rgba(249,115,22,0.35); box-shadow: 0 10px 28px rgba(0,0,0,0.5); }
+  .tool-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .tool-emoji { font-size: 26px; }
+  .tool-name  { font-size: 14px; font-weight: 800; font-family:'Tajawal',sans-serif; color: var(--text); }
+  .tool-cat   { font-size: 11px; font-family:'Tajawal',sans-serif; color: var(--text-muted); }
+  .tool-use   { font-size: 12.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
+  .tool-tags  { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tool-tag   { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(249,115,22,0.1); color: #fb923c; border: 1px solid rgba(249,115,22,0.2); font-family:'Tajawal',sans-serif; }
+
+  /* ACTIVITY CARDS */
+  .activity-card { background: rgba(18,24,48,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 10px; display: flex; gap: 14px; align-items: flex-start; cursor: pointer; transition: all 0.2s; }
+  .activity-card:hover { background: rgba(30,40,80,0.95); border-color: rgba(249,115,22,0.3); }
+  .activity-num { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; font-family:'Tajawal',sans-serif; }
+  .activity-content h4 { font-size: 14px; font-weight: 700; font-family:'Tajawal',sans-serif; color: var(--text); margin-bottom: 4px; }
+  .activity-content p  { font-size: 12.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.6; }
+
+  /* STORY */
+  .story-card { background: linear-gradient(135deg, rgba(249,115,22,0.09), rgba(18,24,48,0.95)); border: 1px solid rgba(249,115,22,0.22); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; cursor: pointer; }
+  .story-card::after { content: '"'; position: absolute; top: 10px; left: 20px; font-size: 120px; color: rgba(249,115,22,0.06); font-family: Georgia, serif; line-height: 1; }
+  .story-title { font-family:'Tajawal',sans-serif; font-size: 20px; font-weight: 900; color: var(--text); margin-bottom: 8px; }
+  .story-meta  { font-size: 12px; font-family:'Tajawal',sans-serif; color: var(--text-muted); margin-bottom: 14px; display: flex; gap: 12px; }
+  .story-text  { font-size: 13.5px; font-family:'Tajawal',sans-serif; color: #c8d4e8; line-height: 2; }
+  .story-lesson{ margin-top: 16px; background: rgba(249,115,22,0.09); border: 1px solid rgba(249,115,22,0.22); border-radius: var(--radius-sm); padding: 1rem; font-size: 12.5px; font-family:'Tajawal',sans-serif; color: #fb923c; line-height: 1.7; }
+  .story-lesson strong { display: block; margin-bottom: 4px; font-size: 12px; }
+
+  /* MODAL */
+  .modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(5,8,20,0.92); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity 0.25s ease; }
+  .modal-overlay.open { opacity:1; pointer-events:all; }
+  .modal-box { background: linear-gradient(145deg, #0e1428, #121a38); border:1px solid rgba(249,115,22,0.2); border-radius:20px; width:100%; max-width:600px; max-height:85vh; overflow-y:auto; transform:translateY(24px) scale(0.97); transition:transform 0.3s ease; box-shadow:0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(249,115,22,0.08); }
+  .modal-overlay.open .modal-box { transform:translateY(0) scale(1); }
+  .modal-head { padding:1.75rem 1.75rem 1.25rem; border-bottom:1px solid rgba(255,255,255,0.07); display:flex; align-items:flex-start; gap:14px; position:sticky; top:0; background:linear-gradient(145deg,#0e1428,#121a38); z-index:2; }
+  .modal-emoji { width:54px; height:54px; border-radius:14px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:26px; }
+  .modal-tag { font-size:10px; font-weight:700; font-family:'Tajawal',sans-serif; letter-spacing:1.2px; text-transform:uppercase; padding:3px 10px; border-radius:20px; display:inline-block; margin-bottom:6px; }
+  .modal-title { font-family:'Tajawal',sans-serif; font-size:20px; font-weight:900; color:var(--text); }
+  .modal-close { width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:var(--text-muted); cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; margin-top:2px; }
+  .modal-close:hover { background:rgba(249,115,22,0.18); color:#fb923c; }
+  .modal-body { padding:1.5rem 1.75rem 2rem; }
+  .modal-section { margin-bottom:1.25rem; }
+  .modal-section-title { font-size:12px; font-weight:700; font-family:'Tajawal',sans-serif; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .modal-text { font-size:13.5px; font-family:'Tajawal',sans-serif; color:var(--text-muted); line-height:1.9; }
+  .modal-text strong { color:var(--text); font-weight:700; }
+  .modal-highlight { background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.22); border-radius:10px; padding:1rem 1.25rem; margin:10px 0; font-size:13px; font-family:'Tajawal',sans-serif; color:#fb923c; line-height:1.8; }
+  .modal-highlight.gold   { background:rgba(148,163,184,0.07); border-color:rgba(148,163,184,0.2); color:#cbd5e1; }
+  .modal-highlight.green  { background:rgba(100,116,139,0.07); border-color:rgba(100,116,139,0.2); color:#94a3b8; }
+  .modal-highlight.purple { background:rgba(249,115,22,0.06);  border-color:rgba(249,115,22,0.18); color:#fdba74; }
+  .modal-highlight.coral  { background:rgba(249,115,22,0.08);  border-color:rgba(249,115,22,0.22); color:#fb923c; }
+  .modal-steps { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
+  .modal-step { display:flex; gap:12px; align-items:flex-start; font-size:13px; font-family:'Tajawal',sans-serif; color:var(--text-muted); line-height:1.7; }
+  .modal-step-n { width:24px; height:24px; border-radius:50%; flex-shrink:0; margin-top:1px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; background:rgba(249,115,22,0.18); color:#f97316; }
+  .modal-step-n.gold   { background:rgba(148,163,184,0.15); color:#cbd5e1; }
+  .modal-step-n.green  { background:rgba(100,116,139,0.15); color:#94a3b8; }
+  .modal-step-n.purple { background:rgba(249,115,22,0.12);  color:#fdba74; }
+  .modal-step-n.coral  { background:rgba(249,115,22,0.18);  color:#fb923c; }
+  .modal-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .modal-chip { font-size:11.5px; font-family:'Tajawal',sans-serif; padding:4px 12px; border-radius:20px; background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); color:#94a3b8; }
+
+  /* EVAL */
+  .eval-type { background: rgba(18,24,48,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 14px; cursor: pointer; transition: all 0.2s; }
+  .eval-type:hover { background: rgba(30,40,80,0.95); border-color: rgba(249,115,22,0.3); }
+  .eval-icon { font-size: 28px; flex-shrink: 0; }
+  .eval-name  { font-size: 15px; font-weight: 800; font-family:'Tajawal',sans-serif; color: var(--text); margin-bottom: 4px; }
+  .eval-desc  { font-size: 12.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+  .eval-tools { display: flex; gap: 6px; flex-wrap: wrap; }
+  .eval-tool  { font-size: 11px; font-family:'Tajawal',sans-serif; padding: 3px 10px; border-radius: 10px; }
+
+  /* RESOURCE */
+  .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .resource-card { background: rgba(18,24,48,0.85); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1.25rem; cursor: pointer; transition: all 0.2s; }
+  .resource-card:hover { background: rgba(249,115,22,0.09); border-color: rgba(249,115,22,0.35); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.4); }
+  .resource-icon { font-size: 28px; margin-bottom: 10px; }
+  .resource-name { font-size: 13px; font-weight: 700; font-family:'Tajawal',sans-serif; color: var(--text); margin-bottom: 4px; }
+  .resource-desc { font-size: 11.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.5; }
+
+  /* BTN */
+  .btn { padding: 10px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 800; font-family:'Tajawal',sans-serif; cursor: pointer; border: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary { background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; box-shadow: 0 4px 18px rgba(249,115,22,0.4); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(249,115,22,0.6); }
+  .btn-ghost   { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--text-muted); }
+  .btn-ghost:hover { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: var(--text); }
+  .btn-row { display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family:'Tajawal',sans-serif; }
+  .data-table th { background: rgba(249,115,22,0.12); padding: 10px 14px; text-align: right; font-weight: 800; color: #fb923c; border-bottom: 1px solid rgba(249,115,22,0.2); font-size: 12px; }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text); }
+  .data-table tr:hover td { background: rgba(249,115,22,0.04); }
+
+  /* ACCORDION */
+  .accordion { border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 10px; }
+  .accordion-header { padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: rgba(18,24,48,0.9); transition: background 0.2s; font-size: 14px; font-weight: 700; font-family:'Tajawal',sans-serif; color: var(--text); }
+  .accordion-header:hover { background: rgba(30,40,80,0.95); }
+  .accordion-arrow { transition: transform 0.3s; color: var(--text-muted); font-size: 12px; }
+  .accordion.open .accordion-arrow { transform: rotate(180deg); }
+  .accordion-body { display: none; padding: 14px 16px; background: rgba(10,14,30,0.7); border-top: 1px solid rgba(255,255,255,0.06); }
+  .accordion.open .accordion-body { display: block; }
+  .accordion-body p { font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.7; }
+
+  /* CERT */
+  .cert-banner { background: linear-gradient(135deg, rgba(249,115,22,0.14), rgba(26,34,64,0.9)); border: 1px solid rgba(249,115,22,0.32); border-radius: var(--radius); padding: 2rem; text-align: center; margin-bottom: 2rem; }
+  .cert-icon  { font-size: 48px; margin-bottom: 12px; }
+  .cert-title { font-family:'Tajawal',sans-serif; font-size: 22px; font-weight: 900; color: #fb923c; margin-bottom: 8px; }
+  .cert-text  { font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.7; }
+
+  /* QUIZ */
+  .quiz-q { font-size: 15px; font-weight: 800; font-family:'Tajawal',sans-serif; color: var(--text); margin-bottom: 14px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option { padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.08); cursor: pointer; font-size: 13.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); transition: all 0.2s; background: rgba(18,24,48,0.7); }
+  .quiz-option:hover { border-color: rgba(249,115,22,0.45); color: var(--text); background: rgba(249,115,22,0.09); }
+  .quiz-option.correct { border-color: #f97316; background: rgba(249,115,22,0.16); color: #fb923c; }
+  .quiz-option.wrong   { border-color: #475569; background: rgba(71,85,105,0.15); color: #94a3b8; }
+  .quiz-feedback { margin-top: 12px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; font-family:'Tajawal',sans-serif; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: rgba(249,115,22,0.14); border: 1px solid rgba(249,115,22,0.28); color: #fb923c; }
+  .quiz-feedback.wrong   { background: rgba(71,85,105,0.14); border: 1px solid rgba(71,85,105,0.28); color: #94a3b8; }
+
+  /* click hint */
+  .click-hint { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-family:'Tajawal',sans-serif; color:#f97316; background:rgba(249,115,22,0.09); border:1px solid rgba(249,115,22,0.22); border-radius:20px; padding:2px 8px; margin-top:6px; }
+
+  @keyframes fadeSlide { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+  .content-area > * { animation: fadeSlide 0.4s ease both; }
 
   .module-title {
     font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px;
@@ -248,9 +442,9 @@
   .module-status {
     padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 600;
   }
-  .status-done { background: rgba(46,196,182,0.15); color: var(--green); }
-  .status-active { background: rgba(0,180,216,0.15); color: var(--teal-light); }
-  .status-soon { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+  .status-done   { background: rgba(192,192,192,0.12); color: #c0c0c0; }
+  .status-active { background: rgba(249,115,22,0.12);  color: #fb923c; }
+  .status-soon   { background: rgba(255,255,255,0.04); color: var(--text-muted); }
 
   /* ===== LESSON VIEW ===== */
   .lesson-view { display: none; }
@@ -265,11 +459,11 @@
     padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
     letter-spacing: 0.5px;
   }
-  .tag-teal { background: rgba(0,180,216,0.15); color: var(--teal-light); border: 1px solid rgba(0,180,216,0.2); }
-  .tag-gold { background: rgba(226,176,74,0.15); color: var(--gold-light); border: 1px solid rgba(226,176,74,0.2); }
-  .tag-coral { background: rgba(232,93,74,0.15); color: #f5956a; border: 1px solid rgba(232,93,74,0.2); }
-  .tag-green { background: rgba(46,196,182,0.15); color: #7eefd7; border: 1px solid rgba(46,196,182,0.2); }
-  .tag-purple { background: rgba(123,94,167,0.15); color: #b09ac7; border: 1px solid rgba(123,94,167,0.2); }
+  .tag-teal   { background: rgba(249,115,22,0.12);  color: #fb923c;  border: 1px solid rgba(249,115,22,0.28); }
+  .tag-gold   { background: rgba(192,192,192,0.12); color: #cbd5e1; border: 1px solid rgba(192,192,192,0.25); }
+  .tag-coral  { background: rgba(184,134,11,0.15);  color: #d4a857;             border: 1px solid rgba(184,134,11,0.3); }
+  .tag-green  { background: rgba(128,128,128,0.15); color: #94a3b8;       border: 1px solid rgba(128,128,128,0.3); }
+  .tag-purple { background: rgba(168,144,32,0.15);  color: #c8a832;             border: 1px solid rgba(168,144,32,0.3); }
 
   .lesson-title {
     font-family: 'Tajawal', sans-serif;
@@ -295,12 +489,12 @@
   .block-subtitle { font-size: 12px; color: var(--text-muted); }
 
   .definition-box {
-    background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(15,52,96,0.15));
-    border: 1px solid rgba(0,180,216,0.2);
+    background: linear-gradient(135deg, rgba(249,115,22,0.06), rgba(26,21,0,0.2));
+    border: 1px solid rgba(249,115,22,0.22);
     border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.25rem;
   }
   .definition-box p { font-size: 14.5px; line-height: 1.9; color: var(--text); }
-  .definition-box strong { color: var(--teal-light); }
+  .definition-box strong { color: #fb923c; }
 
   .concept-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -323,402 +517,81 @@
     font-family: monospace;
   }
   .prompt-parts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
-  .prompt-part {
-    padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
-    font-family: 'IBM Plex Sans Arabic', sans-serif;
-  }
-  .pp-role { background: rgba(123,94,167,0.2); color: #b09ac7; border: 1px solid rgba(123,94,167,0.3); }
-  .pp-task { background: rgba(0,180,216,0.2); color: var(--teal-light); border: 1px solid rgba(0,180,216,0.3); }
-  .pp-context { background: rgba(226,176,74,0.2); color: var(--gold-light); border: 1px solid rgba(226,176,74,0.3); }
-  .pp-format { background: rgba(46,196,182,0.2); color: #7eefd7; border: 1px solid rgba(46,196,182,0.3); }
-
-  .prompt-example {
-    background: rgba(0,0,0,0.3); border: 1px solid rgba(0,180,216,0.15);
-    border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-bottom: 10px;
-  }
-  .prompt-example-label { font-size: 10px; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
-  .prompt-example-text { font-size: 13px; color: #cde; line-height: 1.7; }
-  .prompt-highlight { color: var(--gold-light); font-weight: 600; }
-
-  /* ===== TOOLS GRID ===== */
-  .tools-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px; margin-top: 1rem;
-  }
-  .tool-card {
-    background: rgba(255,255,255,0.04); border: 1px solid var(--card-border);
-    border-radius: var(--radius-sm); padding: 1.25rem;
-    transition: all 0.2s; cursor: default;
-  }
-  .tool-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
-  .tool-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .tool-emoji { font-size: 26px; }
-  .tool-name { font-size: 14px; font-weight: 700; color: var(--text); }
-  .tool-cat { font-size: 11px; color: var(--text-muted); }
-  .tool-use { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
-  .tool-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-  .tool-tag {
-    font-size: 10px; padding: 2px 8px; border-radius: 10px;
-    background: rgba(255,255,255,0.06); color: var(--text-muted);
-  }
-
-  /* ===== ACTIVITY CARDS ===== */
-  .activity-card {
-    background: var(--card-bg); border: 1px solid var(--card-border);
-    border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 10px;
-    display: flex; gap: 14px; align-items: flex-start;
-  }
-  .activity-num {
-    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 700;
-  }
-  .activity-content h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-  .activity-content p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
-
-  /* ===== STORY CARD ===== */
-  .story-card {
-    background: linear-gradient(135deg, rgba(123,94,167,0.1), rgba(15,52,96,0.2));
-    border: 1px solid rgba(123,94,167,0.2);
-    border-radius: var(--radius); padding: 2rem; margin-bottom: 1.25rem;
-    position: relative; overflow: hidden;
-  }
-  .story-card::after {
-    content: '"'; position: absolute; top: 10px; left: 20px;
-    font-size: 120px; color: rgba(123,94,167,0.1);
-    font-family: Georgia, serif; line-height: 1;
-  }
-  .story-title { font-family: 'Tajawal', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
-  .story-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; display: flex; gap: 12px; }
-  .story-text { font-size: 13.5px; color: #c8d4e8; line-height: 2; }
-  .story-lesson {
-    margin-top: 16px; background: rgba(46,196,182,0.08); border: 1px solid rgba(46,196,182,0.2);
-    border-radius: var(--radius-sm); padding: 1rem;
-    font-size: 12.5px; color: #7eefd7; line-height: 1.7;
-  }
-  .story-lesson strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.5px; }
-
-  /* ===== EVAL SECTION ===== */
-  .eval-type {
-    background: var(--card-bg); border: 1px solid var(--card-border);
-    border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 10px;
-    display: flex; align-items: flex-start; gap: 14px;
-  }
-  .eval-icon { font-size: 28px; flex-shrink: 0; }
-  .eval-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .eval-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
-  .eval-tools { display: flex; gap: 6px; flex-wrap: wrap; }
-  .eval-tool { font-size: 11px; padding: 3px 10px; border-radius: 10px; }
-
-  /* ===== RESOURCE GRID ===== */
-  .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-  .resource-card {
-    background: var(--card-bg); border: 1px solid var(--card-border);
-    border-radius: var(--radius-sm); padding: 1.25rem;
-    transition: all 0.2s; cursor: default;
-  }
-  .resource-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
-  .resource-icon { font-size: 28px; margin-bottom: 10px; }
-  .resource-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-  .resource-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
-
-  /* ===== BTN ===== */
-  .btn {
-    padding: 10px 22px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
-    cursor: pointer; border: none; transition: all 0.2s; font-family: inherit;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--teal), #0083a1);
-    color: #fff; box-shadow: 0 4px 15px rgba(0,180,216,0.25);
-  }
-  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,180,216,0.35); }
-  .btn-ghost {
-    background: transparent; border: 1px solid var(--card-border); color: var(--text-muted);
-  }
-  .btn-ghost:hover { background: var(--card-bg); color: var(--text); }
-
-  .btn-row { display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap; }
-
-  /* ===== TABLE ===== */
-  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .data-table th {
-    background: rgba(255,255,255,0.05); padding: 10px 14px;
-    text-align: right; font-weight: 600; color: var(--text-muted);
-    border-bottom: 1px solid var(--card-border); font-size: 12px;
-  }
-  .data-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); }
-  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
-
-  /* ===== ACCORDION ===== */
-  .accordion { border: 1px solid var(--card-border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 10px; }
-  .accordion-header {
-    padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;
-    cursor: pointer; background: var(--card-bg); transition: background 0.2s;
-    font-size: 14px; font-weight: 600; color: var(--text);
-  }
-  .accordion-header:hover { background: rgba(255,255,255,0.06); }
-  .accordion-arrow { transition: transform 0.3s; color: var(--text-muted); font-size: 12px; }
-  .accordion.open .accordion-arrow { transform: rotate(180deg); }
-  .accordion-body { display: none; padding: 14px 16px; background: rgba(0,0,0,0.15); border-top: 1px solid var(--card-border); }
-  .accordion.open .accordion-body { display: block; }
-  .accordion-body p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
-
-  /* ===== DIVIDER ===== */
-  .divider { border: none; border-top: 1px solid var(--card-border); margin: 1.5rem 0; }
-
-  /* ===== QUIZ ===== */
-  .quiz-q { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; font-family: 'Tajawal', sans-serif; }
-  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
-  .quiz-option {
-    padding: 12px 16px; border-radius: var(--radius-sm);
-    border: 1px solid var(--card-border); cursor: pointer; font-size: 13.5px; color: var(--text-muted);
-    transition: all 0.2s; background: var(--card-bg);
-  }
-  .quiz-option:hover { border-color: rgba(0,180,216,0.3); color: var(--text); background: rgba(0,180,216,0.05); }
-  .quiz-option.correct { border-color: var(--green); background: rgba(46,196,182,0.1); color: #7eefd7; }
-  .quiz-option.wrong { border-color: var(--coral); background: rgba(232,93,74,0.1); color: #f5956a; }
-  .quiz-feedback { margin-top: 12px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; display: none; }
-  .quiz-feedback.show { display: block; }
-  .quiz-feedback.correct { background: rgba(46,196,182,0.1); border: 1px solid rgba(46,196,182,0.2); color: #7eefd7; }
-  .quiz-feedback.wrong { background: rgba(232,93,74,0.1); border: 1px solid rgba(232,93,74,0.2); color: #f5956a; }
-
-  /* ===== CERT SECTION ===== */
-  .cert-banner {
-    background: linear-gradient(135deg, rgba(226,176,74,0.1), rgba(245,208,138,0.05));
-    border: 1px solid rgba(226,176,74,0.25); border-radius: var(--radius);
-    padding: 2rem; text-align: center; margin-bottom: 2rem;
-  }
-  .cert-icon { font-size: 48px; margin-bottom: 12px; }
-  .cert-title { font-family: 'Tajawal', sans-serif; font-size: 22px; font-weight: 800; color: var(--gold-light); margin-bottom: 8px; }
-  .cert-text { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
-
-  /* animations */
-  @keyframes fadeSlide { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
-  .content-area > * { animation: fadeSlide 0.4s ease both; }
-
-  /* ===== EXPLANATION BLOCKS ===== */
+  /* ===== EXPLAIN BLOCKS ===== */
   .explain-block {
-    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    border: 1px solid var(--card-border);
-    border-right: 4px solid var(--teal);
+    background: rgba(249,115,22,0.04);
+    border: 1px solid rgba(249,115,22,0.15);
+    border-right: 4px solid #f97316;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     padding: 1.25rem 1.5rem; margin: 1rem 0;
   }
-  .explain-block.gold { border-right-color: var(--gold); }
-  .explain-block.coral { border-right-color: var(--coral); }
-  .explain-block.green { border-right-color: var(--green); }
-  .explain-block.purple { border-right-color: var(--purple); }
-  .explain-title {
-    font-size: 13px; font-weight: 700; color: var(--teal-light);
-    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
-    letter-spacing: 0.3px;
-  }
-  .explain-block.gold .explain-title { color: var(--gold-light); }
-  .explain-block.coral .explain-title { color: #f5956a; }
-  .explain-block.green .explain-title { color: #7eefd7; }
-  .explain-block.purple .explain-title { color: #b09ac7; }
-  .explain-text {
-    font-size: 13.5px; color: var(--text-muted); line-height: 1.9;
-  }
-  .explain-text strong { color: var(--text); font-weight: 600; }
-  .explain-text em { color: var(--teal-light); font-style: normal; font-weight: 500; }
+  .explain-block.gold   { border-right-color: #94a3b8; background: rgba(148,163,184,0.04); border-color: rgba(148,163,184,0.15); }
+  .explain-block.coral  { border-right-color: #fb923c; }
+  .explain-block.green  { border-right-color: #64748b; background: rgba(100,116,139,0.04); border-color: rgba(100,116,139,0.15); }
+  .explain-block.purple { border-right-color: #fdba74; }
+  .explain-title { font-size: 13px; font-weight: 700; font-family:'Tajawal',sans-serif; color: #fb923c; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .explain-block.gold   .explain-title { color: #cbd5e1; }
+  .explain-block.coral  .explain-title { color: #fdba74; }
+  .explain-block.green  .explain-title { color: #94a3b8; }
+  .explain-block.purple .explain-title { color: #fdba74; }
+  .explain-text { font-size: 13.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.9; }
+  .explain-text strong { color: var(--text); font-weight: 700; }
+  .explain-text em { color: #fb923c; font-style: normal; font-weight: 600; }
 
   .tip-box {
     display: flex; gap: 12px; align-items: flex-start;
-    background: rgba(226,176,74,0.06); border: 1px solid rgba(226,176,74,0.18);
+    background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.2);
     border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 10px 0;
   }
   .tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-  .tip-text { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
-  .tip-text strong { color: var(--gold-light); }
+  .tip-text { font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.8; }
+  .tip-text strong { color: #fb923c; }
 
   .warning-box {
     display: flex; gap: 12px; align-items: flex-start;
-    background: rgba(232,93,74,0.06); border: 1px solid rgba(232,93,74,0.2);
+    background: rgba(100,116,139,0.06); border: 1px solid rgba(100,116,139,0.2);
     border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 10px 0;
   }
-  .warning-text { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
-  .warning-text strong { color: #f5956a; }
+  .warning-text { font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.8; }
+  .warning-text strong { color: #cbd5e1; }
 
-  .key-points {
-    display: flex; flex-direction: column; gap: 8px; margin-top: 12px;
-  }
-  .key-point {
-    display: flex; gap: 10px; align-items: flex-start;
-    font-size: 13px; color: var(--text-muted); line-height: 1.7;
-  }
-  .key-point-dot {
-    width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 700;
-  }
-  .kp-teal { background: rgba(0,180,216,0.2); color: var(--teal); }
-  .kp-gold { background: rgba(226,176,74,0.2); color: var(--gold); }
-  .kp-green { background: rgba(46,196,182,0.2); color: var(--green); }
-  .kp-purple { background: rgba(123,94,167,0.2); color: var(--purple); }
-  .kp-coral { background: rgba(232,93,74,0.2); color: var(--coral); }
+  .key-points { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .key-point { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.7; }
+  .key-point-dot { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+  .kp-teal   { background: rgba(249,115,22,0.2); color: #f97316; }
+  .kp-gold   { background: rgba(148,163,184,0.18); color: #94a3b8; }
+  .kp-green  { background: rgba(100,116,139,0.2); color: #64748b; }
+  .kp-purple { background: rgba(249,115,22,0.15); color: #fdba74; }
+  .kp-coral  { background: rgba(249,115,22,0.18); color: #fb923c; }
 
-  .comparison-row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0;
-  }
-  .comparison-col {
-    background: var(--card-bg); border: 1px solid var(--card-border);
-    border-radius: var(--radius-sm); padding: 1rem;
-  }
-  .comparison-col-title {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
-    margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--card-border);
-  }
-  .comparison-col-title.red { color: #f5956a; }
-  .comparison-col-title.green { color: #7eefd7; }
-  .comparison-col li {
-    font-size: 12.5px; color: var(--text-muted); line-height: 1.7;
-    list-style: none; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
-  }
+  .comparison-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .comparison-col { background: rgba(18,24,48,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1rem; }
+  .comparison-col-title { font-size: 12px; font-weight: 700; font-family:'Tajawal',sans-serif; letter-spacing: 0.5px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .comparison-col-title.red   { color: #94a3b8; }
+  .comparison-col-title.green { color: #fb923c; }
+  .comparison-col li { font-size: 12.5px; font-family:'Tajawal',sans-serif; color: var(--text-muted); line-height: 1.7; list-style: none; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
   .comparison-col li::before { content: '• '; }
 
-  .mini-quiz {
-    background: rgba(123,94,167,0.07); border: 1px solid rgba(123,94,167,0.2);
-    border-radius: var(--radius-sm); padding: 1.25rem; margin-top: 1rem;
-  }
-  .mini-quiz-q { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .mini-quiz { background: rgba(249,115,22,0.05); border: 1px solid rgba(249,115,22,0.2); border-radius: var(--radius-sm); padding: 1.25rem; margin-top: 1rem; }
+  .mini-quiz-q { font-size: 13.5px; font-weight: 700; font-family:'Tajawal',sans-serif; color: var(--text); margin-bottom: 10px; }
   .mini-quiz-opts { display: flex; flex-direction: column; gap: 6px; }
-  .mini-quiz-opt {
-    padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(123,94,167,0.2);
-    cursor: pointer; font-size: 13px; color: var(--text-muted);
-    transition: all 0.2s; background: rgba(123,94,167,0.05);
-  }
-  .mini-quiz-opt:hover { background: rgba(123,94,167,0.12); color: var(--text); }
-  .mini-quiz-opt.correct { border-color: var(--green); background: rgba(46,196,182,0.1); color: #7eefd7; }
-  .mini-quiz-opt.wrong { border-color: var(--coral); background: rgba(232,93,74,0.1); color: #f5956a; }
-  .mini-quiz-fb { font-size: 12.5px; margin-top: 8px; display: none; padding: 8px 12px; border-radius: 8px; }
+  .mini-quiz-opt { padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; font-size: 13px; font-family:'Tajawal',sans-serif; color: var(--text-muted); transition: all 0.2s; background: rgba(18,24,48,0.7); }
+  .mini-quiz-opt:hover { background: rgba(249,115,22,0.09); color: var(--text); border-color: rgba(249,115,22,0.35); }
+  .mini-quiz-opt.correct { border-color: #f97316; background: rgba(249,115,22,0.15); color: #fb923c; }
+  .mini-quiz-opt.wrong   { border-color: #475569; background: rgba(71,85,105,0.15); color: #64748b; }
+  .mini-quiz-fb { font-size: 12.5px; font-family:'Tajawal',sans-serif; margin-top: 8px; display: none; padding: 8px 12px; border-radius: 8px; }
   .mini-quiz-fb.show { display: block; }
-  .mini-quiz-fb.c { background: rgba(46,196,182,0.1); color: #7eefd7; }
-  .mini-quiz-fb.w { background: rgba(232,93,74,0.1); color: #f5956a; }
+  .mini-quiz-fb.c { background: rgba(249,115,22,0.1); color: #fb923c; }
+  .mini-quiz-fb.w { background: rgba(71,85,105,0.12); color: #64748b; }
 
-  .sub-section-title {
-    font-size: 15px; font-weight: 700; color: var(--text);
-    margin: 1.5rem 0 0.75rem; padding-bottom: 8px;
-    border-bottom: 1px solid var(--card-border);
-    display: flex; align-items: center; gap: 8px;
-    font-family: 'Tajawal', sans-serif;
-  }
-
-  /* ===== MODAL SYSTEM ===== */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 1000;
-    background: rgba(5,8,25,0.85); backdrop-filter: blur(12px);
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem; opacity: 0; pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-
-  .modal-box {
-    background: linear-gradient(145deg, #0d1235, #111830);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px; width: 100%; max-width: 600px;
-    max-height: 85vh; overflow-y: auto;
-    transform: translateY(24px) scale(0.97);
-    transition: transform 0.3s ease;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
-  }
-  .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
-
-  .modal-head {
-    padding: 1.75rem 1.75rem 1.25rem;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    display: flex; align-items: flex-start; gap: 14px; position: sticky; top: 0;
-    background: linear-gradient(145deg,#0d1235,#111830); z-index: 2;
-  }
-  .modal-emoji {
-    width: 54px; height: 54px; border-radius: 14px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center; font-size: 26px;
-  }
-  .modal-head-text { flex: 1; }
-  .modal-tag {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 6px;
-  }
-  .modal-title { font-family: 'Tajawal', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); }
-  .modal-close {
-    width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.05); color: var(--text-muted); cursor: pointer;
-    font-size: 16px; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; transition: all 0.2s; margin-top: 2px;
-  }
-  .modal-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
-
-  .modal-body { padding: 1.5rem 1.75rem 2rem; }
-  .modal-section { margin-bottom: 1.25rem; }
-  .modal-section-title {
-    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 8px; padding-bottom: 6px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .modal-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.9; }
-  .modal-text strong { color: var(--text); font-weight: 600; }
-  .modal-text em { font-style: normal; }
-  .modal-highlight {
-    background: rgba(0,180,216,0.08); border: 1px solid rgba(0,180,216,0.18);
-    border-radius: 10px; padding: 1rem 1.25rem; margin: 10px 0;
-    font-size: 13px; color: #c0e8f0; line-height: 1.8;
-  }
-  .modal-highlight.gold { background: rgba(226,176,74,0.08); border-color: rgba(226,176,74,0.2); color: var(--gold-light); }
-  .modal-highlight.green { background: rgba(46,196,182,0.08); border-color: rgba(46,196,182,0.2); color: #7eefd7; }
-  .modal-highlight.purple { background: rgba(123,94,167,0.08); border-color: rgba(123,94,167,0.2); color: #c0b0e0; }
-  .modal-highlight.coral { background: rgba(232,93,74,0.08); border-color: rgba(232,93,74,0.2); color: #f5a090; }
-
-  .modal-steps { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
-  .modal-step {
-    display: flex; gap: 12px; align-items: flex-start;
-    font-size: 13px; color: var(--text-muted); line-height: 1.7;
-  }
-  .modal-step-n {
-    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700;
-    background: rgba(0,180,216,0.15); color: var(--teal-light);
-  }
-  .modal-step-n.gold { background: rgba(226,176,74,0.15); color: var(--gold-light); }
-  .modal-step-n.green { background: rgba(46,196,182,0.15); color: #7eefd7; }
-  .modal-step-n.purple { background: rgba(123,94,167,0.15); color: #c0b0e0; }
-  .modal-step-n.coral { background: rgba(232,93,74,0.15); color: #f5a090; }
-
-  .modal-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .modal-chip {
-    font-size: 11.5px; padding: 4px 12px; border-radius: 20px;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
-    color: var(--text-muted);
-  }
-
-  /* Make concept items and resource cards clickable */
-  .concept-item { cursor: pointer; }
-  .concept-item:hover { background: rgba(255,255,255,0.09); border-color: rgba(0,180,216,0.2); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-  .resource-card { cursor: pointer; }
-  .resource-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(0,180,216,0.2); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-  .tool-card { cursor: pointer; }
-  .tool-card:hover { border-color: rgba(0,180,216,0.25); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-  .eval-type { cursor: pointer; }
-  .eval-type:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
-  .activity-card { cursor: pointer; }
-  .activity-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
-  .story-card { cursor: pointer; }
-
-  /* click hint badge */
-  .click-hint {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 10px; color: var(--teal); background: rgba(0,180,216,0.1);
-    border: 1px solid rgba(0,180,216,0.2); border-radius: 20px;
-    padding: 2px 8px; margin-top: 6px;
-  }
+  .sub-section-title { font-size: 15px; font-weight: 800; font-family:'Tajawal',sans-serif; color: var(--text); margin: 1.5rem 0 0.75rem; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 8px; }
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 1.5rem 0; }
 
   /* scrollbar */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+  ::-webkit-scrollbar-thumb { background: rgba(249,115,22,0.3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(249,115,22,0.55); }
 
   /* mobile */
   @media (max-width: 768px) {
@@ -761,9 +634,9 @@
       <div class="logo-sub">دورة تكوينية متكاملة</div>
       <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--card-border);">
         <div style="display:flex;align-items:center;gap:8px;">
-          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--teal));display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">👨‍🏫</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f97316,#f97316);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">👨‍🏫</div>
           <div>
-            <div style="font-size:12px;font-weight:700;color:var(--gold-light);">ذ. محمد العشيري</div>
+            <div style="font-size:12px;font-weight:700;color:#fb923c;">ذ. محمد العشيري</div>
             <div style="font-size:10px;color:var(--text-muted);">مكوّن معتمد — 2026</div>
           </div>
         </div>
@@ -826,13 +699,13 @@
       <div class="hero">
         <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px;">
           <div class="hero-tag">🎓 دورة تكوينية احترافية</div>
-          <div class="hero-tag" style="background:rgba(226,176,74,0.12);border-color:rgba(226,176,74,0.3);color:var(--gold-light);">📅 2026</div>
+          <div class="hero-tag" style="background:rgba(226,176,74,0.12);border-color:rgba(226,176,74,0.3);color:#fb923c;">📅 2026</div>
         </div>
         <h1>الذكاء الاصطناعي في الفصل الدراسي</h1>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;background:rgba(226,176,74,0.07);border:1px solid rgba(226,176,74,0.18);border-radius:10px;padding:10px 14px;width:fit-content;">
           <span style="font-size:20px;">👨‍🏫</span>
           <div>
-            <div style="font-size:13px;font-weight:700;color:var(--gold-light);">الأستاذ محمد العشيري</div>
+            <div style="font-size:13px;font-weight:700;color:#fb923c;">الأستاذ محمد العشيري</div>
             <div style="font-size:11px;color:var(--text-muted);">مكوّن معتمد في تكنولوجيا التعليم والذكاء الاصطناعي</div>
           </div>
         </div>
@@ -924,7 +797,7 @@
         <div class="cert-title">شهادة إتمام معتمدة</div>
         <div class="cert-text">أتمم جميع الوحدات الست واجتز الاختبار الختامي للحصول على شهادتك في تطبيقات الذكاء الاصطناعي في التعليم</div>
         <div style="margin-top:14px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-          <div style="font-size:12px;color:var(--gold-light);display:flex;align-items:center;gap:6px;"><span>👨‍🏫</span> الأستاذ محمد العشيري</div>
+          <div style="font-size:12px;color:#fb923c;display:flex;align-items:center;gap:6px;"><span>👨‍🏫</span> الأستاذ محمد العشيري</div>
           <div style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;"><span>📅</span> السنة الدراسية 2026</div>
         </div>
       </div>
@@ -940,7 +813,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(0,180,216,0.15)">📖</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.12)">📖</div>
           <div><div class="block-title">التعريف</div><div class="block-subtitle">ما الذي يجعل الآلة "ذكية"؟</div></div>
         </div>
         <div class="definition-box">
@@ -1037,7 +910,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(46,196,182,0.15)">🏫</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.15)">🏫</div>
           <div><div class="block-title">الذكاء الاصطناعي في التعليم — نظرة شاملة</div></div>
         </div>
         <div class="explain-block green">
@@ -1094,7 +967,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(232,93,74,0.15)">🎯</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.12)">🎯</div>
           <div><div class="block-title">اختبر فهمك</div></div>
         </div>
         <div class="quiz-q">ما الفرق الجوهري بين التعلم الآلي والذكاء الاصطناعي؟</div>
@@ -1195,7 +1068,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(0,180,216,0.15)">⚡</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.12)">⚡</div>
           <div><div class="block-title">تقنيات هندسة الأوامر المتقدمة</div></div>
         </div>
         <div class="explain-block">
@@ -1204,7 +1077,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">1</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.12);color:#fb923c;">1</div>
             <div class="activity-content">
               <h4>التفكير خطوة بخطوة (Chain of Thought)</h4>
               <p>أضف عبارة "فكّر خطوة بخطوة" أو "اشرح تفكيرك" في أمرك. يجبر النموذج على التفكير المنطوق وليس القفز للإجابة.</p>
@@ -1215,7 +1088,7 @@
             </div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">2</div>
+            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:#fb923c;">2</div>
             <div class="activity-content">
               <h4>الأمثلة داخل الأمر (Few-Shot Prompting)</h4>
               <p>أعطِ النموذج مثالاً أو مثالين على ما تريده قبل طلب المهمة الحقيقية. يُقلل الغموض بشكل كبير.</p>
@@ -1226,7 +1099,7 @@
             </div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(46,196,182,0.15);color:#7eefd7;">3</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.15);color:#fb923c;">3</div>
             <div class="activity-content">
               <h4>الضغط والتكرار (Iterative Prompting)</h4>
               <p>لا تتوقف عند أول إجابة. قل: "أعد الصياغة بأسلوب أبسط"، "أضف أمثلة"، "اجعله أقصر".</p>
@@ -1259,7 +1132,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(46,196,182,0.15)">📚</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.15)">📚</div>
           <div><div class="block-title">أوامر جاهزة للمعلم</div><div class="block-subtitle">انسخها واستخدمها مباشرة</div></div>
         </div>
         <div class="explain-block green">
@@ -1317,7 +1190,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(232,93,74,0.15)">🗺️</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.12)">🗺️</div>
           <div><div class="block-title">مراحل تصميم الدرس بالذكاء الاصطناعي</div></div>
         </div>
         <div class="explain-block coral">
@@ -1326,7 +1199,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(232,93,74,0.15);color:#f5956a;">١</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.12);color:#fb923c;">١</div>
             <div class="activity-content">
               <h4>التحليل والتخطيط</h4>
               <p>استخدم ChatGPT لاستخراج الأهداف التعليمية وفق تصنيف بلوم، وتحديد المتطلبات القبلية، وبناء الخريطة المفاهيمية للدرس.</p>
@@ -1337,7 +1210,7 @@
             </div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">٢</div>
+            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:#fb923c;">٢</div>
             <div class="activity-content">
               <h4>توليد المحتوى</h4>
               <p>اطلب من النموذج صياغة الشرح النظري، الأمثلة التوضيحية، الأسئلة الاستنتاجية، وسيناريوهات المناقشة الصفية.</p>
@@ -1348,7 +1221,7 @@
             </div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">٣</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.12);color:#fb923c;">٣</div>
             <div class="activity-content">
               <h4>التصميم والإثراء</h4>
               <p>أنشئ العروض التقديمية بـ Gamma.app، وصمّم البطاقات التعليمية والإنفوغراف بـ Canva AI.</p>
@@ -1365,7 +1238,7 @@
             </div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(46,196,182,0.15);color:#7eefd7;">٤</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.15);color:#fb923c;">٤</div>
             <div class="activity-content">
               <h4>التقييم والتحسين</h4>
               <p>اطلب من النموذج مراجعة الدرس وتقديم اقتراحات للتحسين، واسأله عن الإشكاليات الشائعة التي قد يواجهها الطلاب.</p>
@@ -1382,7 +1255,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(0,180,216,0.15)">🛠️</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.12)">🛠️</div>
           <div><div class="block-title">أدوات إنشاء الدروس</div></div>
         </div>
         <div class="explain-block">
@@ -1449,8 +1322,8 @@
             ✅ <strong>الصيغة:</strong> هيكل الدرس محدد بالدقائق لكل مرحلة — هذا يمنع النموذج من التحكم في توزيع الوقت.
           </div>
         </div>
-        <div style="background:rgba(46,196,182,0.06);border:1px solid rgba(46,196,182,0.15);border-radius:var(--radius-sm);padding:1.25rem;margin-top:10px;">
-          <div style="font-size:12px;color:#7eefd7;margin-bottom:10px;font-weight:600;">📄 المخرج الناتج (مختصر)</div>
+        <div style="background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.15);border-radius:var(--radius-sm);padding:1.25rem;margin-top:10px;">
+          <div style="font-size:12px;color:#fb923c;margin-bottom:10px;font-weight:600;">📄 المخرج الناتج (مختصر)</div>
           <div style="font-size:13px;color:var(--text-muted);line-height:1.8;">
             <strong style="color:var(--text);">الهدفان:</strong> يُجري الطالب عمليات الضرب حتى 5×5، ويُفسّر الضرب كتكرار للجمع.<br>
             <strong style="color:var(--text);">التمهيد:</strong> لعبة "بائع الحلوى" — كم تكلف 3 علب إذا سعر الواحدة 4 دراهم؟<br>
@@ -1486,7 +1359,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(46,196,182,0.15)">🎨</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.15)">🎨</div>
           <div><div class="block-title">أنواع الموارد التعليمية التي يمكن توليدها</div></div>
         </div>
         <div class="explain-block green">
@@ -1572,19 +1445,19 @@
             <div class="activity-content"><h4>اكتب الأمر في ChatGPT</h4><p>اطلب: "لخّص موضوع [الموضوع] في 5 نقاط رئيسية مع عنوان جذاب لكل نقطة"</p></div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">2</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.12);color:#fb923c;">2</div>
             <div class="activity-content"><h4>انسخ النقاط إلى Canva AI</h4><p>افتح Canva، اختر قالب إنفوغراف، ثم استخدم "Magic Write" للملء التلقائي</p></div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">3</div>
+            <div class="activity-num" style="background:rgba(226,176,74,0.15);color:#fb923c;">3</div>
             <div class="activity-content"><h4>اطلب صورة توضيحية</h4><p>في DALL-E: "رسم توضيحي بسيط وملوّن لـ [المفهوم] لطلاب ابتدائي"</p></div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(46,196,182,0.15);color:#7eefd7;">4</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.15);color:#fb923c;">4</div>
             <div class="activity-content"><h4>أضف الصورة وعدّل التصميم</h4><p>أدرج الصورة في Canva، عدّل الألوان لتتناسب مع المادة، واحفظها PDF عالي الجودة</p></div>
           </div>
           <div class="activity-card">
-            <div class="activity-num" style="background:rgba(232,93,74,0.15);color:#f5956a;">5</div>
+            <div class="activity-num" style="background:rgba(249,115,22,0.12);color:#fb923c;">5</div>
             <div class="activity-content"><h4>اطبع أو شارك رقمياً</h4><p>استخدمه في الفصل أو أرسله عبر Google Classroom أو واتساب المجموعة</p></div>
           </div>
         </div>
@@ -1616,8 +1489,8 @@
             <div class="eval-desc">اكشف معارف الطلاب القبلية وتصوراتهم الخاطئة قبل البدء. استخدم ChatGPT لإنشاء "مقياس المعرفة المسبقة" بـ 5 أسئلة.</div>
             <div class="click-hint">👆 اضغط للتفاصيل</div>
             <div class="eval-tools">
-              <span class="eval-tool" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">Google Forms + AI</span>
-              <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">Mentimeter</span>
+              <span class="eval-tool" style="background:rgba(249,115,22,0.12);color:#fb923c;">Google Forms + AI</span>
+              <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:#fb923c;">Mentimeter</span>
             </div>
           </div>
         </div>
@@ -1631,9 +1504,9 @@
               <div class="explain-text">قبل نهاية الدرس بدقيقتين، اطلب من كل طالب أن يكتب على ورقة صغيرة: (1) أهم شيء تعلّمه، (2) سؤال لا يزال في ذهنه. اجمع البطاقات — في 5 دقائق ستعرف مستوى الفهم الحقيقي لكل طالب. يمكن الاستعاضة عنها بـ Google Forms على الجوال.</div>
             </div>
             <div class="eval-tools">
-              <span class="eval-tool" style="background:rgba(46,196,182,0.15);color:#7eefd7;">Kahoot AI</span>
+              <span class="eval-tool" style="background:rgba(249,115,22,0.15);color:#fb923c;">Kahoot AI</span>
               <span class="eval-tool" style="background:rgba(123,94,167,0.15);color:#b09ac7;">Quizizz AI</span>
-              <span class="eval-tool" style="background:rgba(232,93,74,0.15);color:#f5956a;">Slido</span>
+              <span class="eval-tool" style="background:rgba(249,115,22,0.12);color:#fb923c;">Slido</span>
             </div>
           </div>
         </div>
@@ -1647,8 +1520,8 @@
               <div class="explain-text"><em>"أنشئ اختباراً في موضوع [الموضوع] للصف [الصف] يغطي مستويات بلوم الست: (1) سؤال تذكّر، (2) سؤال فهم، (3) سؤال تطبيق، (4) سؤال تحليل، (5) سؤال تقييم، (6) سؤال إبداع. أرفق الإجابات النموذجية وعلامة كل سؤال."</em></div>
             </div>
             <div class="eval-tools">
-              <span class="eval-tool" style="background:rgba(0,180,216,0.15);color:var(--teal-light);">ChatGPT → Google Forms</span>
-              <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:var(--gold-light);">Formative</span>
+              <span class="eval-tool" style="background:rgba(249,115,22,0.12);color:#fb923c;">ChatGPT → Google Forms</span>
+              <span class="eval-tool" style="background:rgba(226,176,74,0.15);color:#fb923c;">Formative</span>
             </div>
           </div>
         </div>
@@ -1662,7 +1535,7 @@
               <div class="explain-text">التقويم الأصيل يطلب من الطالب <strong>توظيف المعرفة في سياق حقيقي</strong> لا مجرد استرجاعها. مثال: بدلاً من سؤال "ما هي مراحل دورة الماء؟" اطلب "صمّم ملصقاً تعليمياً يشرح دورة الماء لطلاب الصف الأول." هذا يقيس الفهم الحقيقي والإبداع.</div>
             </div>
             <div class="eval-tools">
-              <span class="eval-tool" style="background:rgba(46,196,182,0.15);color:#7eefd7;">Seesaw</span>
+              <span class="eval-tool" style="background:rgba(249,115,22,0.15);color:#fb923c;">Seesaw</span>
               <span class="eval-tool" style="background:rgba(123,94,167,0.15);color:#b09ac7;">Turnitin AI</span>
             </div>
           </div>
@@ -1721,7 +1594,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(0,180,216,0.15)">🌟</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.12)">🌟</div>
           <div><div class="block-title">لماذا القصة في التعليم؟</div></div>
         </div>
         <div class="definition-box">
@@ -1850,7 +1723,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(46,196,182,0.15)">🤖</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.15)">🤖</div>
           <div><div class="block-title">أوامر لإنشاء قصص تعليمية بالذكاء الاصطناعي</div></div>
         </div>
         <div class="explain-block green">
@@ -1902,7 +1775,7 @@
 
       <div class="content-block">
         <div class="block-header">
-          <div class="block-icon" style="background:rgba(232,93,74,0.15)">🛠️</div>
+          <div class="block-icon" style="background:rgba(249,115,22,0.12)">🛠️</div>
           <div><div class="block-title">أدوات صناعة المحتوى التعليمي</div></div>
         </div>
         <div class="explain-block coral">
@@ -1966,7 +1839,7 @@
         <div class="cert-title">أكملت جميع وحدات الدورة!</div>
         <div class="cert-text">أتقنت الذكاء الاصطناعي، هندسة الأوامر، تصميم الدروس، صناعة الموارد، التقويم الذكي، والقصص التعليمية. أنت الآن مؤهل لتوظيف الذكاء الاصطناعي في فصلك الدراسي بكفاءة عالية.</div>
         <div style="margin-top:14px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-          <div style="font-size:12px;color:var(--gold-light);display:flex;align-items:center;gap:6px;"><span>👨‍🏫</span> الأستاذ محمد العشيري</div>
+          <div style="font-size:12px;color:#fb923c;display:flex;align-items:center;gap:6px;"><span>👨‍🏫</span> الأستاذ محمد العشيري</div>
           <div style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;"><span>📅</span> السنة الدراسية 2026</div>
         </div>
         <div style="margin-top:1.25rem;">
@@ -2051,7 +1924,7 @@
 
     /* ---------- UNIT 1 ---------- */
     'ai-general': {
-      emoji:'🤖', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      emoji:'🤖', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الذكاء الاصطناعي العام (AGI)',
       body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف</div>
         <p class="modal-text">الذكاء الاصطناعي العام هو الهدف الأسمى — بناء نظام قادر على أداء <strong>أي مهمة فكرية يستطيعها الإنسان</strong> بنفس المرونة والقدرة على التعلم في سياقات جديدة تماماً.</p></div>
@@ -2060,7 +1933,7 @@
         <p class="modal-text">يُقدّر الباحثون تحققه بين 2030 و2050. كل إصدار جديد من نماذج اللغة الكبيرة يقترب أكثر من هذا الهدف.</p></div>`
     },
     'ml': {
-      emoji:'📊', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      emoji:'📊', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'التعلم الآلي (Machine Learning)',
       body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف البسيط</div>
         <p class="modal-text">بدلاً من برمجة قواعد صريحة، نُعطي الحاسوب <strong>أمثلة كثيرة</strong> ونتركه يكتشف القواعد بنفسه.</p></div>
@@ -2076,7 +1949,7 @@
         <p class="modal-text">نظام التوصية في YouTube، فلتر البريد العشوائي، أنظمة التعلم التكيّفي التي تُعدّل مستوى الطالب تلقائياً — كلها تعلم آلي.</p></div>`
     },
     'dl': {
-      emoji:'🧬', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      emoji:'🧬', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'التعلم العميق (Deep Learning)',
       body:`<div class="modal-section"><div class="modal-section-title">📖 ما الذي يجعله "عميقاً"؟</div>
         <p class="modal-text">يستخدم <strong>شبكات عصبية اصطناعية</strong> بطبقات متعددة — كل طبقة تعالج المعلومات بمستوى أعمق. كلما زادت الطبقات، زادت القدرة على فهم الأنماط المعقدة.</p></div>
@@ -2091,7 +1964,7 @@
         <p class="modal-text">التعرف على خط يد الطالب، تحليل الصوت في تمارين النطق، فهم أسئلة الطلاب المكتوبة بلغة طبيعية.</p></div>`
     },
     'nlp': {
-      emoji:'💬', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      emoji:'💬', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'معالجة اللغة الطبيعية (NLP)',
       body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف</div>
         <p class="modal-text">تُمكّن الحاسوب من <strong>قراءة وفهم والرد</strong> باللغة الإنسانية الطبيعية نصاً أو كلاماً. بدونها ما كان ChatGPT موجوداً.</p></div>
@@ -2106,7 +1979,7 @@
         <p class="modal-text">ChatGPT يفهم أسئلتك ويرد بالعربية، تصحيح الإملاء التلقائي، ترجمة الدروس، روبوتات تُجيب على أسئلة الطلاب — كلها NLP.</p></div>`
     },
     'cv': {
-      emoji:'👁️', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      emoji:'👁️', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الرؤية الحاسوبية (Computer Vision)',
       body:`<div class="modal-section"><div class="modal-section-title">📖 التعريف</div>
         <p class="modal-text">تُمكّن الحاسوب من <strong>"رؤية" وفهم الصور ومقاطع الفيديو</strong> — التعرف على الأشياء والأشخاص والنصوص تماماً كما يفعل الإنسان.</p></div>
@@ -2119,7 +1992,7 @@
         </div></div>`
     },
     'genai': {
-      emoji:'🎯', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(0,180,216,0.15)', tt:'var(--teal-light)',
+      emoji:'🎯', tag:'الوحدة 01 — الذكاء الاصطناعي', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الذكاء الاصطناعي التوليدي (Generative AI)',
       body:`<div class="modal-section"><div class="modal-section-title">📖 ما الذي يجعله "توليدياً"؟</div>
         <p class="modal-text">بينما معظم AI يُحلّل ويُصنّف، الذكاء التوليدي <strong>يُنشئ محتوى جديداً</strong> — نصوص، صور، موسيقى، كود، فيديو — من تعليمات بسيطة.</p></div>
@@ -2141,7 +2014,7 @@
 
     /* ---------- UNIT 3: TOOLS ---------- */
     'tool-chatgpt': {
-      emoji:'💬', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      emoji:'💬', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'ChatGPT / Claude — المحرك الأساسي',
       body:`<div class="modal-section"><div class="modal-section-title">💡 لماذا هما أهم أداة للمعلم؟</div>
         <p class="modal-text">ChatGPT وClaude هما العقل المفكر في مجموعة أدواتك — يُمكنك استخدامهما لأي مهمة نصية تقريباً: خطط الدروس، الأهداف، الأسئلة، الأنشطة، التغذية الراجعة.</p></div>
@@ -2153,7 +2026,7 @@
       <div class="modal-highlight green">🔗 <strong>الفرق بين ChatGPT وClaude:</strong><br>ChatGPT أوسع استخداماً وأكثر تكاملاً مع الأدوات. Claude أدق في اتباع التعليمات المعقدة وأفضل في المهام الطويلة. جرّب الاثنين.</div>`
     },
     'tool-gamma': {
-      emoji:'🎯', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      emoji:'🎯', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'Gamma.app — عروض تقديمية بـ 60 ثانية',
       body:`<div class="modal-section"><div class="modal-section-title">🚀 ما الذي يُميّز Gamma؟</div>
         <p class="modal-text">يُحوّل <strong>نصاً بسيطاً</strong> إلى عرض تقديمي احترافي بشرائح جميلة في أقل من دقيقة. لا مهارات تصميم ولا وقت طويل.</p></div>
@@ -2168,7 +2041,7 @@
       <div class="modal-highlight gold">⏱️ <strong>التوفير الحقيقي في الوقت:</strong><br>عرض تقليدي: 2-3 ساعات تصميماً. بـ Gamma: 5 دقائق محتوى + 1 دقيقة توليد + 10 دقائق تعديل = <strong>16 دقيقة إجمالاً.</strong></div>`
     },
     'tool-mindmeister': {
-      emoji:'🗺️', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      emoji:'🗺️', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'MindMeister AI — خرائط ذهنية تلقائية',
       body:`<div class="modal-section"><div class="modal-section-title">🗺️ لماذا الخريطة الذهنية في الدرس؟</div>
         <p class="modal-text">تُنظّم المحتوى بصرياً وتُظهر العلاقات بين المفاهيم. الطالب يرى "الصورة الكاملة" دفعة واحدة بدلاً من نصوص متسلسلة.</p></div>
@@ -2181,7 +2054,7 @@
         </div></div>`
     },
     'tool-diffit': {
-      emoji:'📝', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(232,93,74,0.12)', tt:'#f5956a',
+      emoji:'📝', tag:'الوحدة 03 — أدوات الدروس', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'Diffit — التمييز التلقائي للمستويات',
       body:`<div class="modal-section"><div class="modal-section-title">🎯 المشكلة التي يحلّها</div>
         <p class="modal-text">في كل فصل طلاب بمستويات مختلفة. تحضير ثلاث نسخ من نفس الدرس يستغرق ساعات. <strong>Diffit يفعل ذلك في ثوانٍ.</strong></p></div>
@@ -2197,7 +2070,7 @@
 
     /* ---------- UNIT 4: RESOURCES ---------- */
     'res-images': {
-      emoji:'🖼️', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      emoji:'🖼️', tag:'الوحدة 04 — الموارد', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الصور التعليمية بالذكاء الاصطناعي',
       body:`<div class="modal-section"><div class="modal-section-title">🎨 لماذا الصور قوية تعليمياً؟</div>
         <p class="modal-text">الدماغ يعالج الصور <strong>60,000 مرة أسرع</strong> من النص. صورة واحدة قد تُغني عن فقرتين من الشرح — خاصة للمتعلمين البصريين.</p></div>
@@ -2213,7 +2086,7 @@
         </div></div>`
     },
     'res-infographic': {
-      emoji:'📊', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      emoji:'📊', tag:'الوحدة 04 — الموارد', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الإنفوغراف التعليمي بـ Canva AI',
       body:`<div class="modal-section"><div class="modal-section-title">📊 ما الإنفوغراف المثالي؟</div>
         <p class="modal-text">موضوع كامل في صفحة واحدة — عنوان جذاب + نقاط رئيسية + أرقام + صور. يُطبع ويُعلّق أو يُشارك رقمياً.</p></div>
@@ -2227,7 +2100,7 @@
       <div class="modal-highlight gold">🖨️ <strong>نصيحة:</strong><br>علّق الإنفوغراف في الفصل طوال الوحدة. الطلاب يرجعون إليه تلقائياً أثناء العمل.</div>`
     },
     'res-video': {
-      emoji:'🎬', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      emoji:'🎬', tag:'الوحدة 04 — الموارد', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الفيديو التعليمي بالأفاتار الذكي',
       body:`<div class="modal-section"><div class="modal-section-title">🎬 فيديو بلا كاميرا ولا استوديو</div>
         <p class="modal-text">Synthesia وHeyGen يُحوّلان نصاً مكتوباً إلى فيديو تعليمي بـ<strong>أفاتار بشري ناطق</strong> في دقائق. لا كاميرا، لا ميكروفون، لا مونتاج.</p></div>
@@ -2244,7 +2117,7 @@
         </div></div>`
     },
     'res-podcast': {
-      emoji:'🎙️', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      emoji:'🎙️', tag:'الوحدة 04 — الموارد', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'البودكاست والمحتوى الصوتي',
       body:`<div class="modal-section"><div class="modal-section-title">🎙️ لماذا الصوت مهم تعليمياً؟</div>
         <p class="modal-text">الطلاب الذين يتعلمون سمعياً يستوعبون المحتوى الصوتي أفضل بكثير. وتسجيلات الاستماع ضرورية لتعليم اللغات.</p></div>
@@ -2258,7 +2131,7 @@
         </div></div>`
     },
     'res-ebook': {
-      emoji:'📖', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      emoji:'📖', tag:'الوحدة 04 — الموارد', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الكتب الرقمية بـ Book Creator AI',
       body:`<div class="modal-section"><div class="modal-section-title">📖 ما يُميّزه عن PDF عادي؟</div>
         <p class="modal-text">كتاب Book Creator يحتوي <strong>نصوص + صور + صوت + فيديو + أسئلة تفاعلية</strong> في ملف واحد. الطالب يقرأ ويستمع ويُجيب في مكان واحد.</p></div>
@@ -2271,7 +2144,7 @@
         </div></div>`
     },
     'res-games': {
-      emoji:'🎮', tag:'الوحدة 04 — الموارد', tc:'rgba(46,196,182,0.12)', tt:'#7eefd7',
+      emoji:'🎮', tag:'الوحدة 04 — الموارد', tc:'rgba(249,115,22,0.12)', tt:'#fb923c',
       title:'الألعاب التعليمية بالذكاء الاصطناعي',
       body:`<div class="modal-section"><div class="modal-section-title">🎮 لماذا الألعاب تُعلّم؟</div>
         <p class="modal-text">اللعبة تُنشّط نظام المكافأة في الدماغ. الدوبامين يُحفّز الاستمرار. حين يحصل الطالب على نقاط يريد المزيد — وهذا التحفيز يجعل التعلم أعمق.</p></div>
@@ -2305,7 +2178,7 @@
 
     /* ---------- UNIT 6: STORY TYPES ---------- */
     'story-hero': {
-      emoji:'🦸', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🦸', tag:'الوحدة 06 — القصص', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'قصة البطل — الطالب محور الحكاية',
       body:`<div class="modal-section"><div class="modal-section-title">🦸 لماذا قصة البطل فعّالة؟</div>
         <p class="modal-text">حين يُشبه البطل الطالبَ في سنّه وبيئته، يحدث <strong>التماهي التلقائي</strong> — الطالب يضع نفسه مكان البطل ويُحاول حل مشكلته. هذا يُحوّل التعلم من مشاهدة إلى مشاركة.</p></div>
@@ -2319,7 +2192,7 @@
       <div class="modal-highlight green">💡 <strong>مثال سريع:</strong><br>درس الكسور → أيوب يريد تقسيم البيتزا بالتساوي بين 4 أصدقاء ولديه 3 قطع. دون أن يشعر الطالب، تعلّم كسر 3/4.</div>`
     },
     'story-history': {
-      emoji:'🕰️', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🕰️', tag:'الوحدة 06 — القصص', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'القصة التاريخية — إحياء الماضي',
       body:`<div class="modal-section"><div class="modal-section-title">🕰️ ما قوة القصة التاريخية؟</div>
         <p class="modal-text">التاريخ ليس تواريخ وأسماء — هو قصص بشر حقيقيين اتخذوا قرارات. حين نرويها درامياً، <strong>التاريخ يحيا</strong> ويترك أثراً لا يُنسى.</p></div>
@@ -2333,7 +2206,7 @@
         </div></div>`
     },
     'story-science': {
-      emoji:'🔬', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🔬', tag:'الوحدة 06 — القصص', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'القصة العلمية — مغامرة داخل العلم',
       body:`<div class="modal-section"><div class="modal-section-title">🔬 لماذا القصة العلمية؟</div>
         <p class="modal-text">المفاهيم المجردة (الخلية، الذرة، الكوكب) تصعب تخيّلها. القصة العلمية تُحوّل الطالب إلى <strong>مستكشف يدخل هذه العوالم</strong> ويتفاعل معها مباشرة.</p></div>
@@ -2347,7 +2220,7 @@
         </div></div>`
     },
     'story-scenario': {
-      emoji:'🌍', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🌍', tag:'الوحدة 06 — القصص', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'السيناريو الواقعي — حل مشكلة حقيقية',
       body:`<div class="modal-section"><div class="modal-section-title">🌍 ما السيناريو الواقعي؟</div>
         <p class="modal-text">تضع الطلاب في موقف حقيقي يطلب منهم <strong>توظيف ما تعلّموه</strong> لإيجاد حل. ليس اختباراً — بل مهمة ذات معنى حقيقي.</p></div>
@@ -2360,7 +2233,7 @@
         </div></div>`
     },
     'story-roleplay': {
-      emoji:'🎭', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🎭', tag:'الوحدة 06 — القصص', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'لعب الأدوار — التقمّص والتجسيد',
       body:`<div class="modal-section"><div class="modal-section-title">🎭 ما قوة لعب الأدوار؟</div>
         <p class="modal-text">حين يتقمّص الطالب شخصية تاريخية أو علمية، <strong>يُفكّر من منظورها</strong> ويتخذ قراراتها. هذا يُنمّي التعاطف والتفكير النقدي والفهم العميق معاً.</p></div>
@@ -2373,7 +2246,7 @@
         </div></div>`
     },
     'story-future': {
-      emoji:'🔮', tag:'الوحدة 06 — القصص', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🔮', tag:'الوحدة 06 — القصص', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'القصة المستقبلية — التفكير الإبداعي',
       body:`<div class="modal-section"><div class="modal-section-title">🔮 لماذا المستقبل؟</div>
         <p class="modal-text">تُتلاشى حدود "هذا مستحيل" وتُطلق الخيال. الطالب يُفكّر: "لو عشت في 2100، كيف تُحلّ مشكلة الماء؟" هذا يُنمّي التفكير الإبداعي والنقدي معاً.</p></div>
@@ -2388,7 +2261,7 @@
 
     /* ---------- UNIT 6: TOOLS ---------- */
     'tool-chatgpt-stories': {
-      emoji:'📝', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'📝', tag:'الوحدة 06 — المحتوى', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'ChatGPT / Claude — كتابة القصص التعليمية',
       body:`<div class="modal-section"><div class="modal-section-title">✍️ لماذا AI أفضل من الكتابة اليدوية؟</div>
         <p class="modal-text">قصة تعليمية جيدة تتطلب إبداعاً + معرفة علمية + فهم مستوى الطلاب + لغة مناسبة. الذكاء الاصطناعي يجمع كل هذا في دقيقتين.</p></div>
@@ -2402,7 +2275,7 @@
         </div></div>`
     },
     'tool-bookcreator': {
-      emoji:'🎨', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🎨', tag:'الوحدة 06 — المحتوى', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'Book Creator AI — الكتاب الرقمي الحي',
       body:`<div class="modal-section"><div class="modal-section-title">📖 ما الذي يُميّزه؟</div>
         <p class="modal-text">يُحوّل القصة لـ<strong>كتاب رقمي تفاعلي</strong> يحتوي نص + صوت + صور + فيديو + أسئلة. الطالب يقرأ ويستمع ويُجيب في مكان واحد.</p></div>
@@ -2411,7 +2284,7 @@
         <p class="modal-text">كلّف كل مجموعة بكتابة قصة تعليمية بـ ChatGPT ثم إنتاجها ككتاب في Book Creator. في النهاية كل مجموعة تُقدّم كتابها للفصل — تعلّم + إبداع + تعاون + تقييم أصيل دفعة واحدة.</p></div>`
     },
     'tool-murf': {
-      emoji:'🎙️', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🎙️', tag:'الوحدة 06 — المحتوى', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'Murf AI / ElevenLabs — الحكي الصوتي',
       body:`<div class="modal-section"><div class="modal-section-title">🎙️ القصة بصوت عاطفي</div>
         <p class="modal-text">القصة المُقروءة بصوت عاطفي ومُعبّر أكثر تأثيراً بمراحل من القراءة الصامتة. هذه الأدوات تُحوّل نصك لتسجيل طبيعي جداً.</p></div>
@@ -2427,7 +2300,7 @@
         </div></div>`
     },
     'tool-sora': {
-      emoji:'🎬', tag:'الوحدة 06 — المحتوى', tc:'rgba(0,180,216,0.12)', tt:'var(--teal-light)',
+      emoji:'🎬', tag:'الوحدة 06 — المحتوى', tc:'rgba(249,115,22,0.1)', tt:'#fb923c',
       title:'Sora / Kling AI — الفيديو من النص',
       body:`<div class="modal-section"><div class="modal-section-title">🎬 المستقبل هنا</div>
         <p class="modal-text">يُحوّلان <strong>وصفاً نصياً</strong> إلى فيديو متحرك واقعي. اكتب "طفل يركب حصاناً في صحراء مغربية غروباً" وستحصل على فيديو.</p></div>
@@ -2446,11 +2319,11 @@
     const d = modalData[key];
     if (!d) return;
     document.getElementById('modalEmoji').textContent = d.emoji;
-    document.getElementById('modalEmoji').style.background = d.tc || 'rgba(0,180,216,0.15)';
+    document.getElementById('modalEmoji').style.background = d.tc || 'rgba(249,115,22,0.12)';
     const tag = document.getElementById('modalTag');
     tag.textContent = d.tag;
-    tag.style.background = d.tc || 'rgba(0,180,216,0.15)';
-    tag.style.color = d.tt || 'var(--teal-light)';
+    tag.style.background = d.tc || 'rgba(249,115,22,0.12)';
+    tag.style.color = d.tt || '#fb923c';
     document.getElementById('modalTitle').textContent = d.title;
     document.getElementById('modalBody').innerHTML = d.body;
     const overlay = document.getElementById('modalOverlay');
